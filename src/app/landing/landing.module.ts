@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { LandingRoutingModule } from './landing-routing.module';
 import { LandingComponent } from './landing/landing.component';
+
 import { CoreModule } from '../core/core.module';
 
 
