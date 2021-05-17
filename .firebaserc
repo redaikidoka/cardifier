@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "cardifier-test": {
+      "hosting": {
+        "cardifier": [
+          "cardifier-test"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "cardifier-test"
+  }
+}
