@@ -3,22 +3,22 @@ import {Router} from '@angular/router';
 import {catchError, concatMap, map, tap} from 'rxjs/operators';
 import {UnsubscribeOnDestroyAdapter} from './unsubscribe-on-destroy-adapter';
 import {Observable, BehaviorSubject, Subject, ReplaySubject, of} from 'rxjs';
-import {Apollo} from 'apollo-angular';
+// import {Apollo} from 'apollo-angular';
 import firebase from 'firebase';
 import UserInfo = firebase.UserInfo;
 import User = firebase.User;
 import {AngularFireAuth} from '@angular/fire/auth';
-import gql from 'graphql-tag';
+// import gql from 'graphql-tag';
 
 // @ts-ignore
 import * as cloneDeep from 'lodash/cloneDeep';
 
 import {MatSnackBar} from '@angular/material/snack-bar';
 
-import {VwUser} from './data/vw-user';
-import {AdmApp, AdmFramework} from './data/adm-app';
-import {qAppsFull} from './data/q-apps';
-import {qSchema} from './data/q-schemas';
+// import {VwUser} from './data/vw-user';
+// import {AdmApp, AdmFramework} from './data/adm-app';
+// import {qAppsFull} from './data/q-apps';
+// import {qSchema} from './data/q-schemas';
 
 import {environment} from '../../environments/environment';
 // import {auth, User, UserInfo} from '../../../node_modules/firebase';

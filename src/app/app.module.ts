@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -9,11 +9,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+import {RollbarErrorHandlerService, RollbarService, rollbarFactory} from './root/rollbar-error-handler.service';
 import { LandingModule } from './landing/landing.module';
 
 import {environment} from '../environments/environment';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -22,15 +24,18 @@ import {environment} from '../environments/environment';
   imports: [
     BrowserModule, BrowserAnimationsModule,
     AppRoutingModule,
-    CoreModule, LandingModule, FontAwesomeModule,
+    CoreModule, LandingModule,
 
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    FontAwesomeModule
   ],
   exports: [
 
   ],
-  providers: [],
+  providers: [
+    { provide: ErrorHandler, useClass: RollbarErrorHandlerService },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
