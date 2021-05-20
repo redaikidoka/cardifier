@@ -1,41 +1,42 @@
 import { NgModule, ErrorHandler } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {AngularFireModule} from '@angular/fire';
-import {AngularFireStorageModule} from '@angular/fire/storage';
+import { AngularFireModule } from '@angular/fire';
 
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 
-// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
-import {RollbarErrorHandlerService, RollbarService, rollbarFactory} from './root/rollbar-error-handler.service';
+import {
+  RollbarErrorHandlerService,
+  RollbarService,
+  rollbarFactory,
+} from './root/rollbar-error-handler.service';
 import { LandingModule } from './landing/landing.module';
 
-import {environment} from '../environments/environment';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { environment } from '../environments/environment';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
-    BrowserModule, BrowserAnimationsModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    CoreModule, LandingModule,
-
+    CoreModule,
+    LandingModule,
+    LoginModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule,
-    FontAwesomeModule
+    RouterModule
   ],
-  exports: [
-
-  ],
+  exports: [],
   providers: [
     { provide: ErrorHandler, useClass: RollbarErrorHandlerService },
+    { provide: RollbarService, useFactory: rollbarFactory },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

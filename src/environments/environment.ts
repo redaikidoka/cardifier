@@ -3,11 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  APP_NAME: 'Cardifier',
   env_name: 'base',
   production: false,
   DATA_URL: 'http://localhost:5000/graphql', // LOCAL
   // DATA_URL: 'https://graphilestr-dot-webstr-dev.appspot.com/', //DEMO
-
 
   firebaseConfig: {
     apiKey: "AIzaSyCkKKSqbGqlH77JpjVYiUNdDgtghTms6-g",

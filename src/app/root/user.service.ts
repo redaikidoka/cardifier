@@ -1,13 +1,12 @@
 import {Observable, of} from 'rxjs';
 import {Injectable} from '@angular/core';
 
-import {Apollo} from 'apollo-angular';
-import gql from 'graphql-tag';
+
 import {map, tap, catchError} from 'rxjs/operators';
 
-import {AdmApp} from './data/adm-app';
-import {VwUser} from './data/vw-user';
-import {qVwUserActive, usrFields} from './data/q-user';
+// import {AdmApp} from './data/adm-app';
+import {CardUser} from '../core/data/card-user';
+// import {qCardUserActive, usrFields} from './data/q-user';
 
 // import {UsrNotify} from './data/UsrNotify';
 import {LoggerService} from './logger.service';
@@ -19,8 +18,7 @@ import {UnsubscribeOnDestroyAdapter} from './unsubscribe-on-destroy-adapter';
 })
 export class UserService extends UnsubscribeOnDestroyAdapter {
 
-  me: VwUser | null;
-  app: AdmApp | null;
+  me: CardUser | null;
 
   static getInitials(userName: string): string {
     if (!userName) {
@@ -31,28 +29,28 @@ export class UserService extends UnsubscribeOnDestroyAdapter {
       (arr.length > 1 ? (idx === 0 || idx === arr.length - 1 ? cur.substring(0, 1) : '') : cur.substring(0, 2)), '').toUpperCase();
   }
 
-  static dataToVwUserQuery(loadedUser: any, queryName: string): VwUser {
-    // console.log('UserService::datatoVwUser', loadedUser);
+  static dataToCardUserQuery(loadedUser: any, queryName: string): CardUser {
+    // console.log('UserService::datatoCardUser', loadedUser);
     return loadedUser.data[queryName];
     // if (usr) {
     //   return usr;
     // } else {
-    //   console.warn('UserService::dataToVwUser - dis data bad');
+    //   console.warn('UserService::dataToCardUser - dis data bad');
     //   // @ts-ignore
     //   return ();
     // }
   }
 
 
-  static dataToVwUsers(loadedUsers: any): VwUser[] {
-    return loadedUsers.data.allVwUsersList;
-    // if (users && users.nodes.length > 0) {
-    //   return users.nodes as VwUser[];
-    // } else {
-    //   console.warn('UserService::dataToVwUsers - dis data bad');
-    //   return ([]);
-    // }
-  }
+  // static dataToCardUsers(loadedUsers: any): CardUser[] {
+  //   return loadedUsers.data.allCardUsersList;
+  //   // if (users && users.nodes.length > 0) {
+  //   //   return users.nodes as CardUser[];
+  //   // } else {
+  //   //   console.warn('UserService::dataToCardUsers - dis data bad');
+  //   //   return ([]);
+  //   // }
+  // }
 
   // static dataToUsrNotify(notifies: any): UsrNotify[] {
   //   const n = notifies.data.allUsrNotifies.nodes;
@@ -66,103 +64,77 @@ export class UserService extends UnsubscribeOnDestroyAdapter {
   // notifications: BehaviorSubject<UsrNotify[] | null> = new BehaviorSubject<UsrNotify[]>(null);
 
 
-  constructor(private apollo: Apollo, private logger: LoggerService) {
+  constructor( private logger: LoggerService) {
     super();
 
     this.me = null;
-    this.app = null;
   }
 
-  setUser(user: VwUser): void {
+  setUser(user: CardUser): void {
     this.me = user;
-    // this.idUserNotifications = this.me.idAdmUser;
-  }
-
-  setApp(app: AdmApp): void {
-    this.app = app;
-    // this.loadNotify(true);
-
   }
 
 
-  getUser(idUser: number, idAdmApp: number): Observable<VwUser> {
-    const qSingleUser = gql`{ vwUserByIdAdmUserAndIdAdmApp( idAdmUser: ${idUser}, idAdmApp: ${idAdmApp}) {
-        ${usrFields}
-      } }`;
+  getUser(idUser: number): Observable<CardUser> {
+    // const qSingleUser = gql`{ CardUserByIdAdmUserAndIdAdmApp( idAdmUser: ${idUser}, idAdmApp: ${idAdmApp}) {
+    //     ${usrFields}
+    //   } }`;
 
-    console.log('UserService::getuser', idUser, idAdmApp, qSingleUser);
-    // return new Observable((observer: Observer<VwUser>) => {
-    return this.apollo.query<any>({query: qSingleUser}).pipe(
-      tap(usr => console.log('UserService::getUser', usr),
-        err => this.logger.logErrObject( 'UserService::getUser', err, 'Could not load user')),
-      map(userData => UserService.dataToVwUserQuery(userData, 'vwUserByIdAdmUserAndIdAdmApp'))
-    );
-
+    // console.log('UserService::getuser', idUser, idAdmApp, qSingleUser);
+    // // return new Observable((observer: Observer<CardUser>) => {
+    // return this.apollo.query<any>({query: qSingleUser}).pipe(
+    //   tap(usr => console.log('UserService::getUser', usr),
+    //     err => this.logger.logErrObject( 'UserService::getUser', err, 'Could not load user')),
+    //   map(userData => UserService.dataToCardUserQuery(userData, 'CardUserByIdAdmUserAndIdAdmApp'))
+    // );
+    return of({} as CardUser);
   }
 
-  getUserByEmail(email: string): Observable<VwUser[]> {
-    const qSingleUser = gql`{ allVwUsersList(condition: {userEmail: "${email}"}) {
-        ${usrFields}
-      }  }`;
+  getUserByEmail(email: string): Observable<CardUser> {
+    // const qSingleUser = gql`{ allCardUsersList(condition: {userEmail: "${email}"}) {
+    //     ${usrFields}
+    //   }  }`;
 
-    console.log('UserService::getUserByEmail', email, qSingleUser);
-    // return new Observable((observer: Observer<VwUser>) => {
-    return this.apollo.query<any>({query: qSingleUser}).pipe(
-      map(userData => UserService.dataToVwUsers(userData))
-    );
-
+    // console.log('UserService::getUserByEmail', email, qSingleUser);
+    // // return new Observable((observer: Observer<CardUser>) => {
+    // return this.apollo.query<any>({query: qSingleUser}).pipe(
+    //   map(userData => UserService.dataToCardUsers(userData))
+    // );
+    return of({} as CardUser);
   }
 
-  getUserList(): Observable<VwUser[]> {
-    console.log('UserService::getUserList', qVwUserActive);
+  getUserList(): Observable<CardUser[]> {
+    // console.log('UserService::getUserList', qCardUserActive);
 
-    return this.apollo.query<any>({query: qVwUserActive}).pipe(
-      tap(res => console.log('UserService::getUserList', res),
-        err =>
-          this.logger.logErrObject( 'UserService::getUserList()', err, 'Could not load user list')),
-      map(userData => UserService.dataToVwUsers(userData))
-    );
-  }
-
-  getAppUserList(idApp: number): Observable<VwUser[]> {
-    // console.log('UserService::getUserList', qVwUserAll);
-    const qAppUsers = gql`
-      {
-        allVwUsersList(condition: {isActive: true, idAdmApp: ${idApp} } , orderBy: USER_NAME_ASC) {
-          ${usrFields}
-        }
-      } `;
-
-
-    console.log('UserService::getAppUserList', idApp, qAppUsers);
-
-    return this.apollo.query<any>({query: qAppUsers}).pipe(
-      tap(res => console.log('UserService::getUserList', res),
-        err =>
-          this.logger.logErrObject( 'UserService::getUserList()', err, 'Could not load user list')),
-      map(userData => userData.data.allVwUsersList )
-    );
+    // return this.apollo.query<any>({query: qCardUserActive}).pipe(
+    //   tap(res => console.log('UserService::getUserList', res),
+    //     err =>
+    //       this.logger.logErrObject( 'UserService::getUserList()', err, 'Could not load user list')),
+    //   map(userData => UserService.dataToCardUsers(userData))
+    // );
+    return of([] as CardUser[]);
   }
 
 
-  getAppAccessUserList(idApp: number, accessLevel: number): Observable<VwUser[]> {
 
-    const qAppUsers = gql`
-      {
-        allVwUsersList(condition: {isActive: true, idAdmApp: ${idApp}, idUserType: ${accessLevel} } , orderBy: USER_NAME_ASC) {
-          ${usrFields}
-        }
-      } `;
+  // getAppAccessUserList(idApp: number, accessLevel: number): Observable<CardUser[]> {
 
-    console.log('UserService::getAppAccessUserList', idApp, accessLevel, qAppUsers);
+  //   const qAppUsers = gql`
+  //     {
+  //       allCardUsersList(condition: {isActive: true, idAdmApp: ${idApp}, idUserType: ${accessLevel} } , orderBy: USER_NAME_ASC) {
+  //         ${usrFields}
+  //       }
+  //     } `;
 
-    return this.apollo.query<any>({query: qAppUsers}).pipe(
-      tap(res => console.log('UserService::getUserList', res),
-        err =>
-          this.logger.logErrObject( 'UserService::getUserList()', err, 'Could not load user list')),
-      map(userData => userData.data.allVwUsersList )
-    );
-  }
+  //   console.log('UserService::getAppAccessUserList', idApp, accessLevel, qAppUsers);
+
+  //   return this.apollo.query<any>({query: qAppUsers}).pipe(
+  //     tap(res => console.log('UserService::getUserList', res),
+  //       err =>
+  //         this.logger.logErrObject( 'UserService::getUserList()', err, 'Could not load user list')),
+  //     map(userData => userData.data.allCardUsersList )
+  //   );
+  // }
   // loadNotify(force: boolean = false): Observable<UsrNotify[] > | null {
   //
   //   console.assert(this.me, 'UserService::loadNotify(): I should have a user' );
@@ -341,16 +313,16 @@ export class UserService extends UnsubscribeOnDestroyAdapter {
   userIcon(idUserType: number): string {
 
     switch (idUserType) {
-      case 13:
-        return 'pets';
-      case 100:
-        return 'supervisor_account';
-      case 200:
-        return 'directions_run';
-      case 300:
-        return 'emoji_people';
+      case 13: // sysadmin
+        return 'user-secret';
+      case 100: // admin
+        return 'user-ninja';
+      case 200: // storyteller
+        return 'user-tie';
+      case 300: // user
+        return 'user';
       default:
-        return 'accessibility';
+        return 'user';
     }
 
   }

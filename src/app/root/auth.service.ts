@@ -3,19 +3,20 @@ import {Router} from '@angular/router';
 import {catchError, concatMap, map, tap} from 'rxjs/operators';
 import {UnsubscribeOnDestroyAdapter} from './unsubscribe-on-destroy-adapter';
 import {Observable, BehaviorSubject, Subject, ReplaySubject, of} from 'rxjs';
-// import {Apollo} from 'apollo-angular';
+
 import firebase from 'firebase';
 import UserInfo = firebase.UserInfo;
 import User = firebase.User;
 import {AngularFireAuth} from '@angular/fire/auth';
 // import gql from 'graphql-tag';
+// import {Apollo} from 'apollo-angular';
 
 // @ts-ignore
 import * as cloneDeep from 'lodash/cloneDeep';
 
-import {MatSnackBar} from '@angular/material/snack-bar';
+// import {MatSnackBar} from '@angular/material/snack-bar';
 
-// import {VwUser} from './data/vw-user';
+import {CardUser} from '../core/data/card-user';
 // import {AdmApp, AdmFramework} from './data/adm-app';
 // import {qAppsFull} from './data/q-apps';
 // import {qSchema} from './data/q-schemas';
@@ -25,6 +26,7 @@ import {environment} from '../../environments/environment';
 
 import {UserService} from './user.service';
 import {LoggerService} from './logger.service';
+import { SystemService } from './system.service';
 
 
 
@@ -37,16 +39,18 @@ export interface AuthStateModel {
   providedIn: 'root'
 })
 export class AuthService extends UnsubscribeOnDestroyAdapter {
+  private currentUser$: BehaviorSubject<any> = new BehaviorSubject<any>({});
+  private currentApp$: BehaviorSubject<any> = new BehaviorSubject<any>({} );
 
-  private currentUser$: BehaviorSubject<VwUser> = new BehaviorSubject<VwUser>({} as VwUser);
-  private currentApp$: BehaviorSubject<AdmApp> = new BehaviorSubject<AdmApp>({} as AdmApp);
+  // private currentUser$: BehaviorSubject<CardUser> = new BehaviorSubject<CardUser>({} as CardUser);
+  // private currentApp$: BehaviorSubject<AdmApp> = new BehaviorSubject<AdmApp>({} as AdmApp);
 
   private authInfo: AuthStateModel;
   private testToken = '2021-02-23test';
 
   private loggedIn = false;
 
-  getCurrentUser$(): Observable<VwUser> {
+  getCurrentUser$(): Observable<CardUser> {
     return this.currentUser$.asObservable();
   }
 
@@ -58,15 +62,16 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
     return this.currentApp$.getValue() ?? {} as AdmApp;
   }
 
-  getCurrentUser(): VwUser {
+  getCurrentUser(): CardUser {
     if (this.currentUser$.getValue()) {
       return this.currentUser$.getValue();
     }
 
-    return {} as VwUser;
+    return {} as CardUser;
   }
 
-  me(): VwUser {
+
+  me(): CardUser {
     return this.getCurrentUser();
   }
 
@@ -81,8 +86,9 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
     return this.me()?.idAdmUser;
   }
 
-  constructor(public ngAuth: AngularFireAuth, private apollo: Apollo,
-              private snackBar: MatSnackBar, private userService: UserService, private logger: LoggerService,
+  constructor(public ngAuth: AngularFireAuth, private systemService: SystemService
+    // private apollo: Apollo, private snackBar: MatSnackBar,
+              private userService: UserService, private logger: LoggerService,
               private zone: NgZone, private router: Router) {
     super();
 
@@ -124,11 +130,11 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
     });
   }
 
-  recordLogin(loginInfo: string, userId: number, user: VwUser): void {
+  recordLogin(loginInfo: string, userId: number, user: any): void {
     return this.logger.makeLog('Login', loginInfo);
   }
 
-  recordLogout(user: VwUser): void {
+  recordLogout(user: any): void {
     return this.logger.makeLog('Logout', 'User logged out');
   }
 
@@ -143,7 +149,7 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
       .then(() => {
         this.loggedIn = false;
         this.authInfo = {} as AuthStateModel;
-        this.currentUser$.next({} as VwUser);
+        this.currentUser$.next({} );
 
         localStorage.removeItem(environment.APP_NAME + 'Token', );
         localStorage.removeItem(environment.APP_NAME + 'User');
@@ -194,7 +200,7 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
   }
 
 
-  testLogin(idUser: number, idApp: number): Observable<VwUser> {
+  testLogin(idUser: number, idApp: number): Observable<CardUser> {
     if (this.isLoggedIn()) {
       console.log('AuthService::testLogin - logging out ', this.me());
       this.logout(false);
@@ -213,21 +219,21 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
       concatMap(() => this.loginUser(this.me())),
       catchError((err) => {
         this.logger.logErrObject('AuthService::testLogin', err, 'Could not login user id ' + idUser);
-        return of({} as VwUser);
+        return of({} as CardUser);
       })
     );
 
   }
 
 
-  loginUser(user: VwUser): Observable<VwUser> {
+  loginUser(user: CardUser): Observable<CardUser> {
     // console.log("AuthService::loginUser", user);
 
     this.loggedIn = true;
 
     if (!this.authInfo.token) {
       this.logger.logErr('loginUser', 'no login token', 'Could not get Login Token');
-      return of({} as VwUser);
+      return of({} as CardUser);
     }
 
     this.saveUser(user);
@@ -241,7 +247,7 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
   }
 
 
-  loginUserEmail(email: string, token: string): Observable<VwUser> {
+  loginUserEmail(email: string, token: string): Observable<CardUser> {
     console.log('AuthService::loginUserEmail ', email);
 
     if ( this.isLoggedIn() ) {
@@ -250,7 +256,7 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
     }
 
     return this.userService.getUserByEmail(email).pipe(
-      concatMap((found: VwUser[]) => {
+      concatMap((found: CardUser[]) => {
         if (found && found.length > 0) {
           const me = found[0];
           console.log('AUthService::loginEmail working', found);
@@ -260,14 +266,14 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
           this.logger.logErr( 'AuthService::loginEmail', 'Could not login ' + email, 'Could not login!' );
           this.logger.makeLog('LoginUserEMail', email + ' LOGIN FAILED');
           this.logout();
-          return of({} as VwUser);
+          return of({} as CardUser);
         }
       }),
       catchError((err) => {
         this.logger.logErrObject( 'AuthService::loginEmail', err, 'Could not login this email ' + email );
 
         this.logout();
-        return of({} as VwUser);
+        return of({} as CardUser);
       })
     );
   }
@@ -279,7 +285,7 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
 
     if (token && savedUser && dataUrl === environment.DATA_URL) {
       console.log( 'AuthService::checkSavedUser - user exists!', token, 'user: ', savedUser );
-      const convertedUser = JSON.parse(savedUser) as VwUser;
+      const convertedUser = JSON.parse(savedUser) as CardUser;
 
       return true;
     } else {
@@ -288,7 +294,7 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
     }
   }
 
-  saveUser(user: VwUser): void {
+  saveUser(user: CardUser): void {
     console.log('Auth::saveUser', user);
     this.currentUser$.next(user);
     this.logger.currentUser$.next(user);
