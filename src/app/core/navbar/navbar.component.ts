@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 
+import { UserService } from 'src/app/root/user.service';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
   showMenu = false;
 
-  toggleNavbar(){
+  toggleNavbar() {
     this.showMenu = !this.showMenu;
   }
-  constructor() { }
+  constructor(userService: UserService) {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
