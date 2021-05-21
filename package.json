@@ -3,8 +3,8 @@
   "version": "11.0.2021-05-04",
   "scripts": {
     "ng": "ng",
-    "start:dev": "npm run pug-it:w & ng serve --hmr --port 4210 --configuration=dev",
-    "start": "npm run pug-it:w & ng serve --hmr --port 4210",
+    "start:dev": "ng serve --hmr --port 4210 --configuration=dev",
+    "start": "ng serve --hmr --port 4210",
     "build": "ng build",
     "build:prod": "NODE_ENV=production ng build --prod",
     "build:dev": "NODE_ENV=dev ng build --configuration=dev",
@@ -59,7 +59,6 @@
     "karma-jasmine-html-reporter": "^1.5.0",
     "open": "^7.0.3",
     "protractor": "~7.0.0",
-    "pug-cli": "*",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~4.2.4"

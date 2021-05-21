@@ -1,14 +1,11 @@
 import {Inject, Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
+import {map, tap} from 'rxjs/operators';
 
 import {RollbarService} from './rollbar-error-handler.service';
 import Rollbar from 'rollbar';
 
-
-import {map, tap} from 'rxjs/operators';
-
 import {UnsubscribeOnDestroyAdapter} from './unsubscribe-on-destroy-adapter';
-
 
 import {CardUser} from '../core/data/card-user';
 
