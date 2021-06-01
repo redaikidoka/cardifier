@@ -1,35 +1,31 @@
-import {Inject, Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
-import {map, tap} from 'rxjs/operators';
+import { Inject, Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
-import {RollbarService} from './rollbar-error-handler.service';
+import { RollbarService } from './rollbar-error-handler.service';
 import Rollbar from 'rollbar';
 
-import {UnsubscribeOnDestroyAdapter} from './unsubscribe-on-destroy-adapter';
+import { UnsubscribeOnDestroyAdapter } from './unsubscribe-on-destroy-adapter';
 
-import {CardUser} from '../core/data/card-user';
+import { CardUser } from '../core/data/card-user';
 
-import {environment} from '../../environments/environment';
-
+import { environment } from '../../environments/environment';
+import { SystemService } from './system.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoggerService extends UnsubscribeOnDestroyAdapter {
+  me: CardUser | null = null;
 
-  // currentUser$: BehaviorSubject<CardUser> = new BehaviorSubject<CardUser>({} as CardUser);
-  private me(): any {
-    return null;
-  }
-  // private me(): CardUser {
-  //   return this.currentUser$.getValue();
-  // }
-  constructor(@Inject(RollbarService) private rollbar: Rollbar) {
+  constructor(
+    @Inject(RollbarService) private rollbar: Rollbar,
+    private systemService: SystemService
+  ) {
     super();
   }
 
   makeLog(area: string, logText: string): void {
-
     // const qLog = gql` mutation MyMutation {
     //     __typename
     //     createSLog(
@@ -46,10 +42,8 @@ export class LoggerService extends UnsubscribeOnDestroyAdapter {
     //     )
     //     { clientMutationId }
     //   } `;
-
     // // //////////////////////////////
     // // rollbar
-
     // try {
     //   // this.setUserPayload(usr);
     //   // this.rollBar.info(area + '::' + logText);
@@ -57,28 +51,23 @@ export class LoggerService extends UnsubscribeOnDestroyAdapter {
     // } catch (err) {
     //   console.error('LoggerService::makeLog - Could not make log to rollbar', err);
     // }
-
     // // log in application
     // this.subs.sink = this.apollo.mutate({mutation: qLog}).pipe(
     //   tap(result => console.log('LoggerService::MakeLog() Logged!', result),
     //     err => this.logErrObject('LoggerService::MakeLog()', err, 'Could not make log ' + logText)
     //   )
     // ).subscribe(res => console.log('makeLog result', res));
-
-
   }
 
-  logErrObject( area: string, err: Error, userText: string): void {
-
+  logErrObject(area: string, err: Error, userText: string): void {
     this.logErr(area, err ? err.message : userText, userText);
   }
 
   // PS 2019-12-06 12:09:13 : actually write the error!
-  logErr( area: string, errText: string, userText: string): void {
-    console.error( 'logErr:', area, ': ', errText, '\n', userText);
+  logErr(area: string, errText: string, userText: string): void {
+    console.error('logErr:', area, ': ', errText, '\n', userText);
 
-    const createUser = (this.me()?.idAdmUser) ?? '';
-
+    const createUser = this.me?.idUser ?? '';
 
     // const qNewError = gql`mutation NewError {
     //   __typename
@@ -105,21 +94,29 @@ export class LoggerService extends UnsubscribeOnDestroyAdapter {
     //     })
     // ).subscribe(res => console.log('logErr result', res),
     // err => console.error('LoggerService::logErr error logging database error', err));
-
   }
 
-  private writeRollbarErrorText(area: string, errText: string, userText: string): void {
-    const userInfo = (this.me()?.idAdmUser > 0 ? ('\nUSER ' + this.me().idAdmUser + ' ' + this.me().userName) : '\n:::NO USER INFO:::\n');
+  private writeRollbarErrorText(
+    area: string,
+    errText: string,
+    userText: string
+  ): void {
+    const userInfo = this.me?.idUser
+      ? '\nUSER ' + this.me?.idUser + ' ' + this.me?.userName
+      : '\n:::NO USER INFO:::\n';
 
     if (!environment.production) {
-      console.log('writeRollbarErrorText::Error Not logged to rollbar in non-production environment');
+      console.log(
+        'writeRollbarErrorText::Error Not logged to rollbar in non-production environment'
+      );
       return;
     }
     try {
-      this.rollbar.error(area + '\nERR:\n' + errText + '\nMESSAGE:\n' + userText + userInfo);
+      this.rollbar.error(
+        area + '\nERR:\n' + errText + '\nMESSAGE:\n' + userText + userInfo
+      );
     } catch (err) {
       console.error('Could not log error text to Rollbar', err);
     }
   }
-
 }

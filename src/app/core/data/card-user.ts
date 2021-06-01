@@ -1,12 +1,11 @@
 export interface CardUser {
-  idApp: number;
   idUser: number;
 
   userEmail: string;
   userName: string;
   imageUrl?: string;
   imageLink?: string;
-  userScore: number;
+  hoursPlayed: number;
 
   isActive: boolean;
 
@@ -15,12 +14,10 @@ export interface CardUser {
 
   sCreate: Date;
   sUpdate: Date;
-  sCreateUser?: number;
-  sUpdateUser?: number;
-
+  sIdUserCreate?: number;
+  sIdUserUpdate?: number;
 
   idUserType: number;
-    userTypeTitle?: string;
-    userTypeNotes?: string;
-
+  userTypeTitle?: string;
+  userTypeNotes?: string;
 }

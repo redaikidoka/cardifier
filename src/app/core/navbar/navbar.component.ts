@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-import { UserService } from 'src/app/root/user.service';
+import { AuthService } from 'src/app/root/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,11 +8,13 @@ import { UserService } from 'src/app/root/user.service';
 })
 export class NavbarComponent implements OnInit {
   showMenu = false;
+  me$ = this.auth.me$;
+  loggedIn$ = this.auth.loggedIn$();
 
   toggleNavbar() {
     this.showMenu = !this.showMenu;
   }
-  constructor(userService: UserService) {}
+  constructor(private auth: AuthService) {}
 
   ngOnInit(): void {}
 }

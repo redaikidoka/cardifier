@@ -1,13 +1,13 @@
-import {Injectable, NgZone} from '@angular/core';
-import {Router} from '@angular/router';
-import {catchError, concatMap, map, tap} from 'rxjs/operators';
-import {UnsubscribeOnDestroyAdapter} from './unsubscribe-on-destroy-adapter';
-import {Observable, BehaviorSubject, Subject, ReplaySubject, of} from 'rxjs';
+import { Injectable, NgZone } from '@angular/core';
+import { Router } from '@angular/router';
+import { catchError, concatMap, map, tap } from 'rxjs/operators';
+import { UnsubscribeOnDestroyAdapter } from './unsubscribe-on-destroy-adapter';
+import { Observable, BehaviorSubject, Subject, ReplaySubject, of } from 'rxjs';
 
 import firebase from 'firebase';
 import UserInfo = firebase.UserInfo;
 import User = firebase.User;
-import {AngularFireAuth} from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 // import gql from 'graphql-tag';
 // import {Apollo} from 'apollo-angular';
 
@@ -16,19 +16,17 @@ import * as cloneDeep from 'lodash/cloneDeep';
 
 // import {MatSnackBar} from '@angular/material/snack-bar';
 
-import {CardUser} from '../core/data/card-user';
+import { CardUser } from '../core/data/card-user';
 // import {AdmApp, AdmFramework} from './data/adm-app';
 // import {qAppsFull} from './data/q-apps';
 // import {qSchema} from './data/q-schemas';
 
-import {environment} from '../../environments/environment';
+import { environment } from '../../environments/environment';
 // import {auth, User, UserInfo} from '../../../node_modules/firebase';
 
-import {UserService} from './user.service';
-import {LoggerService} from './logger.service';
+import { UserService } from './user.service';
+import { LoggerService } from './logger.service';
 import { SystemService } from './system.service';
-
-
 
 export interface AuthStateModel {
   user: Partial<UserInfo>;
@@ -36,11 +34,12 @@ export interface AuthStateModel {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService extends UnsubscribeOnDestroyAdapter {
-  private currentUser$: BehaviorSubject<any> = new BehaviorSubject<any>({});
-  private currentApp$: BehaviorSubject<any> = new BehaviorSubject<any>({} );
+  private currentUser$: BehaviorSubject<CardUser> =
+    new BehaviorSubject<CardUser>({} as CardUser);
+  // private currentApp$: BehaviorSubject<any> = new BehaviorSubject<any>({});
 
   // private currentUser$: BehaviorSubject<CardUser> = new BehaviorSubject<CardUser>({} as CardUser);
   // private currentApp$: BehaviorSubject<AdmApp> = new BehaviorSubject<AdmApp>({} as AdmApp);
@@ -50,51 +49,45 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
 
   private loggedIn = false;
 
+  public me$: Observable<CardUser> = this.currentUser$.asObservable();
+
   getCurrentUser$(): Observable<CardUser> {
-    return this.currentUser$.asObservable();
-  }
-
-  getCurrentApp$(): Observable<AdmApp> {
-    return this.currentApp$.asObservable();
-  }
-
-  getCurrentApp(): AdmApp {
-    return this.currentApp$.getValue() ?? {} as AdmApp;
+    return this.currentUser$.asObservable() as Observable<CardUser>;
   }
 
   getCurrentUser(): CardUser {
     if (this.currentUser$.getValue()) {
       return this.currentUser$.getValue();
     }
-
-    return {} as CardUser;
+    const notReal = {} as CardUser;
+    return notReal;
   }
 
+  // me$(): Observable<CardUser> {
+  //   return this.getCurrentUser$();
+  // }
 
   me(): CardUser {
     return this.getCurrentUser();
   }
 
-  getAppId(): number {
-    if (this.currentApp$.getValue()) {
-      return this.currentApp$.getValue().idAdmApp;
-    }
-    return -1;
-  }
-
   myId(): number {
-    return this.me()?.idAdmUser;
+    return this.me()?.idUser;
   }
 
-  constructor(public ngAuth: AngularFireAuth, private systemService: SystemService
-    // private apollo: Apollo, private snackBar: MatSnackBar,
-              private userService: UserService, private logger: LoggerService,
-              private zone: NgZone, private router: Router) {
+  constructor(
+    public ngAuth: AngularFireAuth,
+    private systemService: SystemService,
+    private userService: UserService,
+    private logger: LoggerService,
+    private zone: NgZone,
+    private router: Router
+  ) {
     super();
 
     this.authInfo = {} as AuthStateModel;
 
-    this.ngAuth.onAuthStateChanged( (fUser) => {
+    this.ngAuth.onAuthStateChanged((fUser) => {
       // console.log('AuthState::onAuthStateChanged', fUser);
       console.log('AuthState::onAuthStateChanged', fUser?.email);
 
@@ -102,15 +95,18 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
         fUser.getIdToken().then((token: string) => {
           // console.log('AuthState::AUTH TOKEN', token);
           // console.log('AuthState::CURRENT USER', fUser);
-          const saveMe = {displayName: fUser.displayName, email: fUser.email};
-          this.authInfo = {user: saveMe, token};
-          this.subs.sink = this.loginUserEmail(fUser.email || '', token).subscribe(user => {
-            if (user.idAdmUser) {
+          const saveMe = { displayName: fUser.displayName, email: fUser.email };
+          this.authInfo = { user: saveMe, token };
+          this.subs.sink = this.loginUserEmail(
+            fUser.email || '',
+            token
+          ).subscribe((user) => {
+            if (user.idUser) {
               // we got a user! Login!
             } else {
               // nope. We out.
               this.authInfo = {} as AuthStateModel;
-              this.snackBar.open('Could not login', 'Failed');
+              // this.snackBar.open('Could not login', 'Failed');
             }
           });
           // store.dispatch(new LoginSuccesfulAction({user: saveMe, token}));
@@ -119,15 +115,18 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
         if (this.validTestLogin()) {
           console.warn('AuthState::onAuthStateChanged validTestLogin');
           const me = this.getCurrentUser();
-          const saveMe = {displayName: me.userName, email: me.userEmail};
+          const saveMe = { displayName: me.userName, email: me.userEmail };
           const token: string = this.authInfo.token || '';
-          this.authInfo = {user: saveMe, token};
-
+          this.authInfo = { user: saveMe, token };
         } else {
           this.logout();
         }
       }
     });
+
+    if (this.checkSavedUser()) {
+      console.log('AuthService():: Saved user found!');
+    }
   }
 
   recordLogin(loginInfo: string, userId: number, user: any): void {
@@ -138,20 +137,20 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
     return this.logger.makeLog('Logout', 'User logged out');
   }
 
-
   logout(navigate: boolean = true): void {
     console.log('AuthService::logout()');
-    this.snackBar.open('Logging out...', '', {duration: 500});
+    // this.snackBar.open('Logging out...', '', { duration: 500 });
 
     this.recordLogout(this.getCurrentUser());
 
-    this.ngAuth.signOut()
+    this.ngAuth
+      .signOut()
       .then(() => {
         this.loggedIn = false;
         this.authInfo = {} as AuthStateModel;
-        this.currentUser$.next({} );
+        this.currentUser$.next({} as CardUser);
 
-        localStorage.removeItem(environment.APP_NAME + 'Token', );
+        localStorage.removeItem(environment.APP_NAME + 'Token');
         localStorage.removeItem(environment.APP_NAME + 'User');
         localStorage.removeItem(environment.APP_NAME + 'Server');
 
@@ -161,17 +160,22 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
         }
       })
       .catch((error: any) => {
-        this.logger.logErrObject('AuthService::logout', error, 'Could not logout');
-        this.snackBar.open('Could not logout', '', {duration: 3000});
+        this.logger.logErrObject(
+          'AuthService::logout',
+          error,
+          'Could not logout'
+        );
+        // this.snackBar.open('Could not logout', '', { duration: 3000 });
         return;
       });
   }
 
-
   navigateHome(): void {
     // console.log('AuthService::navigateHome');
     if (!this.loggedIn) {
-      console.error('AuthService::navigateHome Not Logged In, Navigating to login');
+      console.error(
+        'AuthService::navigateHome Not Logged In, Navigating to login'
+      );
       this.zone.run(() => {
         this.router.navigate(['/login']);
       });
@@ -181,10 +185,19 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
       this.router
         .navigate(['/home'])
         .then((e: any) => {
-          console.log('authService::navigateHome()::goForIt to /home  for ', this.getCurrentUser(), 'info:', e);
+          console.log(
+            'authService::navigateHome()::goForIt to /home  for ',
+            this.getCurrentUser(),
+            'info:',
+            e
+          );
 
           if (e === false) {
-            this.logger.logErr('Login', 'Could not login to dashboard:', 'Could not login');
+            this.logger.logErr(
+              'Login',
+              'Could not login to dashboard:',
+              'Could not login'
+            );
           }
         })
         .catch((reason: any) => {
@@ -194,37 +207,44 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
           );
           // this.showLoginErr( 'Could not navigate to your dashboard', 'The error is: ' + reason);
 
-          this.logger.logErrObject( 'Login::goForIt', reason, 'Could not navigate to dashboard :(' );
+          this.logger.logErrObject(
+            'Login::goForIt',
+            reason,
+            'Could not navigate to dashboard :('
+          );
         });
     });
   }
 
-
-  testLogin(idUser: number, idApp: number): Observable<CardUser> {
+  testLogin(idUser: number): Observable<CardUser> {
     if (this.isLoggedIn()) {
       console.log('AuthService::testLogin - logging out ', this.me());
       this.logout(false);
     }
 
-    return this.userService.getUser(idUser, idApp).pipe(
+    return this.userService.getUser(idUser).pipe(
       map((found) => {
         console.log('AuthService::testLogin(): LOADED test USER', found);
         this.currentUser$.next(found);
-        this.authInfo = {user: {displayName: found.userName, email: found.userEmail}, token: this.testToken};
+        this.authInfo = {
+          user: { displayName: found.userName, email: found.userEmail },
+          token: this.testToken,
+        };
         // this.authInfo.token = this.testToken;
-
 
         return found;
       }),
       concatMap(() => this.loginUser(this.me())),
       catchError((err) => {
-        this.logger.logErrObject('AuthService::testLogin', err, 'Could not login user id ' + idUser);
+        this.logger.logErrObject(
+          'AuthService::testLogin',
+          err,
+          'Could not login user id ' + idUser
+        );
         return of({} as CardUser);
       })
     );
-
   }
-
 
   loginUser(user: CardUser): Observable<CardUser> {
     // console.log("AuthService::loginUser", user);
@@ -232,45 +252,63 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
     this.loggedIn = true;
 
     if (!this.authInfo.token) {
-      this.logger.logErr('loginUser', 'no login token', 'Could not get Login Token');
+      this.logger.logErr(
+        'loginUser',
+        'no login token',
+        'Could not get Login Token'
+      );
       return of({} as CardUser);
     }
 
     this.saveUser(user);
 
-    this.recordLogin(user.userName + ' user login succeeded from ' +
-      environment.DATA_URL + ' ' + environment.env_name,
-      user.idAdmUser, user
+    this.recordLogin(
+      user.userName +
+        ' user login succeeded from ' +
+        environment.DATA_URL +
+        ' ' +
+        environment.env_name,
+      user.idUser,
+      user
     );
 
     return this.getCurrentUser$();
   }
 
-
   loginUserEmail(email: string, token: string): Observable<CardUser> {
     console.log('AuthService::loginUserEmail ', email);
 
-    if ( this.isLoggedIn() ) {
+    if (this.isLoggedIn()) {
       console.log('Auth::loginEmail Logged in test user!');
       this.logout(false);
     }
 
     return this.userService.getUserByEmail(email).pipe(
-      concatMap((found: CardUser[]) => {
-        if (found && found.length > 0) {
-          const me = found[0];
+      concatMap((found: CardUser) => {
+        if (found) {
           console.log('AUthService::loginEmail working', found);
-          this.authInfo = {user: {displayName: me.userName, email: me.userEmail}, token: this.testToken};
-          return this.loginUser(me);
+          this.authInfo = {
+            user: { displayName: found.userName, email: found.userEmail },
+            token: this.testToken,
+          };
+          return this.loginUser(found);
         } else {
-          this.logger.logErr( 'AuthService::loginEmail', 'Could not login ' + email, 'Could not login!' );
+          this.logger.logErr(
+            'AuthService::loginEmail',
+            'Could not login ' + email,
+            'Could not login!'
+          );
           this.logger.makeLog('LoginUserEMail', email + ' LOGIN FAILED');
           this.logout();
           return of({} as CardUser);
         }
       }),
       catchError((err) => {
-        this.logger.logErrObject( 'AuthService::loginEmail', err, 'Could not login this email ' + email );
+        this.logger.logErrObject(
+          'AuthService::loginEmail',
+          err,
+          'Could not login this email ' + email
+        );
 
         this.logout();
         return of({} as CardUser);
@@ -279,13 +317,48 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
   }
 
   checkSavedUser(): boolean {
+    console.log('AuthService::checkSavedUser - faking up someone saved');
+    //TODO: FIX
+    const faker = {
+      idUser: -1,
+      userEmail: 'somebody@simplecommunion.com',
+      userName: 'Pól Stafford',
+      imageUrl:
+        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+      hoursPlayed: 19,
+      isActive: true,
+      tags: 'GM, Arcodd',
+      sCreate: new Date('2019-04-03'),
+      sUpdate: new Date('2021-05-28'),
+      idUserType: 300,
+      userTypeTitle: 'Paying Storyteller',
+      userTypeNotes: 'Encourage',
+    } as CardUser;
+
+    console.log('AuthService::checkSavedUser(): make fake user', faker);
+    this.currentUser$.next(faker);
+    this.authInfo = {
+      user: { displayName: faker.userName, email: faker.userEmail },
+      token: this.testToken,
+    };
+
+    this.loginUser(faker);
+    return true;
+
     const token = localStorage.getItem(environment.APP_NAME + 'Token');
-    const savedUser = localStorage.getItem(environment.APP_NAME + 'User');
+    const savedUser = localStorage.getItem(environment.APP_NAME + 'User') ?? '';
     const dataUrl = localStorage.getItem(environment.APP_NAME + 'Server');
 
     if (token && savedUser && dataUrl === environment.DATA_URL) {
-      console.log( 'AuthService::checkSavedUser - user exists!', token, 'user: ', savedUser );
+      console.log(
+        'AuthService::checkSavedUser - user exists!',
+        token,
+        'user: ',
+        savedUser
+      );
       const convertedUser = JSON.parse(savedUser) as CardUser;
+
+      this.loginUser(convertedUser);
 
       return true;
     } else {
@@ -297,28 +370,50 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
   saveUser(user: CardUser): void {
     console.log('Auth::saveUser', user);
     this.currentUser$.next(user);
-    this.logger.currentUser$.next(user);
+    this.logger.me = user;
 
     try {
-      localStorage.setItem(environment.APP_NAME + 'Token', this.authInfo?.token);
+      localStorage.setItem(
+        environment.APP_NAME + 'Token',
+        this.authInfo?.token
+      );
       localStorage.setItem(environment.APP_NAME + 'User', JSON.stringify(user));
-      localStorage.setItem(environment.APP_NAME + 'Server', environment.DATA_URL);
+      localStorage.setItem(
+        environment.APP_NAME + 'Server',
+        environment.DATA_URL
+      );
     } catch (err) {
-      this.logger.logErrObject('AuthService::saveUser', err, 'User Information could not be saved to the browser.' );
+      this.logger.logErrObject(
+        'AuthService::saveUser',
+        err,
+        'User Information could not be saved to the browser.'
+      );
     }
   }
 
-
   validTestLogin(): boolean {
     return (
-      this.loggedIn && this.getCurrentUser() && this.authInfo?.token === this.testToken
+      this.loggedIn &&
+      this.getCurrentUser() &&
+      this.authInfo?.token === this.testToken
     );
   }
 
   isLoggedIn(): boolean {
-    return this.loggedIn && this.getCurrentUser() && (typeof this.authInfo?.token === 'string'); // && this.authInfo?.user?.email;
+    return (
+      this.loggedIn &&
+      this.getCurrentUser() &&
+      typeof this.authInfo?.token === 'string'
+    ); // && this.authInfo?.user?.email;
   }
 
+  loggedIn$(): Observable<boolean> {
+    return of(
+      this.loggedIn &&
+        this.getCurrentUser() &&
+        this.authInfo?.token === this.testToken
+    );
+  }
   isSysAdmin(): boolean {
     return this.isLoggedIn() && this.me().idUserType === 13;
   }
@@ -326,7 +421,4 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
   isProduction(): boolean {
     return environment.production;
   }
-
-
-
 }
