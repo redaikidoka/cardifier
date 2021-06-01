@@ -17,8 +17,11 @@ export class GameService {
         imageUrl: 'http://rpg.simplecommunion.com/tfm/itunes.jpg',
         hoursPlayed: 39,
         isActive: true,
+        nextGame: new Date('2021-06-01'),
         sCreate: new Date('2021-01-28'),
         sUpdate: new Date('2021-04-19'),
+        idSystem: 23,
+        systemName: 'Cypher*',
       },
       {
         idGame: 398,
@@ -28,6 +31,19 @@ export class GameService {
         isActive: true,
         sCreate: new Date('2019-12-18'),
         sUpdate: new Date('2021-04-19'),
+        idSystem: 383,
+        systemName: 'City of Mist*',
+      },
+      {
+        idGame: 19,
+        gameTitle: 'Exalted: A Marriage of Serpents',
+        imageUrl: 'http://rpg.simplecommunion.com/tfm/mos.jpg',
+        hoursPlayed: 198,
+        isActive: false,
+        sCreate: new Date('2014-5-13'),
+        sUpdate: new Date('2016-3-11'),
+        idSystem: 383,
+        systemName: 'Exalted, 2nd Edition',
       },
     ];
 

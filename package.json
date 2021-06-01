@@ -11,9 +11,7 @@
     "deploy:dev": "npm run build:dev && firebase deploy",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "pug-it": "pug src",
-    "pug-it:w": "pug src -P -w"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
