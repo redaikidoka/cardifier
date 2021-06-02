@@ -12,10 +12,12 @@ export class GameCardComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getBgImage(): string {
+  getUrl(): string {
     return (
-      this.theGame?.imageUrl ||
-      'https://images.unsplash.com/photo-1578836537282-3171d77f8632?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80'
+      "url('" +
+      (this.theGame?.imageUrl ||
+        'https://images.unsplash.com/photo-1578836537282-3171d77f8632?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80') +
+      "')"
     );
   }
 }

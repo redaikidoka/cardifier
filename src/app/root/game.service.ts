@@ -26,7 +26,7 @@ export class GameService {
       {
         idGame: 398,
         gameTitle: 'Arcodd: A Marriage of Serpents',
-        imageUrl: 'http://rpg.simplecommunion.com/tfm/mos.jpg',
+        imageUrl: 'http://rpg.simplecommunion.com/mos/mos.jpg',
         hoursPlayed: 198,
         isActive: true,
         sCreate: new Date('2019-12-18'),
@@ -36,8 +36,8 @@ export class GameService {
       },
       {
         idGame: 19,
-        gameTitle: 'Exalted: A Marriage of Serpents',
-        imageUrl: 'http://rpg.simplecommunion.com/tfm/mos.jpg',
+        gameTitle: 'Exalted: A Fire in Heaven',
+        imageUrl: 'http://rpg.simplecommunion.com/',
         hoursPlayed: 198,
         isActive: false,
         sCreate: new Date('2014-5-13'),
