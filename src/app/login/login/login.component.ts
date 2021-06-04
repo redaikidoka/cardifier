@@ -17,11 +17,7 @@ export class LoginComponent extends UnsubscribeOnDestroyAdapter implements OnIni
 
   doTestLogin(): void {
     this.subs.sink = this.auth.testLogin(1).subscribe(usr => {
-      if (usr) {
-        this.subs.sink = this.auth.loginUser(usr).subscribe(realUser => {
-          this.auth.navigateHome();
-        });
-      }
+      console.log('Login::doTestLogin() of', usr);
     });
   }
 }

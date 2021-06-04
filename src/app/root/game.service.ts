@@ -49,4 +49,22 @@ export class GameService {
 
     return of(fakeGames);
   }
+
+  getGame$(idGame: number): Observable<Game> {
+    const fake = {
+      idGame: 8323,
+      gameTitle: 'A Time for Masks',
+      imageUrl: 'http://rpg.simplecommunion.com/tfm/itunes.jpg',
+      hoursPlayed: 39,
+      isActive: true,
+      nextGame: new Date('2021-06-01'),
+      sCreate: new Date('2021-01-28'),
+      sUpdate: new Date('2021-04-19'),
+      idSystem: 23,
+      systemName: 'Cypher*',
+
+    };
+
+    return of(fake);
+  }
 }

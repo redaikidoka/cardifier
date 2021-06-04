@@ -202,7 +202,6 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
             'authService::navigateHome() failed to nav reason:',
             reason
           );
-          // this.showLoginErr( 'Could not navigate to your dashboard', 'The error is: ' + reason);
 
           this.logger.logErrObject(
             'Login::goForIt',
@@ -213,7 +212,7 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
     });
   }
 
-  testLogin(idUser: number): Observable<CardUser> {
+  testLogin(idUser: number, goHome: boolean = true): Observable<CardUser> {
     console.log('AuthService::testLogin(', idUser);
 
     if (this.isLoggedIn()) {
@@ -234,6 +233,9 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
         return found;
       }),
       concatMap(() => this.loginUser(this.me())),
+      tap(() => {
+        if (goHome) { this.navigateHome(); }
+      }),
       catchError((err) => {
         this.logger.logErrObject(
           'AuthService::testLogin',

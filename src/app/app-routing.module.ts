@@ -5,6 +5,7 @@ import { LandingComponent } from './landing/landing/landing.component';
 import { LoginComponent } from './login/login/login.component';
 
 import { AuthGuard } from './root/auth.guard';
+import {canActivate} from '@angular/fire/auth-guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./logout/logout.module').then((m) => m.LogoutModule),
   },
+  {path: 'play/:id', loadChildren: () => import('./game/game.module').then((m) => m.GameModule), canActivate: [AuthGuard] }
 ];
 
 @NgModule({
