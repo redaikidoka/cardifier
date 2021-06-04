@@ -14,11 +14,11 @@ import { UserService } from 'src/app/root/user.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  me$: Observable<CardUser>;
+  // me$: Observable<CardUser>;
   games$: Observable<Game[]>;
 
   constructor(private auth: AuthService, private gameService: GameService) {
-    this.me$ = this.auth.me$;
+    // this.me$ = this.auth.me$;
 
     this.games$ = this.gameService.getUserGames$(this.auth.myId());
   }

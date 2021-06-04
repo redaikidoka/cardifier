@@ -12,7 +12,7 @@ export class SystemService {
   private appVersion: string;
 
   constructor() {
-    this.appVersion = '11.0.2021-05-28';
+    this.appVersion = '12.0.2021-06-03-13';
   }
 
   getVersion(): string {

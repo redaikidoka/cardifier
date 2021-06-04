@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<cf-navbar></cf-navbar>
 <main>
   <section class="absolute w-full h-full">
     <div
@@ -88,6 +88,7 @@
                     class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
                     type="button"
                     style="transition: all 0.15s ease 0s;"
+                    (click)='doTestLogin()'
                   >
                     Sign In
                   </button>
@@ -110,6 +111,6 @@
         </div>
       </div>
     </div>
-    <app-footer></app-footer>
+    <cf-footer></cf-footer>
   </section>
 </main>

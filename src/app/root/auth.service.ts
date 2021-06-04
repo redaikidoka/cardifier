@@ -8,8 +8,6 @@ import firebase from 'firebase';
 import UserInfo = firebase.UserInfo;
 import User = firebase.User;
 import { AngularFireAuth } from '@angular/fire/auth';
-// import gql from 'graphql-tag';
-// import {Apollo} from 'apollo-angular';
 
 // @ts-ignore
 import * as cloneDeep from 'lodash/cloneDeep';
@@ -17,12 +15,8 @@ import * as cloneDeep from 'lodash/cloneDeep';
 // import {MatSnackBar} from '@angular/material/snack-bar';
 
 import { CardUser } from '../core/data/card-user';
-// import {AdmApp, AdmFramework} from './data/adm-app';
-// import {qAppsFull} from './data/q-apps';
-// import {qSchema} from './data/q-schemas';
 
 import { environment } from '../../environments/environment';
-// import {auth, User, UserInfo} from '../../../node_modules/firebase';
 
 import { UserService } from './user.service';
 import { LoggerService } from './logger.service';
@@ -39,10 +33,6 @@ export interface AuthStateModel {
 export class AuthService extends UnsubscribeOnDestroyAdapter {
   private currentUser$: BehaviorSubject<CardUser> =
     new BehaviorSubject<CardUser>({} as CardUser);
-  // private currentApp$: BehaviorSubject<any> = new BehaviorSubject<any>({});
-
-  // private currentUser$: BehaviorSubject<CardUser> = new BehaviorSubject<CardUser>({} as CardUser);
-  // private currentApp$: BehaviorSubject<AdmApp> = new BehaviorSubject<AdmApp>({} as AdmApp);
 
   private authInfo: AuthStateModel;
   private testToken = '2021-02-23test';
@@ -109,7 +99,6 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
               // this.snackBar.open('Could not login', 'Failed');
             }
           });
-          // store.dispatch(new LoginSuccesfulAction({user: saveMe, token}));
         });
       } else {
         if (this.validTestLogin()) {
@@ -143,16 +132,22 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
 
     this.recordLogout(this.getCurrentUser());
 
+    if (this.loggedIn) {
+      this.loggedIn = false;
+      this.authInfo = {} as AuthStateModel;
+      this.currentUser$.next({} as CardUser);
+
+      localStorage.removeItem(environment.APP_NAME + '-Token');
+      localStorage.removeItem(environment.APP_NAME + '-User');
+      localStorage.removeItem(environment.APP_NAME + '-Server');
+
+      console.log('AuthService::logout() clearned login info');
+    }
+
     this.ngAuth
       .signOut()
       .then(() => {
-        this.loggedIn = false;
-        this.authInfo = {} as AuthStateModel;
-        this.currentUser$.next({} as CardUser);
-
-        localStorage.removeItem(environment.APP_NAME + 'Token');
-        localStorage.removeItem(environment.APP_NAME + 'User');
-        localStorage.removeItem(environment.APP_NAME + 'Server');
+        console.log('AuthService::logout() auth.signOut.then');
 
         if (navigate) {
           console.log('AuthService::logout - navigating home');
@@ -161,7 +156,7 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
       })
       .catch((error: any) => {
         this.logger.logErrObject(
-          'AuthService::logout',
+          'AuthService::logout catch',
           error,
           'Could not logout'
         );
@@ -171,7 +166,8 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
   }
 
   navigateHome(): void {
-    // console.log('AuthService::navigateHome');
+    console.log('AuthService::navigateHome');
+
     if (!this.loggedIn) {
       console.error(
         'AuthService::navigateHome Not Logged In, Navigating to login'
@@ -181,6 +177,7 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
       });
       return;
     }
+
     this.zone.run(() => {
       this.router
         .navigate(['/home'])
@@ -217,6 +214,8 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
   }
 
   testLogin(idUser: number): Observable<CardUser> {
+    console.log('AuthService::testLogin(', idUser);
+
     if (this.isLoggedIn()) {
       console.log('AuthService::testLogin - logging out ', this.me());
       this.logout(false);
@@ -247,9 +246,7 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
   }
 
   loginUser(user: CardUser): Observable<CardUser> {
-    // console.log("AuthService::loginUser", user);
-
-    this.loggedIn = true;
+    console.log('AuthService::loginUser', user);
 
     if (!this.authInfo.token) {
       this.logger.logErr(
@@ -259,6 +256,8 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
       );
       return of({} as CardUser);
     }
+
+    this.loggedIn = true;
 
     this.saveUser(user);
 
@@ -318,13 +317,13 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
 
   checkSavedUser(): boolean {
     console.log('AuthService::checkSavedUser - faking up someone saved');
-    //TODO: FIX
+
+    // TODO: FIX
     const faker = {
       idUser: -1,
       userEmail: 'somebody@simplecommunion.com',
       userName: 'Pól Stafford',
-      imageUrl:
-        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+      imageUrl: 'http://rpg.simplecommunion.com/pds/me-md.jpeg',
       hoursPlayed: 19,
       isActive: true,
       tags: 'GM, Arcodd',
@@ -345,9 +344,10 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
     this.loginUser(faker);
     return true;
 
-    const token = localStorage.getItem(environment.APP_NAME + 'Token');
-    const savedUser = localStorage.getItem(environment.APP_NAME + 'User') ?? '';
-    const dataUrl = localStorage.getItem(environment.APP_NAME + 'Server');
+    const token = localStorage.getItem(environment.APP_NAME + '-Token');
+    const savedUser =
+      localStorage.getItem(environment.APP_NAME + '-User') ?? '';
+    const dataUrl = localStorage.getItem(environment.APP_NAME + '-Server');
 
     if (token && savedUser && dataUrl === environment.DATA_URL) {
       console.log(
@@ -369,19 +369,23 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
 
   saveUser(user: CardUser): void {
     console.log('Auth::saveUser', user);
+
     this.currentUser$.next(user);
     this.logger.me = user;
 
     try {
       localStorage.setItem(
-        environment.APP_NAME + 'Token',
+        environment.APP_NAME + '-Token',
         this.authInfo?.token
       );
-      localStorage.setItem(environment.APP_NAME + 'User', JSON.stringify(user));
       localStorage.setItem(
-        environment.APP_NAME + 'Server',
-        environment.DATA_URL
+        environment.APP_NAME + '-User',
+        JSON.stringify(user)
       );
+      // localStorage.setItem(
+      //   environment.APP_NAME + '-Server',
+      //   environment.DATA_URL
+      // );
     } catch (err) {
       this.logger.logErrObject(
         'AuthService::saveUser',

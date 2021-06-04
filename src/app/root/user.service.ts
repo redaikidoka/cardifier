@@ -1,23 +1,21 @@
-import {Observable, of} from 'rxjs';
-import {Injectable} from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { Injectable } from '@angular/core';
 
-
-import {map, tap, catchError} from 'rxjs/operators';
+import { map, tap, catchError } from 'rxjs/operators';
 
 // import {AdmApp} from './data/adm-app';
-import {CardUser} from '../core/data/card-user';
+import { CardUser } from '../core/data/card-user';
 // import {qCardUserActive, usrFields} from './data/q-user';
 
 // import {UsrNotify} from './data/UsrNotify';
-import {LoggerService} from './logger.service';
+import { LoggerService } from './logger.service';
 
-import {UnsubscribeOnDestroyAdapter} from './unsubscribe-on-destroy-adapter';
+import { UnsubscribeOnDestroyAdapter } from './unsubscribe-on-destroy-adapter';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService extends UnsubscribeOnDestroyAdapter {
-
   me: CardUser | null;
 
   static getInitials(userName: string): string {
@@ -25,8 +23,20 @@ export class UserService extends UnsubscribeOnDestroyAdapter {
       return '';
     }
 
-    return userName.trim().split(' ').reduce((acc, cur, idx, arr) => acc +
-      (arr.length > 1 ? (idx === 0 || idx === arr.length - 1 ? cur.substring(0, 1) : '') : cur.substring(0, 2)), '').toUpperCase();
+    return userName
+      .trim()
+      .split(' ')
+      .reduce(
+        (acc, cur, idx, arr) =>
+          acc +
+          (arr.length > 1
+            ? idx === 0 || idx === arr.length - 1
+              ? cur.substring(0, 1)
+              : ''
+            : cur.substring(0, 2)),
+        ''
+      )
+      .toUpperCase();
   }
 
   static dataToCardUserQuery(loadedUser: any, queryName: string): CardUser {
@@ -40,7 +50,6 @@ export class UserService extends UnsubscribeOnDestroyAdapter {
     //   return ();
     // }
   }
-
 
   // static dataToCardUsers(loadedUsers: any): CardUser[] {
   //   return loadedUsers.data.allCardUsersList;
@@ -59,12 +68,10 @@ export class UserService extends UnsubscribeOnDestroyAdapter {
   //   }
   // }
 
-
   // subUser: Subscription;
   // notifications: BehaviorSubject<UsrNotify[] | null> = new BehaviorSubject<UsrNotify[]>(null);
 
-
-  constructor( private logger: LoggerService) {
+  constructor(private logger: LoggerService) {
     super();
 
     this.me = null;
@@ -74,8 +81,26 @@ export class UserService extends UnsubscribeOnDestroyAdapter {
     this.me = user;
   }
 
-
   getUser(idUser: number): Observable<CardUser> {
+    // TODO: fix!
+
+    const faker = {
+      idUser: -1,
+      userEmail: 'somebody@simplecommunion.com',
+      userName: 'Pól Stafford',
+      imageUrl: 'http://rpg.simplecommunion.com/pds/me-md.jpeg',
+      hoursPlayed: 19,
+      isActive: true,
+      tags: 'GM, Arcodd',
+      sCreate: new Date('2019-04-03'),
+      sUpdate: new Date('2021-05-28'),
+      idUserType: 300,
+      userTypeTitle: 'Paying Storyteller',
+      userTypeNotes: 'Encourage',
+    } as CardUser;
+
+    return of(faker);
+
     // const qSingleUser = gql`{ CardUserByIdAdmUserAndIdAdmApp( idAdmUser: ${idUser}, idAdmApp: ${idAdmApp}) {
     //     ${usrFields}
     //   } }`;
@@ -114,8 +139,6 @@ export class UserService extends UnsubscribeOnDestroyAdapter {
     // );
     return of([] as CardUser[]);
   }
-
-
 
   // getAppAccessUserList(idApp: number, accessLevel: number): Observable<CardUser[]> {
 
@@ -308,10 +331,8 @@ export class UserService extends UnsubscribeOnDestroyAdapter {
     return this.me ? this.userIcon(this.me.idUserType) : this.userIcon(-1);
   }
 
-
   // TODO: use the user type table!
   userIcon(idUserType: number): string {
-
     switch (idUserType) {
       case 13: // sysadmin
         return 'user-secret';
@@ -324,8 +345,5 @@ export class UserService extends UnsubscribeOnDestroyAdapter {
       default:
         return 'user';
     }
-
   }
-
-
 }
