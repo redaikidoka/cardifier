@@ -1,5 +1,4 @@
 import { Inject, Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 import { RollbarService } from './rollbar-error-handler.service';
@@ -11,6 +10,7 @@ import { CardUser } from '../core/data/card-user';
 
 import { environment } from '../../environments/environment';
 import { SystemService } from './system.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +20,8 @@ export class LoggerService extends UnsubscribeOnDestroyAdapter {
 
   constructor(
     @Inject(RollbarService) private rollbar: Rollbar,
-    private systemService: SystemService
+    private systemService: SystemService,
+    private snackBar: MatSnackBar
   ) {
     super();
   }

@@ -16,7 +16,7 @@ export class LoginComponent extends UnsubscribeOnDestroyAdapter implements OnIni
   ngOnInit(): void {}
 
   doTestLogin(): void {
-    this.subs.sink = this.auth.testLogin(1).subscribe(usr => {
+    this.subs.sink = this.auth.testLogin('pol').subscribe(usr => {
       console.log('Login::doTestLogin() of', usr);
     });
   }

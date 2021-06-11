@@ -49,8 +49,7 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
     if (this.currentUser$.getValue()) {
       return this.currentUser$.getValue();
     }
-    const notReal = {} as CardUser;
-    return notReal;
+    return {} as CardUser;
   }
 
   // me$(): Observable<CardUser> {
@@ -61,7 +60,7 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
     return this.getCurrentUser();
   }
 
-  myId(): number {
+  myId(): string {
     return this.me()?.idUser;
   }
 
@@ -118,7 +117,7 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
     }
   }
 
-  recordLogin(loginInfo: string, userId: number, user: any): void {
+  recordLogin(loginInfo: string, userId: string, user: any): void {
     return this.logger.makeLog('Login', loginInfo);
   }
 
@@ -212,7 +211,7 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
     });
   }
 
-  testLogin(idUser: number, goHome: boolean = true): Observable<CardUser> {
+  testLogin(idUser: string, goHome: boolean = true): Observable<CardUser> {
     console.log('AuthService::testLogin(', idUser);
 
     if (this.isLoggedIn()) {
@@ -322,11 +321,11 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
 
     // TODO: FIX
     const faker = {
-      idUser: -1,
-      userEmail: 'somebody@simplecommunion.com',
+      idUser: 'pol',
+      userEmail: 'pol@simplecommunion.com',
       userName: 'Pól Stafford',
       imageUrl: 'http://rpg.simplecommunion.com/pds/me-md.jpeg',
-      hoursPlayed: 19,
+      hoursPlayed: 999,
       isActive: true,
       tags: 'GM, Arcodd',
       sCreate: new Date('2019-04-03'),

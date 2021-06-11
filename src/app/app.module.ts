@@ -20,17 +20,18 @@ import { LandingModule } from './landing/landing.module';
 import { environment } from '../environments/environment';
 import { LoginModule } from './login/login.module';
 
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
+    BrowserModule, BrowserAnimationsModule, RouterModule,
     AppRoutingModule,
     CoreModule,
     LandingModule,
     LoginModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    RouterModule
+    MatSnackBarModule
   ],
   exports: [],
   providers: [

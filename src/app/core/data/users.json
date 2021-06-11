@@ -1,0 +1,143 @@
+{
+  "users": {
+    "33": {
+      "idUser": 33,
+      "userEmail": "nevyn@simplecommunion.com",
+      "userName": "Nevyn Twyll",
+      "imageUrl": "http://rpg.simplecommunion.com/pds/me-md.jpeg",
+      "hoursPlayed": 19,
+      "isActive": true,
+      "tags": "GM, Arcodd",
+      "idUserType": 13,
+      "userTypeTitle": "Administrator",
+      "userTypeNotes": "-",
+      "games": {
+        "19": false
+      }
+    },
+    "-1": {
+      "idUser": -1,
+      "userEmail": "pol@simplecommunion.com",
+      "userName": "Pól Stafford",
+      "imageUrl": "http://rpg.simplecommunion.com/pds/me-md.jpeg",
+      "hoursPlayed": 19,
+      "isActive": true,
+      "tags": "GM, Arcodd",
+      "idUserType": 100,
+      "userTypeTitle": "Paying Storyteller",
+      "userTypeNotes": "Reward",
+      "games": {
+        "8323": true,
+        "398": true,
+        "19": true,
+        "10": false
+      }
+    },
+    "333": {
+      "idUser": 333,
+      "userEmail": "jschiav@gmail.com",
+      "userName": "John Schiavone",
+      "imageUrl": "",
+      "hoursPlayed": 37,
+      "isActive": true,
+      "tags": "Dark!",
+      "idUserType": 200,
+      "userTypeTitle": "Unpaid Player",
+      "userTypeNotes": "Encourage",
+      "games": {
+        "8323": false,
+        "398": true,
+        "19": true,
+        "10": true
+      }
+    },
+    "29": {
+      "idUser": 29,
+      "userEmail": "chaetophile@gmail.com",
+      "userName": "Dael Franke",
+      "imageUrl": "",
+      "hoursPlayed": 89,
+      "isActive": true,
+      "tags": "",
+      "idUserType": 300,
+      "userTypeTitle": "Unpaid Player",
+      "userTypeNotes": "Ignore",
+      "games": {
+        "8323": false,
+        "398": false
+      }
+    },
+    "444": {
+      "idUser": 444,
+      "userEmail": "paulkhash@gmail.com",
+      "userName": "The Jew",
+      "imageUrl": "",
+      "hoursPlayed": 33,
+      "isActive": true,
+      "tags": "",
+      "idUserType": 300,
+      "userTypeTitle": "Unpaid Player",
+      "userTypeNotes": "Ignore",
+      "games": {
+        "8323": false
+      }
+    }
+  },
+  "games": {
+    "8323": {
+      "idGame": 8323,
+      "gameTitle": "A Time for Masks",
+      "imageUrl": "http://rpg.simplecommunion.com/tfm/itunes.jpg",
+      "hoursPlayed": 39,
+      "isActive": true,
+      "idSystem": 23,
+      "systemName": "Cypher*",
+      "idUser": "pol@simplecommunion.com",
+      "users": {
+        "pol@simplecommunion.com": true,
+        "jschiav@gmail.com": false,
+        "chaetophile@gmail.com": false
+      }
+    },
+    "398": {
+      "idGame": 398,
+      "gameTitle": "Arcodd: A Marriage of Serpents",
+      "imageUrl": "http://rpg.simplecommunion.com/mos/mos.jpg",
+      "hoursPlayed": 198,
+      "isActive": true,
+      "idSystem": 383,
+      "systemName": "City of Mist*",
+      "idUser": "pol@simplecommunion.com",
+      "users": {
+        "pol@simplecommunion.com": true,
+        "jschiav@gmail.com": false,
+        "chaetophile@gmail.com": false
+      }
+    },
+    "19": {
+      "idGame": 19,
+      "gameTitle": "Exalted: A Fire in Heaven",
+      "imageUrl": "http://rpg.simplecommunion.com/",
+      "hoursPlayed": 198,
+      "isActive": false,
+      "idSystem": 383,
+      "systemName": "Exalted, 2nd Edition",
+      "idUser": "pol@simplecommunion.com",
+      "users": {
+        "pol@simplecommunion.com": true,
+        "jschiav@gmail.com": false,
+        "chaetophile@gmail.com": false
+      }
+    },
+    "10": {
+      "idGame": 10,
+      "gameTitle": "Ten Candles: Sacramento",
+      "imageUrl": "",
+      "hoursPlayed": 2,
+      "isActive": false,
+      "idSystem": 999,
+      "systemName": "Ten Candles",
+      "idUser": "jschiav@gmail.com"
+    }
+  }
+}

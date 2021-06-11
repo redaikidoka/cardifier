@@ -81,11 +81,11 @@ export class UserService extends UnsubscribeOnDestroyAdapter {
     this.me = user;
   }
 
-  getUser(idUser: number): Observable<CardUser> {
+  getUser(idUser: string): Observable<CardUser> {
     // TODO: fix!
 
     const faker = {
-      idUser: -1,
+      idUser: 'pol',
       userEmail: 'somebody@simplecommunion.com',
       userName: 'Pól Stafford',
       imageUrl: 'http://rpg.simplecommunion.com/pds/me-md.jpeg',

@@ -1,5 +1,5 @@
 export interface Game {
-  idGame: number;
+  idGame: string;
 
   idGameSystem?: number;
 
@@ -15,10 +15,12 @@ export interface Game {
 
   nextGame?: Date;
 
-  sCreate: Date;
-  sUpdate: Date;
-  sIdUserCreate?: number;
-  sIdUserUpdate?: number;
+  lastPlayed?: Date;
+
+  // sCreate: Date;
+  // sUpdate: Date;
+  // sIdUserCreate?: number;
+  // sIdUserUpdate?: number;
 
   idSystem?: number;
   systemName?: string;
@@ -62,7 +64,7 @@ export type HandState = 'Open' | 'Condensed' | 'Closed' | 'Hidden';
 export interface Hand {
   idHand: number;
 
-  idArea: number; // parent
+  idArea?: number; // parent
 
   handType: string;
   handTitle: string;
@@ -84,6 +86,9 @@ export interface Card {
 
   faceImage?: string;
   backImage?: string;
+
+  faceColor?: string;
+  backColor?: string;
 
   headerText?: string;
   footerText?: string;

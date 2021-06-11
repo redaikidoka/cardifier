@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UnsubscribeOnDestroyAdapter} from '../../root/unsubscribe-on-destroy-adapter';
 import {ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs';
@@ -15,8 +15,8 @@ import {LoggerService} from '../../root/logger.service';
 })
 export class PlayComponent extends UnsubscribeOnDestroyAdapter implements OnInit {
 
-  idGame = 1;
-  theGame: Game | undefined;
+  idGame = 0;
+  // theGame: Game | undefined;
 
   game$: Observable<Game> | undefined;
 
@@ -24,11 +24,10 @@ export class PlayComponent extends UnsubscribeOnDestroyAdapter implements OnInit
     super();
 
     // get our id
-    this.subs.sink = this.aRoute.queryParams.subscribe(params => {
+    this.subs.sink = this.aRoute.params.subscribe(params => {
+      // console.log('Play::params', params);
       if (params?.id) {
         this.idGame = params.id;
-
-        console.log('PlayComponent()::id', this.idGame);
 
         this.game$ = this.gameService.getGame$(this.idGame);
         // this.gameService.getGame$(idGame).subscribe( g=> {
@@ -37,7 +36,6 @@ export class PlayComponent extends UnsubscribeOnDestroyAdapter implements OnInit
         this.logger.logErr('Game::Play() - no id', 'No Game ID passed in', 'Could not start GamePlay screen');
       }
     });
-
 
   }
 

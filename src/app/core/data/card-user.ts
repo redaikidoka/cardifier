@@ -1,5 +1,5 @@
 export interface CardUser {
-  idUser: number;
+  idUser: string;
 
   userEmail: string;
   userName: string;

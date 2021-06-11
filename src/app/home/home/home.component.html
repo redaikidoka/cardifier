@@ -5,7 +5,7 @@
 
     <div class="flex flex-row flex-wrap">
       <div class="md:w-3/4 w-full pr-4 ">
-        <h2 class="text-gray-300 font-semibod text-3xl mt-6 mb-6 ml-6">Games</h2>
+        <h2 class="text-gray-300 font-semibold text-3xl mt-6 mb-6 ml-6">Games</h2>
         <div class="grid md:grid-cols-2 w-full gap-3">
           <div *ngFor="let game of games$ | async">
             <app-game-card [theGame]="game"></app-game-card>

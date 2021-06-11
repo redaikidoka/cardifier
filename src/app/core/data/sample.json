@@ -1,0 +1,293 @@
+{
+  "users": {
+    "33": {
+      "idUser": "33",
+      "userEmail": "nevyn@simplecommunion.com",
+      "userName": "Nevyn Twyll",
+      "imageUrl": "http://rpg.simplecommunion.com/pds/me-md.jpeg",
+      "hoursPlayed": 19,
+      "isActive": true,
+      "tags": "GM, Arcodd",
+      "idUserType": 13,
+      "userTypeTitle": "Administrator",
+      "userTypeNotes": "-",
+      "games": {
+        "19": false
+      }
+    },
+    "pol": {
+      "idUser": "pol",
+      "userEmail": "pol@simplecommunion.com",
+      "userName": "Pól Stafford",
+      "imageUrl": "http://rpg.simplecommunion.com/pds/me-md.jpeg",
+      "hoursPlayed": 19,
+      "isActive": true,
+      "tags": "GM, Arcodd",
+      "idUserType": 100,
+      "userTypeTitle": "Paying Storyteller",
+      "userTypeNotes": "Reward",
+      "games": {
+        "8323": true,
+        "398": true,
+        "19": true,
+        "10": false
+      }
+    },
+    "333": {
+      "idUser": "333",
+      "userEmail": "jschiav@gmail.com",
+      "userName": "John Schiavone",
+      "imageUrl": "",
+      "hoursPlayed": 37,
+      "isActive": true,
+      "tags": "Dark!",
+      "idUserType": 200,
+      "userTypeTitle": "Unpaid Player",
+      "userTypeNotes": "Encourage",
+      "games": {
+        "8323": false,
+        "398": true,
+        "19": true,
+        "10": true
+      }
+    },
+    "dael": {
+      "idUser": "dael",
+      "userEmail": "chaetophile@gmail.com",
+      "userName": "Dael Franke",
+      "imageUrl": "",
+      "hoursPlayed": 89,
+      "isActive": true,
+      "tags": "",
+      "idUserType": 300,
+      "userTypeTitle": "Unpaid Player",
+      "userTypeNotes": "Ignore",
+      "games": {
+        "8323": false,
+        "398": false
+      }
+    },
+    "444": {
+      "idUser": "444",
+      "userEmail": "paulkhash@gmail.com",
+      "userName": "The Jew",
+      "imageUrl": "",
+      "hoursPlayed": 33,
+      "isActive": true,
+      "tags": "",
+      "idUserType": 300,
+      "userTypeTitle": "Unpaid Player",
+      "userTypeNotes": "Ignore",
+      "games": {
+        "8323": false
+      }
+    }
+  },
+  "games": {
+    "8323": {
+      "idGame": "8323",
+      "gameTitle": "A Time for Masks",
+      "imageUrl": "http://rpg.simplecommunion.com/tfm/itunes.jpg",
+      "hoursPlayed": 39,
+      "isActive": true,
+      "idSystem": 23,
+      "systemName": "Cypher*",
+      "idUser": "pol",
+      "lastPlayed": 1623369739,
+      "users": {
+        "pol": true,
+        "333": false,
+        "dael": false
+      },
+      "characters": {
+        "Dolores-Static": "dael",
+        "Samuel-Jedermann": "333",
+        "Jacob-Magician": "444"
+      }
+    },
+    "398": {
+      "idGame": "398",
+      "gameTitle": "Arcodd: A Marriage of Serpents",
+      "imageUrl": "http://rpg.simplecommunion.com/mos/mos.jpg",
+      "hoursPlayed": 198,
+      "isActive": true,
+      "idSystem": 383,
+      "systemName": "City of Mist*",
+      "idUser": "pol",
+      "lastPlayed": 1623334739,
+      "users": {
+        "pol": true,
+        "333": false,
+        "dael": false
+      }
+    },
+    "19": {
+      "idGame": "19",
+      "gameTitle": "Exalted: A Fire in Heaven",
+      "imageUrl": "http://rpg.simplecommunion.com/",
+      "hoursPlayed": 198,
+      "isActive": false,
+      "idSystem": 383,
+      "systemName": "Exalted, 2nd Edition",
+      "idUser": "pol",
+      "users": {
+        "pol": true,
+        "333": false,
+        "dael": false
+      }
+    },
+    "10": {
+      "idGame": "10",
+      "gameTitle": "Ten Candles: Sacramento",
+      "imageUrl": "https://mykindofmeeple.com/wp-content/uploads/2020/05/ten-candles-bowl-burning-10052020.jpg",
+      "hoursPlayed": 2,
+      "isActive": false,
+      "idSystem": 999,
+      "systemName": "Ten Candles",
+      "idUser": "333",
+
+      "users": {
+        "333": true
+      }
+    }
+  },
+  "characters": {
+    "Dolores-Static": {
+      "idCharacter": 32,
+      "characterName": "Dolores-Static",
+      "characterDescription": "Dolores/Static is a Charming Adept who Defends the Weak",
+      "idGame": "8323",
+      "idUser": "dael",
+      "hands": {
+        "33333": true,
+        "44": true,
+        "45": true
+      }
+    },
+    "Samuel-Jedermann": {
+      "idCharacter": 42,
+      "characterName": "Samuel-Jedermann",
+      "characterDescription": "Samuel/Jedermann is an Intuitive Explorer who Infiltrates with Lethal Force ",
+      "idGame": "8323",
+      "idUser": "333"
+    },
+    "Jacob-Magician": {
+      "idCharacter": 52,
+      "characterName": "Jacob-Magician",
+      "characterDescription": "Magician is an Intuitive Speaker who Masters Spells",
+      "idGame": "8323",
+      "idUser": "444"
+    }
+  },
+  "hands": {
+    "33333": {
+      "idHand": 33333,
+      "handType": "grid",
+      "handTitle": "Traits",
+      "handState": "Condensed",
+      "groupAddable": false,
+      "cards": {
+        "333331": {
+          "idCard": 333331,
+          "idHand": 33333,
+          "cardTitle": "Might",
+          "description": "Used for strength and resistance",
+          "cardType": "pool",
+          "dieRoll": "d6",
+          "poolValue": 11,
+          "currentValue": 9
+        },
+        "333332": {
+          "idCard": 333332,
+          "idHand": 33333,
+          "cardTitle": "Speed",
+          "description": "Used for moving, dodging",
+          "cardType": "pool",
+          "dieRoll": "d6",
+          "poolValue": 10,
+          "currentValue": 10
+        },
+        "333333": {
+          "idCard": 333333,
+          "idHand": 33333,
+          "cardTitle": "Intellect",
+          "description": "Used for thinking, figuring, charming",
+          "cardType": "pool",
+          "dieRoll": "d6",
+          "poolValue": 13,
+          "currentValue": 11
+        }
+      }
+    },
+    "44": {
+      "idHand": 44,
+      "handType": "stack",
+      "handTitle": "Abilities",
+      "handState": "Condensed",
+      "groupAddable": false,
+      "cards": {
+        "441": {
+          "idCard": 441,
+          "idHand": 44,
+          "cardTitle": "Far Step",
+          "description": "short-range teleport",
+          "cardType": "action",
+          "customProperties": {
+            "stat": "Intellect",
+            "cost": 2,
+            "page": 136
+          }
+        },
+        "442": {
+          "idCard": 442,
+          "idHand": 44,
+          "cardTitle": "Resonance Field",
+          "description": "protective shield",
+          "cardType": "action",
+          "customProperties": {
+            "stat": "Intellect",
+            "cost": 2
+          }
+        }
+      }
+    },
+    "45": {
+      "idHand": 45,
+      "handType": "dropdown",
+      "handTitle": "Recoveries",
+      "handState": "Closed",
+      "groupAddable": false,
+      "cards": {
+        "451": {
+          "idCard": 451,
+          "idHand": 45,
+          "cardTitle": "Action",
+          "cardType": "action",
+          "dieRoll": "1d6 + {Tier}",
+          "faceColor": "green"
+        },
+        "452": {
+          "idCard": 452,
+          "idHand": 45,
+          "cardTitle": "10 Minutes",
+          "cardType": "action",
+          "dieRoll": "1d6 + {Tier}"
+        },
+        "453": {
+          "idCard": 453,
+          "idHand": 45,
+          "cardTitle": "1 Hour",
+          "cardType": "action",
+          "dieRoll": "1d6 + {Tier}"
+        },
+        "454": {
+          "idCard": 454,
+          "idHand": 45,
+          "cardTitle": "10 Hours",
+          "cardType": "action",
+          "dieRoll": "1d6 + {Tier}"
+        }
+      }
+    }
+  }
+}
