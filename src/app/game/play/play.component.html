@@ -1,20 +1,30 @@
 <cf-navbar></cf-navbar>
 <main class="h-full w-full" style="background-color: rgba(0, 0, 0, 0.8)">
-  <section class="pt-16 pb-32">
+  <section *ngIf="game$ | async as game;else no_game" class="pt-16 pb-32">
     <!-- <h1 class="text-white font-semibold text-2xl mb-6">Home Page</h1> -->
 
-    <div *ngIf="game$ | async as game" class="flex flex-row flex-wrap">
-      <div class="md:w-1/4 w-full pr-4 ">
-        <h2 class="text-gray-300 font-semibold text-3xl mt-6 mb-6 ml-6">{{game.gameTitle}}</h2>
+    <!-- Game & Session -->
+    <div  class="flex flex-row flex-wrap">
+      <div class="md:w-1/2 w-full pr-4 ">
+        <h2 class="text-gray-300 font-semibold text-2xl mt-6 mb-6 ml-6">{{game.gameTitle}}</h2>
         <div class="grid md:grid-cols-2 w-full gap-3">
 
         </div>
       </div>
-      <div class="md:w-1/4 w-full">
-        <h2 class="text-gray-300 font-semibold text-3xl mt-6 mb-6 ml-6">Session</h2>
+      <div class="md:w-1/2 w-full">
+        <h2 class="text-gray-300 font-semibold text-xl mt-6 mb-6 ml-6">Session</h2>
 
       </div>
     </div>
+
+    <!-- play / sidebar -->
+    <div  class="flex flex-row flex-wrap">
+
+    </div>
   </section>
+  <ng-template #no_game class="pt-16 pb-32">
+    Please return to the
+    <a [routerLink]="/home">home page </a> this game did not load.
+  </ng-template>
   <cf-footer></cf-footer>
 </main>
