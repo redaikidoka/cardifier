@@ -6,6 +6,7 @@ export interface Game {
   gameTitle: string;
 
   imageUrl?: string;
+  iconUrl?: string;
   imageLink?: string;
   hoursPlayed: number;
 
@@ -25,7 +26,7 @@ export interface Game {
   idSystem?: number;
   systemName?: string;
 
-  currentSessionId?: number;
+  idCurrentSession?: string;
   currentSession?: GameSession;
   // added bits
   areas?: GameArea[];
@@ -34,7 +35,7 @@ export interface Game {
 }
 
 export interface GameSession {
-  idSession: number;
+  idSession: string;
 
   sessionNumber: number;
   sessionTitle: string;
@@ -45,9 +46,9 @@ export interface GameSession {
 }
 
 export interface GameArea {
-  idArea: number;
+  idArea: string;
 
-  idGame: number; // panrent
+  idGame: string; // parent
 
   areaTitle: string;
 
@@ -62,9 +63,9 @@ export interface GameArea {
 export type HandState = 'Open' | 'Condensed' | 'Closed' | 'Hidden';
 
 export interface Hand {
-  idHand: number;
+  idHand: string;
 
-  idArea?: number; // parent
+  idArea?: string; // parent?
 
   handType: string;
   handTitle: string;
@@ -77,9 +78,9 @@ export interface Hand {
 }
 
 export interface Card {
-  idCard: number;
+  idCard: string;
 
-  idHand: number;
+  idHand: string;
 
   cardTitle: string;
   description?: string;

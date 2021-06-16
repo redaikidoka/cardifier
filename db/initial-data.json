@@ -33,8 +33,8 @@
         "10": false
       }
     },
-    "333": {
-      "idUser": "333",
+    "js": {
+      "idUser": "js",
       "userEmail": "jschiav@gmail.com",
       "userName": "John Schiavone",
       "imageUrl": "",
@@ -83,26 +83,104 @@
       }
     }
   },
+  "gameList": {
+  },
   "games": {
     "8323": {
       "idGame": "8323",
       "gameTitle": "A Time for Masks",
-      "imageUrl": "http://rpg.simplecommunion.com/tfm/itunes.jpg",
+      "imageUrl": "https://rpg.simplecommunion.com/tfm/itunes.jpg",
+      "iconUrl": "https://rpg.simplecommunion.com/pds/favicon_src.png",
       "hoursPlayed": 39,
       "isActive": true,
-      "idSystem": 23,
+      "idSystem": "23",
       "systemName": "Cypher*",
       "idUser": "pol",
       "lastPlayed": 1623369739,
+      "sCreate": 1623329739,
+      "sUpdate": 1623369739,
+      "sIdUserCreate": "pol",
+      "sIdUserUpdate": "pol",
+      "idCurrentSession": "138343",
       "users": {
         "pol": true,
-        "333": false,
+        "js": false,
         "dael": false
       },
       "characters": {
         "Dolores-Static": "dael",
-        "Samuel-Jedermann": "333",
+        "Samuel-Jedermann": "js",
         "Jacob-Magician": "444"
+      },
+      "areas": {
+        "222": {
+          "idArea": "222",
+          "idGame": "8323",
+          "areaTitle": "Game",
+          "sCreate": 1623369739,
+          "sUpdate": 1623369749
+        },
+        "223": {
+          "idArea": "223",
+          "idGame": "8323",
+          "areaTitle": "Play"
+        }
+      },
+      "sessions": {
+        "138343": {
+          "idSession": "138343",
+          "sessionNumber": 12,
+          "sessionTitle": "12: Gig is Up",
+          "when": 1623369749,
+          "length": 3,
+          "hands": {
+            "11": {
+              "idHand": "11",
+              "idArea": "138343",
+              "handType": "?",
+              "handTitle": "Support",
+              "cards": {
+                "paraclipse": {
+                  "idCard": "paraclipse",
+                  "idHand": "11",
+                  "cardTitle": "Refuge: Paraclipse",
+                  "cardType": "image",
+                  "faceImage": "https://rpg.simplecommunion.com/tfm/paraclipse-night.jpg"
+                },
+                "1111": {
+                  "idCard": "1111",
+                  "idHand": "11",
+                  "cardTitle": "Ally: Shiori",
+                  "cardType": "image",
+                  "faceImage": "https://rpg.simplecommunion.com/tfm/shiori.jpg"
+                }
+              }
+            }
+          }
+        },
+        "138342": {
+          "idSession": "138342",
+          "sessionNumber": 11,
+          "sessionTitle": "11: Raggedy",
+          "when": 1623339749,
+          "length": 3.5,
+          "hands": {
+            "111": {
+              "idHand": "111",
+              "idArea": "138343",
+              "handType": "?",
+              "handTitle": "Reference",
+              "cards": {
+                "1111": {
+                  "idCard": "1111",
+                  "idHand": 11,
+                  "cardTitle": "Paraclipse: Shiori",
+                  "cardType": "simple"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "398": {
@@ -117,14 +195,14 @@
       "lastPlayed": 1623334739,
       "users": {
         "pol": true,
-        "333": false,
+        "js": false,
         "dael": false
       }
     },
     "19": {
       "idGame": "19",
       "gameTitle": "Exalted: A Fire in Heaven",
-      "imageUrl": "http://rpg.simplecommunion.com/",
+      "imageUrl": "",
       "hoursPlayed": 198,
       "isActive": false,
       "idSystem": 383,
@@ -132,7 +210,7 @@
       "idUser": "pol",
       "users": {
         "pol": true,
-        "333": false,
+        "js": false,
         "dael": false
       }
     },
@@ -144,11 +222,37 @@
       "isActive": false,
       "idSystem": 999,
       "systemName": "Ten Candles",
-      "idUser": "333",
-
+      "idUser": "js",
       "users": {
-        "333": true
+        "js": true
       }
+    }
+  },
+  "gameUsers": {
+    "10": {
+      "js": true
+    },
+    "19": {
+      "pol": true,
+      "js": false,
+      "dael": false
+    },
+    "398": {
+      "pol": true,
+      "js": false,
+      "dael": false
+    },
+    "8323": {
+      "pol": true,
+      "js": false,
+      "dael": false
+    }
+  },
+  "gameCharacters": {
+    "8323": {
+      "Dolores-Static": "dael",
+      "Samuel-Jedermann": "js",
+      "Jacob-Magician": "444"
     }
   },
   "characters": {
@@ -169,7 +273,7 @@
       "characterName": "Samuel-Jedermann",
       "characterDescription": "Samuel/Jedermann is an Intuitive Explorer who Infiltrates with Lethal Force ",
       "idGame": "8323",
-      "idUser": "333"
+      "idUser": "js"
     },
     "Jacob-Magician": {
       "idCharacter": 52,

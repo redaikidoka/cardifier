@@ -23,18 +23,36 @@ export class GameService {
 
   }
 
-  getGame$(idGame: number): Observable<Game> {
+  getGame$(idGame: string): Observable<Game> {
+    return this.db.list<Game>('games', ref => ref.orderByKey().equalTo(idGame)).valueChanges().pipe(
+      tap(games => console.log('Game.service::getGame$[]', idGame, games)),
+      map( games => games[0] ?? null ),
+      map( // the session
+        game => {
+          if (game?.idCurrentSession) {
+            game.currentSession = game.sessions?.find(g => g.idSession === game.idCurrentSession);
+            if (!game.currentSession) { console.error('game.service::getGame$ - current session not found', game?.idCurrentSession); }
+          }
+          return game;
+        }
+      ),
+      tap(game => console.log('Game.service::getGame$', idGame, game))
+    );
+    // return of(this.getFakeGame());
+  }
+
+  getFakeGame(): Game {
     const gameAreas = [
       {
-        idArea: 222,
-        idGame: 8323,
+        idArea: '222',
+        idGame: '8323',
         areaTitle: 'Game',
         sCreate: new Date('2021-06-07'),
         sUpdate: new Date('2021-06-07')
 
       }, {
-        idArea: 223,
-        idGame: 8323,
+        idArea: '223',
+        idGame: '8323',
         areaTitle: 'Play',
         sCreate: new Date('2021-06-07'),
         sUpdate: new Date('2021-06-07')
@@ -42,21 +60,21 @@ export class GameService {
     ] as GameArea[];
 
     const gameSessions = [{
-      idSession: 138343,
+      idSession: '138343',
       sessionNumber: 12,
       sessionTitle: '12: Gig is Up',
       when: new Date('2021-06-01'),
       length: 3,
       hands: [
         {
-          idHand: 11,
-          idArea: 138343,
+          idHand: '11',
+          idArea: '138343',
           handType: '?',
           handTitle: 'Support',
           cards: [
             {
-              idCard: 1111,
-              idHand: 11,
+              idCard: '1111',
+              idHand: '11',
               cardTitle: 'Ally: Shiori',
               cardType: 'simple'
             }
@@ -65,21 +83,21 @@ export class GameService {
         }
       ]
     }, {
-      idSession: 138343,
+      idSession: '138343',
       sessionNumber: 11,
       sessionTitle: '11: Raggedy',
       when: new Date('2021-05-24'),
       length: 3.5,
       hands: [
         {
-          idHand: 11,
-          idArea: 138343,
+          idHand: '11',
+          idArea: '138343',
           handType: '?',
           handTitle: 'Reference',
           cards: [
             {
-              idCard: 1111,
-              idHand: 11,
+              idCard: '1111',
+              idHand: '11',
               cardTitle: 'Paraclipse: Shiori',
               cardType: 'simple'
             }
@@ -111,6 +129,6 @@ export class GameService {
       ]
     } as Game;
 
-    return of(fake);
+    return fake;
   }
 }

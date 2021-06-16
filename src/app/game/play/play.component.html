@@ -6,25 +6,44 @@
     <!-- Game & Session -->
     <div  class="flex flex-row flex-wrap">
       <div class="md:w-1/2 w-full pr-4 ">
-        <h2 class="text-gray-300 font-semibold text-2xl mt-6 mb-6 ml-6">{{game.gameTitle}}</h2>
-        <div class="grid md:grid-cols-2 w-full gap-3">
-
-        </div>
+        <img *ngIf="game?.iconUrl" class=" align-middle inline block  mt-2 h-8 ml-2" src="{{game?.iconUrl}}" />
+        <span class="align-middle inline text-gray-300 font-semibold text-2xl mt-10 mb-6 ml-2">{{game.gameTitle}}</span>
+        <span class="block text-gray-200 ml-8"> Hours played: 55</span>
       </div>
       <div class="md:w-1/2 w-full">
-        <h2 class="text-gray-300 font-semibold text-xl mt-6 mb-6 ml-6">Session</h2>
+        <h2 class="align-middle text-gray-300 font-semibold text-xl mt-6 mb-6 ml-6">Session 11:
+        <em>Whoooop!</em></h2>
 
       </div>
     </div>
 
     <!-- play / sidebar -->
-    <div  class="flex flex-row flex-wrap">
-
+    <div  class="flex flex-row flex-wrap h-100">
+      <!-- play -->
+      <div class="lg:w-3/4 w-full backdrop-grayscale border-blue-50 border-6">
+        <div class="flex flex-row flex-wrap">
+          <div class="w-full backdrop-grayscale-0 border-red-600 border-4">
+              <h2 class="text-gray-500">play area</h2>
+          </div>
+          <div class="w-full border-green-400 border-4">
+            <span class="text-green-500">character area</span>
+          </div>
+        </div>
+      </div>
+      <!-- chat -->
+      <div class="lg:w-1/4 w-full border-red-800 border-2">
+        <h1 class="text-purple-400">icons go here</h1>
+        <ul>
+          <li>game chat</li>
+          <li>game actions</li>
+        </ul>
+        <h2 class="text-purple-400">chat list /etc</h2>
+      </div>
     </div>
   </section>
   <ng-template #no_game class="pt-16 pb-32">
     Please return to the
-    <a [routerLink]="/home">home page </a> this game did not load.
+    <a [routerLink]="'/home'">home page </a> this game did not load.
   </ng-template>
   <cf-footer></cf-footer>
 </main>

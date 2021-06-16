@@ -15,7 +15,7 @@ import {LoggerService} from '../../root/logger.service';
 })
 export class PlayComponent extends UnsubscribeOnDestroyAdapter implements OnInit {
 
-  idGame = 0;
+  idGame = '8323';
   // theGame: Game | undefined;
 
   game$: Observable<Game> | undefined;
