@@ -1,29 +1,38 @@
 <cf-navbar></cf-navbar>
 <main class="h-full w-full" style="background-color: rgba(0, 0, 0, 0.8)">
-  <section *ngIf="game$ | async as game;else no_game" class="pt-16 pb-32">
+  <section *ngIf="game$ | async as game; else no_game" class="pt-16 pb-32">
     <!-- <h1 class="text-white font-semibold text-2xl mb-6">Home Page</h1> -->
 
     <!-- Game & Session -->
-    <div  class="flex flex-row flex-wrap">
+    <div class="flex flex-row flex-wrap">
       <div class="md:w-1/2 w-full pr-4 ">
-        <img *ngIf="game?.iconUrl" class=" align-middle inline block  mt-2 h-8 ml-2" src="{{game?.iconUrl}}" />
-        <span class="align-middle inline text-gray-300 font-semibold text-2xl mt-10 mb-6 ml-2">{{game.gameTitle}}</span>
+        <img *ngIf="game?.iconUrl" class=" align-middle inline block  mt-2 h-8 ml-2" src="{{game?.iconUrl}}"/>
+        <span class="align-middle inline text-gray-300 font-semibold text-2xl mt-11 mb-6 ml-2">{{game.gameTitle}}</span>
         <span class="block text-gray-200 ml-8"> Hours played: 55</span>
       </div>
       <div class="md:w-1/2 w-full">
-        <h2 class="align-middle text-gray-300 font-semibold text-xl mt-6 mb-6 ml-6">Session 11:
-        <em>Whoooop!</em></h2>
+        <ng-container *ngIf="game?.currentSession; else no_session">
+          <h2 class="align-middle text-gray-300 font-semibold text-xl mt-6 mb-6 ml-6">{{game.currentSession?.sessionTitle}} </h2>
+<!--          <ul *ngIf="game.currentSession?.hands">-->
+<!--            <li *ngFor="let hand in game.currentSession.hands"> {{hand}}</li>-->
+<!--          </ul>-->
+        </ng-container>
+        <ng-template #no_session>
+          <button>Start New Session</button>
+
+        </ng-template>
 
       </div>
     </div>
 
     <!-- play / sidebar -->
-    <div  class="flex flex-row flex-wrap h-100">
+    <div class="flex flex-row flex-wrap h-100">
       <!-- play -->
       <div class="lg:w-3/4 w-full backdrop-grayscale border-blue-50 border-6">
         <div class="flex flex-row flex-wrap">
-          <div class="w-full backdrop-grayscale-0 border-red-600 border-4">
-              <h2 class="text-gray-500">play area</h2>
+          <div class="w-full backdrop-grayscale-0 border-red-600 border-4 bg-cover"
+               [ngStyle]="{'background-image': 'url(' + game?.imageUrl + ')'}"  >
+            <h2 class="text-gray-500">play area</h2>
           </div>
           <div class="w-full border-green-400 border-4">
             <span class="text-green-500">character area</span>
@@ -41,9 +50,13 @@
       </div>
     </div>
   </section>
-  <ng-template #no_game class="pt-16 pb-32">
-    Please return to the
-    <a [routerLink]="'/home'">home page </a> this game did not load.
+  <ng-template #no_game>
+    <section class="pt-16 pb-32">
+      <h1 class="font-bold text-3xl"> Please return to the
+        <a [routerLink]="'/home'">home page </a>
+        ; this game did not load.
+      </h1>
+    </section>
   </ng-template>
   <cf-footer></cf-footer>
 </main>

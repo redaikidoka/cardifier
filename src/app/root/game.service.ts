@@ -27,18 +27,18 @@ export class GameService {
     return this.db.list<Game>('games', ref => ref.orderByKey().equalTo(idGame)).valueChanges().pipe(
       tap(games => console.log('Game.service::getGame$[]', idGame, games)),
       map( games => games[0] ?? null ),
+      tap(game => console.log('Game.service::getGame$ singleton',  game)),
       map( // the session
         game => {
           if (game?.idCurrentSession) {
-            game.currentSession = game.sessions?.find(g => g.idSession === game.idCurrentSession);
+            game.currentSession = game.sessions?.find(s => s.idSession === game.idCurrentSession);
             if (!game.currentSession) { console.error('game.service::getGame$ - current session not found', game?.idCurrentSession); }
-          }
+            }
           return game;
-        }
+          }
       ),
-      tap(game => console.log('Game.service::getGame$', idGame, game))
+      tap(game => console.log('Game.service::getGame$ filtered', idGame, game))
     );
-    // return of(this.getFakeGame());
   }
 
   getFakeGame(): Game {

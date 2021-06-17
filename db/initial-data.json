@@ -107,7 +107,7 @@
         "js": false,
         "dael": false
       },
-      "characters": {
+      "characterList": {
         "Dolores-Static": "dael",
         "Samuel-Jedermann": "js",
         "Jacob-Magician": "444"
@@ -126,62 +126,62 @@
           "areaTitle": "Play"
         }
       },
-      "sessions": {
-        "138343": {
+      "sessions": [
+         {
           "idSession": "138343",
           "sessionNumber": 12,
           "sessionTitle": "12: Gig is Up",
           "when": 1623369749,
           "length": 3,
-          "hands": {
-            "11": {
+          "hands": [
+            {
               "idHand": "11",
               "idArea": "138343",
               "handType": "?",
               "handTitle": "Support",
-              "cards": {
-                "paraclipse": {
+              "cards": [
+                {
                   "idCard": "paraclipse",
                   "idHand": "11",
                   "cardTitle": "Refuge: Paraclipse",
                   "cardType": "image",
                   "faceImage": "https://rpg.simplecommunion.com/tfm/paraclipse-night.jpg"
                 },
-                "1111": {
+                {
                   "idCard": "1111",
                   "idHand": "11",
                   "cardTitle": "Ally: Shiori",
                   "cardType": "image",
                   "faceImage": "https://rpg.simplecommunion.com/tfm/shiori.jpg"
                 }
-              }
+              ]
             }
-          }
+          ]
         },
-        "138342": {
+        {
           "idSession": "138342",
           "sessionNumber": 11,
           "sessionTitle": "11: Raggedy",
           "when": 1623339749,
           "length": 3.5,
-          "hands": {
-            "111": {
+          "hands": [
+            {
               "idHand": "111",
               "idArea": "138343",
               "handType": "?",
               "handTitle": "Reference",
-              "cards": {
-                "1111": {
+              "cards": [
+                 {
                   "idCard": "1111",
                   "idHand": 11,
                   "cardTitle": "Paraclipse: Shiori",
                   "cardType": "simple"
                 }
-              }
+              ]
             }
-          }
+          ]
         }
-      }
+      ]
     },
     "398": {
       "idGame": "398",
@@ -285,15 +285,15 @@
   },
   "hands": {
     "33333": {
-      "idHand": 33333,
+      "idHand": "33333",
       "handType": "grid",
       "handTitle": "Traits",
       "handState": "Condensed",
       "groupAddable": false,
       "cards": {
         "333331": {
-          "idCard": 333331,
-          "idHand": 33333,
+          "idCard": "333331",
+          "idHand": "33333",
           "cardTitle": "Might",
           "description": "Used for strength and resistance",
           "cardType": "pool",
@@ -302,8 +302,8 @@
           "currentValue": 9
         },
         "333332": {
-          "idCard": 333332,
-          "idHand": 33333,
+          "idCard": "333332",
+          "idHand": "33333",
           "cardTitle": "Speed",
           "description": "Used for moving, dodging",
           "cardType": "pool",
@@ -312,8 +312,8 @@
           "currentValue": 10
         },
         "333333": {
-          "idCard": 333333,
-          "idHand": 33333,
+          "idCard": "333333",
+          "idHand": "33333",
           "cardTitle": "Intellect",
           "description": "Used for thinking, figuring, charming",
           "cardType": "pool",
@@ -324,15 +324,15 @@
       }
     },
     "44": {
-      "idHand": 44,
+      "idHand": "44",
       "handType": "stack",
       "handTitle": "Abilities",
       "handState": "Condensed",
       "groupAddable": false,
       "cards": {
         "441": {
-          "idCard": 441,
-          "idHand": 44,
+          "idCard": "441",
+          "idHand": "44",
           "cardTitle": "Far Step",
           "description": "short-range teleport",
           "cardType": "action",
@@ -343,8 +343,8 @@
           }
         },
         "442": {
-          "idCard": 442,
-          "idHand": 44,
+          "idCard": "442",
+          "idHand": "44",
           "cardTitle": "Resonance Field",
           "description": "protective shield",
           "cardType": "action",
@@ -363,30 +363,30 @@
       "groupAddable": false,
       "cards": {
         "451": {
-          "idCard": 451,
-          "idHand": 45,
+          "idCard": "451",
+          "idHand": "45",
           "cardTitle": "Action",
           "cardType": "action",
           "dieRoll": "1d6 + {Tier}",
           "faceColor": "green"
         },
         "452": {
-          "idCard": 452,
-          "idHand": 45,
+          "idCard": "452",
+          "idHand": "45",
           "cardTitle": "10 Minutes",
           "cardType": "action",
           "dieRoll": "1d6 + {Tier}"
         },
         "453": {
-          "idCard": 453,
-          "idHand": 45,
+          "idCard": "453",
+          "idHand": "45",
           "cardTitle": "1 Hour",
           "cardType": "action",
           "dieRoll": "1d6 + {Tier}"
         },
         "454": {
-          "idCard": 454,
-          "idHand": 45,
+          "idCard": "454",
+          "idHand": "45",
           "cardTitle": "10 Hours",
           "cardType": "action",
           "dieRoll": "1d6 + {Tier}"
