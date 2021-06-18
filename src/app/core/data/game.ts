@@ -42,6 +42,8 @@ export interface GameSession {
   when: Date;
   length: number;
 
+  imageUrl?: string;
+
   hands?: Hand[];
 }
 
@@ -72,7 +74,7 @@ export interface Hand {
 
   handState: HandState;
 
-  groupAddable: boolean ;
+  groupAddable: boolean;
 
   cards?: Card[];
 }

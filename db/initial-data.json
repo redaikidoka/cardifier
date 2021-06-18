@@ -127,12 +127,13 @@
         }
       },
       "sessions": [
-         {
+        {
           "idSession": "138343",
           "sessionNumber": 12,
           "sessionTitle": "12: Gig is Up",
           "when": 1623369749,
           "length": 3,
+          "imageUrl": "https://rpg.simplecommunion.com/tfm/paraclipse-night.jpg",
           "hands": [
             {
               "idHand": "11",
@@ -171,7 +172,7 @@
               "handType": "?",
               "handTitle": "Reference",
               "cards": [
-                 {
+                {
                   "idCard": "1111",
                   "idHand": 11,
                   "cardTitle": "Paraclipse: Shiori",

@@ -6,16 +6,22 @@
     <!-- Game & Session -->
     <div class="flex flex-row flex-wrap">
       <div class="md:w-1/2 w-full pr-4 ">
-        <img *ngIf="game?.iconUrl" class=" align-middle inline block  mt-2 h-8 ml-2" src="{{game?.iconUrl}}"/>
-        <span class="align-middle inline text-gray-300 font-semibold text-2xl mt-11 mb-6 ml-2">{{game.gameTitle}}</span>
-        <span class="block text-gray-200 ml-8"> Hours played: 55</span>
+        <app-area-title [titleText]="game.gameTitle" [iconUrl]="game?.iconUrl"></app-area-title>
+        <span class="block text-gray-200 ml-8 mt-2"> Hours played: 55</span>
       </div>
       <div class="md:w-1/2 w-full">
         <ng-container *ngIf="game?.currentSession; else no_session">
-          <h2 class="align-middle text-gray-300 font-semibold text-xl mt-6 mb-6 ml-6">{{game.currentSession?.sessionTitle}} </h2>
-<!--          <ul *ngIf="game.currentSession?.hands">-->
-<!--            <li *ngFor="let hand in game.currentSession.hands"> {{hand}}</li>-->
-<!--          </ul>-->
+          <h2
+            class="align-middle text-gray-300 font-semibold text-xl mt-3 mb-2 ml-2">{{game.currentSession?.sessionTitle}} </h2>
+          <!--          <ng-container *ngIf="game.currentSession?.hands" -->
+          <div *ngFor="let hand of game.currentSession?.hands">
+            <h3
+              class="align-middle text-gray-200 font-semibold text-xl mt-6 mb-6 ml-6 mr-1 inline-block">{{hand.handTitle}}
+              : </h3>
+            <ul class="text-black inline-block ">
+              <li *ngFor="let card of hand.cards" class="inline-block p-2 m-1 bg-gray-200"> {{card.cardTitle}}</li>
+            </ul>
+          </div>
         </ng-container>
         <ng-template #no_session>
           <button>Start New Session</button>
@@ -28,16 +34,32 @@
     <!-- play / sidebar -->
     <div class="flex flex-row flex-wrap h-100">
       <!-- play -->
-      <div class="lg:w-3/4 w-full backdrop-grayscale border-blue-50 border-6">
-        <div class="flex flex-row flex-wrap">
-          <div class="w-full backdrop-grayscale-0 border-red-600 border-4 bg-cover"
-               [ngStyle]="{'background-image': 'url(' + game?.imageUrl + ')'}"  >
-            <h2 class="text-gray-500">play area</h2>
+      <div class="lg:w-3/4 w-full backdrop-grayscale ">
+        <div class="flex flex-row flex-wrap ">
+<!--          &lt;!&ndash; bg &ndash;&gt;-->
+<!--          <div *ngIf="game.imageUrl" class="absolute lg:w-3/4 w-full  border-4 border-blue-500 ">-->
+<!--            <img class="w-full object-cover rounded-xl filter brightness-50 saturate-50 bg-cover overflow-clip"-->
+<!--                 src="{{game.imageUrl}}" alt=""/>-->
+<!--          </div>-->
+<!--          &lt;!&ndash; content &ndash;&gt;-->
+<!--          <div class="relative h-full w-full flex border-4 border-green-500">-->
+<!--            <h2 class="text-gray-300">play area</h2>-->
+<!--          </div>-->
+          <!-- row -->
+          <div class="w-full  border-blue-600 border-2 bg-cover bg-opacity-50"
+               [ngStyle]="{'background-image': 'url(' + game?.imageUrl + ')'}">
+<!--            <div class=""-->
+            <div class="filter ">
+              <h2 class="text-gray-300">play area</h2>
+            </div>
           </div>
+        </div>
+        <div class="flex flex-row flex-wrap">
           <div class="w-full border-green-400 border-4">
             <span class="text-green-500">character area</span>
           </div>
         </div>
+
       </div>
       <!-- chat -->
       <div class="lg:w-1/4 w-full border-red-800 border-2">
