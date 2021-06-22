@@ -71,6 +71,7 @@ export interface Hand {
 
   handType: string;
   handTitle: string;
+  handIcon?: string;
 
   handState: HandState;
 

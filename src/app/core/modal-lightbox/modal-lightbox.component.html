@@ -1,0 +1,19 @@
+<img class="w-full align-middle rounded-t-lg" />
+<!--  class="card-back rounded-md bg-gray-600 w-full flex flex-col flex-wrap p-3 antialiased"-->
+     src="{{data.imageUrl}}"/>
+
+<h1 *ngIf="data.imageText" mat-dialog-title="mat-dialog-title"> {{data.imageText}}</h1>
+<div mat-dialog-actions>
+  <button
+    class="bg-opacity-75 bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
+    type="button"
+    style="transition: all 0.15s ease 0s;"
+    (click)='closeUp()'
+  >
+    <i class="fa fa-times-circle" >Close</i>
+  </button>
+<!--  <button mat-button="mat-button" mat-flat-button="mat-flat-button" color="accent" (click)="closeUp()">-->
+<!--&lt;!&ndash;    <mat-icon class="mr-1 align-middle">cancel</mat-icon>&ndash;&gt;-->
+<!--    <i class="fa fa-times-circle" ></i>-->
+<!--  </button>-->
+</div>

@@ -15,12 +15,7 @@
             class="align-middle text-gray-300 font-semibold text-xl mt-3 mb-2 ml-2">{{game.currentSession?.sessionTitle}} </h2>
           <!--          <ng-container *ngIf="game.currentSession?.hands" -->
           <div *ngFor="let hand of game.currentSession?.hands">
-            <h3
-              class="align-middle text-gray-200 font-semibold text-xl mt-6 mb-6 ml-6 mr-1 inline-block">{{hand.handTitle}}
-              : </h3>
-            <ul class="text-black inline-block ">
-              <li *ngFor="let card of hand.cards" class="inline-block p-2 m-1 bg-gray-200"> {{card.cardTitle}}</li>
-            </ul>
+            <app-hand-blocks [hand]="hand"></app-hand-blocks>
           </div>
         </ng-container>
         <ng-template #no_session>
@@ -46,7 +41,7 @@
 <!--            <h2 class="text-gray-300">play area</h2>-->
 <!--          </div>-->
           <!-- row -->
-          <div class="w-full  border-blue-600 border-2 bg-cover bg-opacity-50"
+          <div class="w-full  border-blue-600 border-2 bg-cover h-min-300 bg-opacity-50"
                [ngStyle]="{'background-image': 'url(' + game?.imageUrl + ')'}">
 <!--            <div class=""-->
             <div class="filter ">

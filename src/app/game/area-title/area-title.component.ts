@@ -12,6 +12,7 @@ export class AreaTitleComponent implements OnInit {
 
   @Input() iconSize = 'h-8';
   @Input() textSize = 'text-2xl';
+  @Input() bgStyle = '';
 
   constructor() {
   }
