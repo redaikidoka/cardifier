@@ -13,7 +13,7 @@ import {LoggerService} from '../../root/logger.service';
   templateUrl: './play.component.html',
   styleUrls: ['./play.component.scss']
 })
-export class PlayComponent extends UnsubscribeOnDestroyAdapter implements OnInit {
+export class PlayComponent extends UnsubscribeOnDestroyAdapter  {
 
   idGame = '8323';
   // theGame: Game | undefined;
@@ -37,9 +37,6 @@ export class PlayComponent extends UnsubscribeOnDestroyAdapter implements OnInit
       }
     });
 
-  }
-
-  ngOnInit(): void {
   }
 
 }
