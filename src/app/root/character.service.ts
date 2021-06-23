@@ -7,22 +7,23 @@ import {Observable, of} from 'rxjs';
 })
 export class CharacterService {
   faker = {
-    idCharacter: 32,
+    idCharacter: '32',
     characterName: 'Dolores/Static',
-    idGame: 8323,
-    idUser: -1,
+    idGame: '8323',
+    idUser: 'dael',
     sCreate: new Date('2021-06-09'),
     sUpdate: new Date('2021-06-09'),
-    hands: [{
-      idHand: 33333,
+    hands: [
+      {
+      idHand: '33333',
       handType: 'grid',
       handTitle: 'Traits',
       handState: 'Condensed',
       groupAddable: false,
       cards: [
         {
-          idCard: 333331,
-          idHand: 33333,
+          idCard: '333331',
+          idHand: '33333',
           cardTitle: 'Might',
           description: 'Used for strength and resistance',
           cardType: 'pool',
@@ -30,8 +31,8 @@ export class CharacterService {
           poolValue: 11,
           currentValue: 9
         }, {
-          idCard: 333332,
-          idHand: 33333,
+          idCard: '333332',
+          idHand: '33333',
           cardTitle: 'Speed',
           description: 'Used for moving, dodging',
           cardType: 'pool',
@@ -39,8 +40,8 @@ export class CharacterService {
           poolValue: 10,
           currentValue: 10
         }, {
-          idCard: 333333,
-          idHand: 33333,
+          idCard: '333333',
+          idHand: '33333',
           cardTitle: 'Intellect',
           description: 'Used for thinking, figuring, charming',
           cardType: 'pool',
@@ -51,7 +52,7 @@ export class CharacterService {
       ]
 
     }, {
-      idHand: 44,
+      idHand: '44',
 
       handType: 'stack',
       handTitle: 'Abilities',
@@ -60,15 +61,15 @@ export class CharacterService {
       groupAddable: false,
       cards: [
         {
-          idCard: 441,
-          idHand: 44,
+          idCard: '441',
+          idHand: '44',
           cardTitle: 'Far Step',
           description: 'short-range teleport',
           cardType: 'action',
           customProperties: {stat: 'Intellect', cost: 2, page: 136}
         }, {
-          idCard: 442,
-          idHand: 44,
+          idCard: '442',
+          idHand: '44',
           cardTitle: 'Resonance Field',
           description: 'protective shield',
           cardType: 'action',
@@ -76,7 +77,7 @@ export class CharacterService {
         },
       ]
     }, {
-      idHand: 45,
+      idHand: '45',
 
       handType: 'dropdown',
       handTitle: 'Recoveries',
@@ -85,27 +86,27 @@ export class CharacterService {
       groupAddable: false,
       cards: [
         {
-          idCard: 451,
-          idHand: 45,
+          idCard: 'action1',
+          idHand: '45',
           cardTitle: 'Action',
           cardType: 'action',
           dieRoll: '1d6 + {Tier}',
           faceColor: 'green'
         }, {
-          idCard: 451,
-          idHand: 45,
+          idCard: '10min',
+          idHand: '45',
           cardTitle: '10 Minutes',
           cardType: 'action',
           dieRoll: '1d6 + {Tier}',
         }, {
-          idCard: 451,
-          idHand: 45,
+          idCard: '1hr',
+          idHand: '45',
           cardTitle: '1 Hour',
           cardType: 'action',
           dieRoll: '1d6 + {Tier}',
         }, {
-          idCard: 451,
-          idHand: 45,
+          idCard: '10hr',
+          idHand: '45',
           cardTitle: '10 Hours',
           cardType: 'action',
           dieRoll: '1d6 + {Tier}',

@@ -6,7 +6,7 @@
     <li *ngFor="let card of hand?.cards" class="inline-block p-2 m-1 bg-gray-200" [ngClass]="textSize">
       {{card.cardTitle}}
       <i *ngIf="card.description" class="fas fa-info" matTooltip="{{card.description}}"></i>
-      <i *ngIf="card.faceImage" class="fas fa-image" (click)="showImage(card.faceImage, card.cardTitle)"></i>
+      <i *ngIf="card.faceImage" class="fas fa-image" (click)="showFaceImage(card)"></i>
     </li>
   </ul>
 </div>

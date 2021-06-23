@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Hand} from '../../core/data/game';
+import {Card, Hand} from '../../core/data/game';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {UnsubscribeOnDestroyAdapter} from '../../root/unsubscribe-on-destroy-adapter';
 import {ModalLightboxComponent} from '../../core/modal-lightbox/modal-lightbox.component';
@@ -33,11 +33,11 @@ export class HandBlocksComponent extends UnsubscribeOnDestroyAdapter implements 
   ngOnInit(): void {
   }
 
-  showImage(url: string, displayText: string, x: number = 300, y: number = 300): void {
+  showFaceImage(card: Card): void {
     // this.picDialog.open(data: {imageUrl: url; minX: x ?? 300; minY: y?? 300})
     const dialogRef = this.picDialog.open(ModalLightboxComponent, {
       width: '75%',
-      data: {imageUrl: url, imageText: displayText},
+      data: {imageUrl: card.faceImage, imageText: card.cardTitle},
     });
 
     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {

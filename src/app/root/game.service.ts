@@ -16,9 +16,9 @@ export class GameService {
     console.log('Game.Service::getUserGames$ for', idUser);
 
     return this.db.list<Game>('games', ref => ref.orderByChild('idUser').equalTo(idUser)).valueChanges().pipe(
-      tap(gg => console.log('Game.Service::getUserGames$', gg)),
-      map(games => games.sort( (a, b) => (a.lastPlayed ?? 0) > (b.lastPlayed ?? 0) ? -1 : 1 )),
-      tap( games => console.log('sorted: ', games) )
+      // tap(gg => console.log('Game.Service::getUserGames$', gg)),
+      map(games => games.sort((a, b) => (a.lastPlayed ?? 0) > (b.lastPlayed ?? 0) ? -1 : 1)),
+      tap(games => console.log('sorted: ', games))
     );
 
   }
@@ -26,16 +26,22 @@ export class GameService {
   getGame$(idGame: string): Observable<Game> {
     return this.db.list<Game>('games', ref => ref.orderByKey().equalTo(idGame)).valueChanges().pipe(
       tap(games => console.log('Game.service::getGame$[]', idGame, games)),
-      map( games => games[0] ?? null ),
-      tap(game => console.log('Game.service::getGame$ singleton',  game)),
+      map(games => games[0] ?? null),
+      tap(game => console.log('Game.service::getGame$ singleton', game)),
       map( // the session
         game => {
           if (game?.idCurrentSession) {
             game.currentSession = game.sessions?.find(s => s.idSession === game.idCurrentSession);
-            if (!game.currentSession) { console.error('game.service::getGame$ - current session not found', game?.idCurrentSession); }
+            if (!game.currentSession) {
+              console.error('game.service::getGame$ - current session not found', game?.idCurrentSession);
             }
-          return game;
           }
+          if (game.areas) {
+            console.log('game.service::getGame$ areas', game.areas);
+            game.gameArea = game.areas.find(a => a.areaTitle === 'Game');
+          }
+          return game;
+        }
       ),
       tap(game => console.log('Game.service::getGame$ filtered', idGame, game))
     );

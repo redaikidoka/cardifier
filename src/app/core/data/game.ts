@@ -28,6 +28,8 @@ export interface Game {
 
   idCurrentSession?: string;
   currentSession?: GameSession;
+  gameArea?: GameArea;
+
   // added bits
   areas?: GameArea[];
   sessions?: GameSession[];
