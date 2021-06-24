@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 
-import {Game, GameSession, GameArea} from '../core/data/game';
+import {Game, GameSession, GameArea, GameAreaType} from '../core/data/game';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {map, tap} from 'rxjs/operators';
 
@@ -28,7 +28,8 @@ export class GameService {
       tap(games => console.log('Game.service::getGame$[]', idGame, games)),
       map(games => games[0] ?? null),
       tap(game => console.log('Game.service::getGame$ singleton', game)),
-      map( // the session
+      map(
+        // the session
         game => {
           if (game?.idCurrentSession) {
             game.currentSession = game.sessions?.find(s => s.idSession === game.idCurrentSession);
@@ -36,10 +37,21 @@ export class GameService {
               console.error('game.service::getGame$ - current session not found', game?.idCurrentSession);
             }
           }
+
+          // AREA: game (game.gameArea)
           if (game.areas) {
             console.log('game.service::getGame$ areas', game.areas);
-            game.gameArea = game.areas.find(a => a.areaTitle === 'Game');
+            game.gameArea = game.areas.find(a => a.areaId === GameAreaType.Game);
+            // AREA: Play (game.playArea)
+            game.playArea = game.areas.find(a => a.areaId === GameAreaType.Play);
           }
+
+
+          if (game.areas) {
+
+          }
+
+          console.log('game.service::getGame$ game setup', game);
           return game;
         }
       ),

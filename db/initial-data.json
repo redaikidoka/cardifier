@@ -117,6 +117,7 @@
           "idArea": "222",
           "idGame": "8323",
           "areaTitle": "Game",
+          "areaId": 0,
           "sCreate": 1623369739,
           "sUpdate": 1623369749,
           "hands": [
@@ -147,7 +148,79 @@
         {
           "idArea": "223",
           "idGame": "8323",
-          "areaTitle": "Play"
+          "areaTitle": "Play",
+          "areaId": 1,
+          "hands": [
+            {
+              "idHand": "22",
+              "idArea": "223",
+              "handType": "block-vertical",
+              "handTitle": "The Warehouse",
+              "imageUrl": "https://rpg.simplecommunion.com/tfm/dogpatch-warehouse.png",
+              "cards": [
+                {
+                  "idCard": "firebrand",
+                  "idHand": "22",
+                  "cardTitle": "Firebrand",
+                  "cardType": "image",
+                  "cardIcon": "https://rpg.simplecommunion.com/tfm/mask-white.png",
+                  "imageUrl": "https://rpg.simplecommunion.com/tfm/firebrand.png"
+                },
+                {
+                  "idCard": "danzer",
+                  "idHand": "22",
+                  "cardTitle": "Danzer",
+                  "cardType": "block"
+                },
+                {
+                  "idCard": "thug1",
+                  "idHand": "22",
+                  "cardTitle": "Thug 1",
+                  "cardType": "block"
+                },
+                {
+                  "idCard": "thug2",
+                  "idHand": "22",
+                  "cardTitle": "Thug 2",
+                  "cardType": "block"
+                }
+              ]
+            },
+            {
+              "idHand": "88",
+              "idArea": "223",
+              "handType": "character",
+              "handTitle": "Initiative",
+              "cards": [
+                {
+                  "idCard": "firebrand",
+                  "idHand": "22",
+                  "cardTitle": "Firebrand",
+                  "cardType": "image",
+                  "cardIcon": "https://rpg.simplecommunion.com/tfm/mask-white.png",
+                  "imageUrl": "https://rpg.simplecommunion.com/tfm/firebrand.png"
+                },
+                {
+                  "idCard": "danzer",
+                  "idHand": "22",
+                  "cardTitle": "Danzer",
+                  "cardType": "block"
+                },
+                {
+                  "idCard": "thug1",
+                  "idHand": "22",
+                  "cardTitle": "Thug 1",
+                  "cardType": "block"
+                },
+                {
+                  "idCard": "thug2",
+                  "idHand": "22",
+                  "cardTitle": "Thug 2",
+                  "cardType": "block"
+                }
+              ]
+            }
+          ]
         }
       ],
       "sessions": [

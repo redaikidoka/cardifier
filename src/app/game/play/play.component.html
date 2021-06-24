@@ -45,7 +45,7 @@
                [ngStyle]="{'background-image': 'url(' + game?.imageUrl + ')'}">
 <!--            <div class=""-->
             <div class="filter ">
-              <h2 class="text-gray-300">play area</h2>
+              <h2 class="text-gray-200">{{game?.playArea?.areaTitle}}</h2>
             </div>
           </div>
         </div>
@@ -69,8 +69,8 @@
   </section>
   <ng-template #no_game>
     <section class="pt-16 pb-32">
-      <h1 class="font-bold text-3xl"> Please return to the
-        <a [routerLink]="'/home'">home page </a>
+      <h1 class="font-bold text-3xl text-white text-center"> Please return to the
+        <a [routerLink]="'/home'" class="text-blue-700">home page </a>
         ; this game did not load.
       </h1>
     </section>

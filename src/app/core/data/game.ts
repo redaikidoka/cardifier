@@ -1,8 +1,6 @@
 export interface Game {
   idGame: string;
 
-  idGameSystem?: number;
-
   gameTitle: string;
 
   imageUrl?: string;
@@ -18,17 +16,20 @@ export interface Game {
 
   lastPlayed?: Date;
 
-  // sCreate: Date;
-  // sUpdate: Date;
-  // sIdUserCreate?: number;
-  // sIdUserUpdate?: number;
+  sCreate: Date;
+  sUpdate: Date;
+  sIdUserCreate?: number;
+  sIdUserUpdate?: number;
 
   idSystem?: number;
   systemName?: string;
 
   idCurrentSession?: string;
+
+  // lookups
   currentSession?: GameSession;
   gameArea?: GameArea;
+  playArea?: GameArea;
 
   // added bits
   areas?: GameArea[];
@@ -49,12 +50,17 @@ export interface GameSession {
   hands?: Hand[];
 }
 
+export enum GameAreaType {
+  Game,
+  Play
+}
 export interface GameArea {
   idArea: string;
 
   idGame: string; // parent
 
   areaTitle: string;
+  areaId?: GameAreaType;
 
   sCreate: Date;
   sUpdate: Date;
@@ -73,10 +79,12 @@ export interface Hand {
 
   handType: string;
   handTitle: string;
+
   handIcon?: string;
+  imageUrl?: string;
 
   handState: HandState;
-
+  tags?: string;
   groupAddable: boolean;
 
   cards?: Card[];
@@ -90,6 +98,7 @@ export interface Card {
   cardTitle: string;
   description?: string;
 
+  cardIcon?: string;
   faceImage?: string;
   backImage?: string;
 
