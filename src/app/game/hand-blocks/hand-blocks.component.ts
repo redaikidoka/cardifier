@@ -33,17 +33,26 @@ export class HandBlocksComponent extends UnsubscribeOnDestroyAdapter implements 
   ngOnInit(): void {
   }
 
+  showHandImage(hand: Hand | undefined): void {
+    if (!hand) { return; }
+
+    this.showImage( hand.imageUrl ?? '', hand.handTitle ?? '');
+  }
   showFaceImage(card: Card): void {
     // this.picDialog.open(data: {imageUrl: url; minX: x ?? 300; minY: y?? 300})
+    this.showImage(card?.faceImage ?? '', card.cardTitle);
+
+  }
+
+  showImage(url: string, title: string = ''): void {
     const dialogRef = this.picDialog.open(ModalLightboxComponent, {
       width: '75%',
-      data: {imageUrl: card.faceImage, imageText: card.cardTitle},
+      data: {imageUrl: url, imageText: title},
     });
 
     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
       console.log('Hand-blocks.component showImage()', result);
     });
-
   }
 
   cardTagIs(card: Card, key: string): boolean {

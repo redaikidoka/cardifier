@@ -170,7 +170,8 @@
                   "idCard": "danzer",
                   "idHand": "22",
                   "cardTitle": "Danzer",
-                  "cardType": "block"
+                  "cardType": "block",
+                  "imageUrl": "https://rpg.simplecommunion.com/tfm/danzer.png"
                 },
                 {
                   "idCard": "thug1",
@@ -207,7 +208,8 @@
                   "idHand": "22",
                   "cardTitle": "Danzer",
                   "cardType": "block",
-                  "tags": "NPC"
+                  "tags": "NPC",
+                  "imageUrl": "https://rpg.simplecommunion.com/tfm/danzer.png"
                 },
                 {
                   "idCard": "thug1",
@@ -519,6 +521,11 @@
           "dieRoll": "1d6 + {Tier}"
         }
       }
+    }
+  },
+  "gameChats": {
+    "8323": {
+
     }
   }
 }
