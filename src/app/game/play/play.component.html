@@ -5,16 +5,18 @@
 
     <!-- Game & Session -->
     <div class="flex flex-row flex-wrap">
-      <div class="md:w-1/2 w-full pr-4 ">
+      <!-- game -->
+      <div class="md:w-1/2 w-full pr-4 border-blue-900 border-2">
         <app-area-title [titleText]="game.gameTitle" [iconUrl]="game?.iconUrl"></app-area-title>
         <span class="block text-gray-200 ml-8 mt-2"> Hours played: 55</span>
       </div>
-      <div class="md:w-1/2 w-full">
+      <!-- session -->
+      <div class="md:w-1/2 w-full border-green-800 border-2">
         <ng-container *ngIf="game?.currentSession; else no_session">
           <h2
             class="align-middle text-gray-300 font-semibold text-xl mt-3 mb-2 ml-2">{{game.currentSession?.sessionTitle}} </h2>
           <!--          <ng-container *ngIf="game.currentSession?.hands" -->
-          <div *ngFor="let hand of game.currentSession?.hands">
+          <div *ngFor="let hand of game.currentSession?.hands" class="w-full">
             <app-hand-blocks [hand]="hand"></app-hand-blocks>
           </div>
         </ng-container>
@@ -26,7 +28,7 @@
       </div>
     </div>
 
-    <!-- play / sidebar -->
+    <!-- play-character / sidebar -->
     <div class="flex flex-row flex-wrap h-100">
       <!-- play -->
       <div class="lg:w-3/4 w-full backdrop-grayscale ">
@@ -41,14 +43,20 @@
 <!--            <h2 class="text-gray-300">play area</h2>-->
 <!--          </div>-->
           <!-- row -->
-          <div class="w-full  border-blue-600 border-2 bg-cover h-min-300 bg-opacity-50"
+          <div class="w-full border-blue-900 border-2 bg-cover h-min-300 bg-opacity-25"
                [ngStyle]="{'background-image': 'url(' + game?.imageUrl + ')'}">
 <!--            <div class=""-->
             <div class="filter ">
               <h2 class="text-gray-200">{{game?.playArea?.areaTitle}}</h2>
             </div>
+            <div class="flex flex-row flex-wrap">
+              <div *ngFor="let hand of game.playArea?.hands">
+                <app-hand-blocks [hand]="hand" [titleSize]="' text-xl bg-gray-800'" [bgStyle]="' bg-gray-500 bg-opacity-25'"></app-hand-blocks>
+              </div>
+              </div>
           </div>
         </div>
+        <!-- play -->
         <div class="flex flex-row flex-wrap">
           <div class="w-full border-green-400 border-4">
             <span class="text-green-500">character area</span>

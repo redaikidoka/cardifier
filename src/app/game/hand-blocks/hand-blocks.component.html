@@ -1,9 +1,13 @@
-<div>
+<div [ngClass]="bgStyle">
+
+  <img *ngIf="hand?.iconUrl || false" alt="Hand Icon" class="inline block mt-1 h-8 ml-2" src="{{hand?.iconUrl ?? ''}}" [ngClass]="iconSize" />
   <h3
     class="align-middle text-gray-200 font-semibold mt-6 mb-6 ml-6 mr-1 inline-block" [ngClass]="titleSize">{{hand?.handTitle}}
     : </h3>
   <ul class="text-black inline-block ">
     <li *ngFor="let card of hand?.cards" class="inline-block p-2 m-1 bg-gray-200" [ngClass]="textSize">
+      <i *ngIf="cardTagIs(card, 'NPC')" class="fas fa-universal-access"></i>
+      <i *ngIf="cardTagIs(card, 'USER')" class="fas fa-user-astronaut"></i>
       {{card.cardTitle}}
       <i *ngIf="card.description" class="fas fa-info" matTooltip="{{card.description}}"></i>
       <i *ngIf="card.faceImage" class="fas fa-image" (click)="showFaceImage(card)"></i>

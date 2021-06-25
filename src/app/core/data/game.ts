@@ -80,12 +80,13 @@ export interface Hand {
   handType: string;
   handTitle: string;
 
-  handIcon?: string;
+  iconUrl?: string;
   imageUrl?: string;
 
   handState: HandState;
   tags?: string;
-  groupAddable: boolean;
+
+  groupAddable?: boolean;
 
   cards?: Card[];
 }
@@ -109,6 +110,8 @@ export interface Card {
   footerText?: string;
 
   cardType?: string;
+
+  tags?: string;
 
   // rollable
   dieRoll?: string; // e.g. '2d6+1'

@@ -191,6 +191,7 @@
               "idArea": "223",
               "handType": "character",
               "handTitle": "Initiative",
+              "tags": "ordered, vertical",
               "cards": [
                 {
                   "idCard": "firebrand",
@@ -198,25 +199,53 @@
                   "cardTitle": "Firebrand",
                   "cardType": "image",
                   "cardIcon": "https://rpg.simplecommunion.com/tfm/mask-white.png",
-                  "imageUrl": "https://rpg.simplecommunion.com/tfm/firebrand.png"
+                  "imageUrl": "https://rpg.simplecommunion.com/tfm/firebrand.png",
+                  "tags": "NPC"
                 },
                 {
                   "idCard": "danzer",
                   "idHand": "22",
                   "cardTitle": "Danzer",
-                  "cardType": "block"
+                  "cardType": "block",
+                  "tags": "NPC"
                 },
                 {
                   "idCard": "thug1",
                   "idHand": "22",
                   "cardTitle": "Thug 1",
-                  "cardType": "block"
+                  "cardType": "block",
+                  "tags": "NPC"
                 },
                 {
                   "idCard": "thug2",
                   "idHand": "22",
                   "cardTitle": "Thug 2",
-                  "cardType": "block"
+                  "cardType": "block",
+                  "tags": "NPC"
+                },
+                {
+                  "idCard": "static",
+                  "idHand": "22",
+                  "cardTitle": "Static",
+                  "cardType": "block",
+                  "cardIcon": "https://rpg.simplecommunion.com/tfm/mask-white.png",
+                  "tags": "USER"
+                },
+                {
+                  "idCard": "magician",
+                  "idHand": "22",
+                  "cardTitle": "Magician",
+                  "cardType": "block",
+                  "cardIcon": "https://rpg.simplecommunion.com/tfm/mask-white.png",
+                  "tags": "USER"
+                },
+                {
+                  "idCard": "Jaederman",
+                  "idHand": "22",
+                  "cardTitle": "Jaederman",
+                  "cardType": "block",
+                  "cardIcon": "https://rpg.simplecommunion.com/tfm/mask-white.png",
+                  "tags": "USER"
                 }
               ]
             }

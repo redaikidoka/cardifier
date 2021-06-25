@@ -42,7 +42,15 @@ export class HandBlocksComponent extends UnsubscribeOnDestroyAdapter implements 
 
     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
       console.log('Hand-blocks.component showImage()', result);
-
     });
+
+  }
+
+  cardTagIs(card: Card, key: string): boolean {
+    if (card.tags && card.tags.length > 0) {
+      return (card.tags.search(key) > -1);
+    }
+
+    return false;
   }
 }
