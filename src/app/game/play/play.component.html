@@ -46,12 +46,10 @@
           <div class="w-full border-blue-900 border-2 bg-cover h-min-300 bg-opacity-25"
                [ngStyle]="{'background-image': 'url(' + game?.imageUrl + ')'}">
 <!--            <div class=""-->
-            <div class="filter ">
               <h2 class="text-gray-200 ml-2">{{game?.playArea?.areaTitle}}</h2>
-            </div>
-            <div class="flex flex-row flex-wrap">
-              <div *ngFor="let hand of game.playArea?.hands">
-                <app-hand-blocks [hand]="hand" [titleSize]="' text-xl bg-gray-800'" [bgStyle]="' bg-gray-500 bg-opacity-25'"></app-hand-blocks>
+            <div class="flex flex-row flex-wrap content-center">
+              <div *ngFor="let hand of game.playArea?.hands" class="flex-col md:w-1/4 w-full">
+                <app-hand-blocks [hand]="hand" [titleSize]="' block text-xl bg-gray-700'" [bgStyle]="' bg-gray-800 bg-opacity-25'" [cardStyle]="'block bg-gray-800 text-white ml-4'"></app-hand-blocks>
               </div>
               </div>
           </div>

@@ -20,9 +20,10 @@ export class HandBlocksComponent extends UnsubscribeOnDestroyAdapter implements 
 
   @Input() iconUrl: string | undefined;
 
-  @Input() iconSize = 'h-6';
-  @Input() titleSize = 'text-xl';
-  @Input() textSize = '';
+  @Input() iconSize = 'h-5';
+  @Input() titleSize = ' inline-block text-xl';
+  @Input() cardStyle = 'inline-block bg-gray-200';
+  @Input() cardTextStyle = '';
   @Input() bgStyle = '';
   @Input() bgImage = '';
 
@@ -61,5 +62,10 @@ export class HandBlocksComponent extends UnsubscribeOnDestroyAdapter implements 
     }
 
     return false;
+  }
+
+  getCardTextStyle(card: Card): string {
+    return this.cardTextStyle +
+      ( this.cardTagIs(card, 'NPC') ? ' text-red-300 ' : '' );
   }
 }

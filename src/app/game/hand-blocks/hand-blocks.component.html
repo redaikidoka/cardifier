@@ -1,18 +1,20 @@
-<div [ngClass]="bgStyle">
+<div [ngClass]="bgStyle" class="block">
 
   <img *ngIf="hand?.iconUrl || false" alt="Hand Icon" class="inline block mt-1 h-8 ml-2" src="{{hand?.iconUrl ?? ''}}" [ngClass]="iconSize" />
   <h3
-    class="align-middle text-gray-200 font-semibold mt-6 mb-6 ml-6 mr-1 inline-block" [ngClass]="titleSize">
-    <i *ngIf="hand?.imageUrl" class="fas fa-image" (click)="showHandImage(hand)"></i>
+    class="align-middle text-gray-200 font-semibold mt-6 mb-2 ml-6 mr-1 p-2" [ngClass]="titleSize">
     {{hand?.handTitle}} :
+    <i *ngIf="hand?.imageUrl" class="fas fa-image ml-2" (click)="showHandImage(hand)"></i>
   </h3>
-  <ul class="text-black inline-block ">
-    <li *ngFor="let card of hand?.cards" class="inline-block p-2 m-1 bg-gray-200" [ngClass]="textSize">
-      <i *ngIf="cardTagIs(card, 'NPC')" class="fas fa-universal-access"></i>
-      <i *ngIf="cardTagIs(card, 'USER')" class="fas fa-user-astronaut"></i>
-      {{card.cardTitle}}
-      <i *ngIf="card.description" class="fas fa-info" matTooltip="{{card.description}}"></i>
-      <i *ngIf="card.faceImage" class="fas fa-image" (click)="showFaceImage(card)"></i>
+  <ul class=" inline-block ">
+    <li *ngFor="let card of hand?.cards" class=" p-2 m-1 " [ngClass]="cardStyle">
+      <div [ngClass]="getCardTextStyle(card)">
+        <i *ngIf="cardTagIs(card, 'NPC')" class="fas fa-universal-access mr-1"></i>
+        <img *ngIf="card.cardIcon || false" class="inline block mt-1 ml-1 mr-1" src="{{card?.cardIcon ?? ''}}" [ngClass]="iconSize"  />
+        <span [ngClass]="getCardTextStyle(card)" >{{card.cardTitle}}</span>
+        <i *ngIf="card.description" class="fas fa-info ml-1 mr-1" matTooltip="{{card.description}}"></i>
+        <i *ngIf="card.faceImage" class="fas fa-image ml-2" (click)="showFaceImage(card)" matTooltip="click to show image"></i>
+      </div>
     </li>
   </ul>
 </div>
