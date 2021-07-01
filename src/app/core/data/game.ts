@@ -30,6 +30,8 @@ export interface Game {
 
   characterList?: CharacterList[];
 
+  hands?: Hand[];
+
   // lookups
   currentSession?: GameSession;
   gameArea?: GameArea;
