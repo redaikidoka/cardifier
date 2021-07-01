@@ -13,7 +13,7 @@ import {LoggerService} from '../../root/logger.service';
   templateUrl: './play.component.html',
   styleUrls: ['./play.component.scss']
 })
-export class PlayComponent extends UnsubscribeOnDestroyAdapter  {
+export class PlayComponent extends UnsubscribeOnDestroyAdapter {
 
   idGame = '8323';
   // theGame: Game | undefined;
@@ -36,6 +36,10 @@ export class PlayComponent extends UnsubscribeOnDestroyAdapter  {
         this.logger.logErr('Game::Play() - no id', 'No Game ID passed in', 'Could not start GamePlay screen');
       }
     });
+
+  }
+
+  createGameHand(game: Game): void {
 
   }
 

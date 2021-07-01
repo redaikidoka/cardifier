@@ -1,6 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Character} from '../core/data/character';
-import {Observable, of} from 'rxjs';
+import {Character, CharacterList} from '../core/data/character';
+import {forkJoin, Observable, of} from 'rxjs';
+import {Game} from '../core/data/game';
+import {map, take, tap} from 'rxjs/operators';
+import {AngularFireDatabase} from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root'
@@ -15,116 +18,149 @@ export class CharacterService {
     sUpdate: new Date('2021-06-09'),
     hands: [
       {
-      idHand: '33333',
-      handType: 'grid',
-      handTitle: 'Traits',
-      handState: 'Condensed',
-      groupAddable: false,
-      cards: [
-        {
-          idCard: '333331',
-          idHand: '33333',
-          cardTitle: 'Might',
-          description: 'Used for strength and resistance',
-          cardType: 'pool',
-          dieRoll: 'd6',
-          poolValue: 11,
-          currentValue: 9
-        }, {
-          idCard: '333332',
-          idHand: '33333',
-          cardTitle: 'Speed',
-          description: 'Used for moving, dodging',
-          cardType: 'pool',
-          dieRoll: 'd6',
-          poolValue: 10,
-          currentValue: 10
-        }, {
-          idCard: '333333',
-          idHand: '33333',
-          cardTitle: 'Intellect',
-          description: 'Used for thinking, figuring, charming',
-          cardType: 'pool',
-          dieRoll: 'd6',
-          poolValue: 13,
-          currentValue: 11
-        },
-      ]
+        idHand: '33333',
+        handType: 'grid',
+        handTitle: 'Traits',
+        handState: 'Condensed',
+        groupAddable: false,
+        cards: [
+          {
+            idCard: '333331',
+            idHand: '33333',
+            cardTitle: 'Might',
+            description: 'Used for strength and resistance',
+            cardType: 'pool',
+            dieRoll: 'd6',
+            poolValue: 11,
+            currentValue: 9
+          }, {
+            idCard: '333332',
+            idHand: '33333',
+            cardTitle: 'Speed',
+            description: 'Used for moving, dodging',
+            cardType: 'pool',
+            dieRoll: 'd6',
+            poolValue: 10,
+            currentValue: 10
+          }, {
+            idCard: '333333',
+            idHand: '33333',
+            cardTitle: 'Intellect',
+            description: 'Used for thinking, figuring, charming',
+            cardType: 'pool',
+            dieRoll: 'd6',
+            poolValue: 13,
+            currentValue: 11
+          },
+        ]
 
-    }, {
-      idHand: '44',
+      }, {
+        idHand: '44',
 
-      handType: 'stack',
-      handTitle: 'Abilities',
-      handState: 'Condensed',
+        handType: 'stack',
+        handTitle: 'Abilities',
+        handState: 'Condensed',
 
-      groupAddable: false,
-      cards: [
-        {
-          idCard: '441',
-          idHand: '44',
-          cardTitle: 'Far Step',
-          description: 'short-range teleport',
-          cardType: 'action',
-          customProperties: {stat: 'Intellect', cost: 2, page: 136}
-        }, {
-          idCard: '442',
-          idHand: '44',
-          cardTitle: 'Resonance Field',
-          description: 'protective shield',
-          cardType: 'action',
-          customProperties: {stat: 'Intellect', cost: 2}
-        },
-      ]
-    }, {
-      idHand: '45',
+        groupAddable: false,
+        cards: [
+          {
+            idCard: '441',
+            idHand: '44',
+            cardTitle: 'Far Step',
+            description: 'short-range teleport',
+            cardType: 'action',
+            customProperties: {stat: 'Intellect', cost: 2, page: 136}
+          }, {
+            idCard: '442',
+            idHand: '44',
+            cardTitle: 'Resonance Field',
+            description: 'protective shield',
+            cardType: 'action',
+            customProperties: {stat: 'Intellect', cost: 2}
+          },
+        ]
+      }, {
+        idHand: '45',
 
-      handType: 'dropdown',
-      handTitle: 'Recoveries',
-      handState: 'Closed',
+        handType: 'dropdown',
+        handTitle: 'Recoveries',
+        handState: 'Closed',
 
-      groupAddable: false,
-      cards: [
-        {
-          idCard: 'action1',
-          idHand: '45',
-          cardTitle: 'Action',
-          cardType: 'action',
-          dieRoll: '1d6 + {Tier}',
-          faceColor: 'green'
-        }, {
-          idCard: '10min',
-          idHand: '45',
-          cardTitle: '10 Minutes',
-          cardType: 'action',
-          dieRoll: '1d6 + {Tier}',
-        }, {
-          idCard: '1hr',
-          idHand: '45',
-          cardTitle: '1 Hour',
-          cardType: 'action',
-          dieRoll: '1d6 + {Tier}',
-        }, {
-          idCard: '10hr',
-          idHand: '45',
-          cardTitle: '10 Hours',
-          cardType: 'action',
-          dieRoll: '1d6 + {Tier}',
-        },
+        groupAddable: false,
+        cards: [
+          {
+            idCard: 'action1',
+            idHand: '45',
+            cardTitle: 'Action',
+            cardType: 'action',
+            dieRoll: '1d6 + {Tier}',
+            faceColor: 'green'
+          }, {
+            idCard: '10min',
+            idHand: '45',
+            cardTitle: '10 Minutes',
+            cardType: 'action',
+            dieRoll: '1d6 + {Tier}',
+          }, {
+            idCard: '1hr',
+            idHand: '45',
+            cardTitle: '1 Hour',
+            cardType: 'action',
+            dieRoll: '1d6 + {Tier}',
+          }, {
+            idCard: '10hr',
+            idHand: '45',
+            cardTitle: '10 Hours',
+            cardType: 'action',
+            dieRoll: '1d6 + {Tier}',
+          },
 
-      ]
-    }]
+        ]
+      }]
   } as Character;
 
-  constructor() {
+  constructor(private db: AngularFireDatabase) {
   }
 
-  getCharacter$(idCharacter: number): Observable<Character> {
+  getCharacter$(idCharacter: string): Observable<Character> {
 
-    return of(this.faker);
+    // return of(this.faker);
+
+    return this.db.list<Character>('characters', ref => ref.orderByKey().equalTo(idCharacter)).valueChanges().pipe(
+      // tap(character => console.log('character.service::getCharacter$', idCharacter, character)),
+      map(characters => characters[0] ?? null),
+      tap(character => console.log('character.service::getCharacter$ singleton', character))
+    );
   }
 
   getGameCharacter(idGame: number, idUser: number): Observable<Character> {
     return of(this.faker);
+  }
+
+  getCharacters$(theList: CharacterList[]): Observable<Character[]> {
+    const characterObservables: Observable<any>[] = [];
+
+    theList?.forEach((cl: CharacterList) => {
+      characterObservables.push(this.getCharacter$(cl.idCharacter).pipe(take(1)));
+    });
+
+    console.log('character.service::getCharacters$ -> character fetch observables', characterObservables);
+
+    // if (characterObservables.length > 0) {
+    // return forkJoin(characterObservables).pipe(
+    //     map(characters => {
+    //       console.log('Game.service getGame$ -> getcharacter() forkjoin', characters);
+    //       game.characters = characters;
+    //       ourGame.characters = characters;
+    //
+    //       return ourGame;
+    //     })
+    //   );
+    // }
+    // return game;
+    return forkJoin(characterObservables).pipe(
+      tap(characters => console.log('character.service::getCharacters$ forked', characters))
+      // map(characters => ({theGame, characters}))
+    );
   }
 }

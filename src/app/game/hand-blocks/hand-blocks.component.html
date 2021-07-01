@@ -10,7 +10,7 @@
     <li *ngFor="let card of hand?.cards" class=" p-2 m-1 " [ngClass]="cardStyle">
       <div [ngClass]="getCardTextStyle(card)">
         <i *ngIf="cardTagIs(card, 'NPC')" class="fas fa-universal-access mr-1"></i>
-        <img *ngIf="card.cardIcon || false" class="inline block mt-1 ml-1 mr-1" src="{{card?.cardIcon ?? ''}}" [ngClass]="iconSize"  />
+        <img alt="{{card?.cardIcon}}" *ngIf="card.cardIcon || false" class="inline block mt-1 ml-1 mr-1" src="{{card?.cardIcon ?? ''}}" [ngClass]="iconSize"  />
         <span [ngClass]="getCardTextStyle(card)" >{{card.cardTitle}}</span>
         <i *ngIf="card.description" class="fas fa-info ml-1 mr-1" matTooltip="{{card.description}}"></i>
         <i *ngIf="card.faceImage" class="fas fa-image ml-2" (click)="showFaceImage(card)" matTooltip="click to show image"></i>

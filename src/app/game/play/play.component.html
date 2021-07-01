@@ -9,12 +9,13 @@
       <div class="md:w-1/2 w-full pr-4 border-blue-900 border-2">
         <app-area-title [titleText]="game.gameTitle" [iconUrl]="game?.iconUrl"></app-area-title>
         <span class="block text-gray-200 ml-8 mt-2"> Hours played: 55</span>
+        <button class="" (click)="createGameHand(game)"></button>
       </div>
       <!-- session -->
       <div class="md:w-1/2 w-full border-green-800 border-2">
         <ng-container *ngIf="game?.currentSession; else no_session">
           <h2
-            class="align-middle text-gray-300 font-semibold text-xl mt-3 mb-2 ml-2">{{game.currentSession?.sessionTitle}} </h2>
+            class="align-middle text-gray-300 font-semibold text-xl mt-3 mb-2 ml-2">Session {{game.currentSession?.sessionNumber}} {{game.currentSession?.sessionTitle}} </h2>
           <!--          <ng-container *ngIf="game.currentSession?.hands" -->
           <div *ngFor="let hand of game.currentSession?.hands" class="w-full">
             <app-hand-blocks [hand]="hand"></app-hand-blocks>

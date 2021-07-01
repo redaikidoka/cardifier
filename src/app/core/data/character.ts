@@ -1,5 +1,10 @@
 import {Hand} from './game';
 
+export interface CharacterList {
+  idCharacter: string;
+  idUser: string;
+}
+
 export interface Character {
   idCharacter: string;
   characterName: string;

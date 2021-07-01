@@ -1,3 +1,5 @@
+import {Character, CharacterList} from './character';
+
 export interface Game {
   idGame: string;
 
@@ -26,6 +28,8 @@ export interface Game {
 
   idCurrentSession?: string;
 
+  characterList?: CharacterList[];
+
   // lookups
   currentSession?: GameSession;
   gameArea?: GameArea;
@@ -34,6 +38,7 @@ export interface Game {
   // added bits
   areas?: GameArea[];
   sessions?: GameSession[];
+  characters?: Character[];
 
 }
 

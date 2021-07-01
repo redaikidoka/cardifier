@@ -1,15 +1,17 @@
 import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
+import {Observable, of, forkJoin} from 'rxjs';
 
 import {Game, GameSession, GameArea, GameAreaType} from '../core/data/game';
 import {AngularFireDatabase} from '@angular/fire/database';
-import {map, tap} from 'rxjs/operators';
+import {concatMap, map, mergeMap, switchMap, tap} from 'rxjs/operators';
+import {CharacterService} from './character.service';
+import {Character, CharacterList} from '../core/data/character';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GameService {
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase, private characterService: CharacterService) {
   }
 
   getUserGames$(idUser: string): Observable<Game[]> {
@@ -24,10 +26,13 @@ export class GameService {
   }
 
   getGame$(idGame: string): Observable<Game> {
+    // tslint:disable-next-line:label-position
+    let ourGame: Game = {} as Game;
+
     return this.db.list<Game>('games', ref => ref.orderByKey().equalTo(idGame)).valueChanges().pipe(
       tap(games => console.log('Game.service::getGame$[]', idGame, games)),
       map(games => games[0] ?? null),
-      tap(game => console.log('Game.service::getGame$ singleton', game)),
+      // tap(game => console.log('Game.service::getGame$ singleton', game)),
       map(
         // the session
         game => {
@@ -52,11 +57,18 @@ export class GameService {
           }
 
           console.log('game.service::getGame$ game setup', game);
+          ourGame = game;
           return game;
         }
       ),
-      tap(game => console.log('Game.service::getGame$ filtered', idGame, game))
-    );
+      mergeMap(() =>
+        ourGame.characterList ? this.characterService.getCharacters$(ourGame.characterList) : of([] as Character[])),
+      map(characters => {
+        ourGame.characters = characters;
+        return ourGame;
+      }),
+      tap(game => console.log('Game.service::getGame$ FINAL', idGame, game))
+    ) ;
   }
 
   getFakeGame(): Game {
@@ -149,4 +161,8 @@ export class GameService {
 
     return fake;
   }
+
+  // createHand(game: Game, hand: Hand) {
+  //
+  // }
 }

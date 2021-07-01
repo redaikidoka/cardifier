@@ -107,11 +107,20 @@
         "js": false,
         "dael": false
       },
-      "characterList": {
-        "Dolores-Static": "dael",
-        "Samuel-Jedermann": "js",
-        "Jacob-Magician": "444"
-      },
+      "characterList": [
+        {
+          "idCharacter": "Dolores-Static",
+          "idUser": "dael"
+        },
+        {
+          "idCharacter": "Samuel-Jedermann",
+          "idUser": "js"
+        },
+        {
+          "idCharacter": "Jacob-Magician",
+          "idUser": "444"
+        }
+      ],
       "areas": [
         {
           "idArea": "222",
@@ -392,11 +401,122 @@
       "characterDescription": "Dolores/Static is a Charming Adept who Defends the Weak",
       "idGame": "8323",
       "idUser": "dael",
-      "hands": {
+      "handsList": {
         "33333": true,
         "44": true,
         "45": true
-      }
+      },
+      "hands": [
+        {
+          "idHand": "33333",
+          "handType": "grid",
+          "handTitle": "Traits",
+          "handState": "Condensed",
+          "groupAddable": false,
+          "cards": [
+            {
+              "idCard": "333331",
+              "idHand": "33333",
+              "cardTitle": "Might",
+              "description": "Used for strength and resistance",
+              "cardType": "pool",
+              "dieRoll": "d6",
+              "poolValue": 11,
+              "currentValue": 9
+            },
+            {
+              "idCard": "333332",
+              "idHand": "33333",
+              "cardTitle": "Speed",
+              "description": "Used for moving, dodging",
+              "cardType": "pool",
+              "dieRoll": "d6",
+              "poolValue": 10,
+              "currentValue": 10
+            },
+            {
+              "idCard": "333333",
+              "idHand": "33333",
+              "cardTitle": "Intellect",
+              "description": "Used for thinking, figuring, charming",
+              "cardType": "pool",
+              "dieRoll": "d6",
+              "poolValue": 13,
+              "currentValue": 11
+            }
+          ]
+        },
+        {
+          "idHand": "44",
+          "handType": "stack",
+          "handTitle": "Abilities",
+          "handState": "Condensed",
+          "groupAddable": false,
+          "cards": [
+            {
+              "idCard": "441",
+              "idHand": "44",
+              "cardTitle": "Far Step",
+              "description": "short-range teleport",
+              "cardType": "action",
+              "customProperties": {
+                "stat": "Intellect",
+                "cost": 2,
+                "page": 136
+              }
+            },
+            {
+              "idCard": "442",
+              "idHand": "44",
+              "cardTitle": "Resonance Field",
+              "description": "protective shield",
+              "cardType": "action",
+              "customProperties": {
+                "stat": "Intellect",
+                "cost": 2
+              }
+            }
+          ]
+        },
+        {
+          "idHand": 45,
+          "handType": "dropdown",
+          "handTitle": "Recoveries",
+          "handState": "Closed",
+          "groupAddable": false,
+          "cards": [
+            {
+              "idCard": "451",
+              "idHand": "45",
+              "cardTitle": "Action",
+              "cardType": "action",
+              "dieRoll": "1d6 + {Tier}",
+              "faceColor": "green"
+            },
+            {
+              "idCard": "452",
+              "idHand": "45",
+              "cardTitle": "10 Minutes",
+              "cardType": "action",
+              "dieRoll": "1d6 + {Tier}"
+            },
+            {
+              "idCard": "453",
+              "idHand": "45",
+              "cardTitle": "1 Hour",
+              "cardType": "action",
+              "dieRoll": "1d6 + {Tier}"
+            },
+            {
+              "idCard": "454",
+              "idHand": "45",
+              "cardTitle": "10 Hours",
+              "cardType": "action",
+              "dieRoll": "1d6 + {Tier}"
+            }
+          ]
+        }
+      ]
     },
     "Samuel-Jedermann": {
       "idCharacter": 42,
@@ -526,7 +646,6 @@
   },
   "gameChats": {
     "8323": {
-
     }
   }
 }
