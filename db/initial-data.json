@@ -407,6 +407,7 @@
         "45": true
       },
       "hands": [
+
         {
           "idHand": "33333",
           "handType": "grid",
@@ -421,8 +422,9 @@
               "description": "Used for strength and resistance",
               "cardType": "pool",
               "dieRoll": "d6",
-              "poolValue": 11,
-              "currentValue": 9
+              "poolValue": 9,
+              "currentValue": 9,
+              "tags": "C1, Dolores"
             },
             {
               "idCard": "333332",
@@ -432,7 +434,8 @@
               "cardType": "pool",
               "dieRoll": "d6",
               "poolValue": 10,
-              "currentValue": 10
+              "currentValue": 10,
+              "tags": "C1, Dolores"
             },
             {
               "idCard": "333333",
@@ -441,8 +444,42 @@
               "description": "Used for thinking, figuring, charming",
               "cardType": "pool",
               "dieRoll": "d6",
-              "poolValue": 13,
-              "currentValue": 11
+              "poolValue": 16,
+              "currentValue": 16,
+              "tags": "C1, Dolores"
+            },
+            {
+              "idCard": "333334",
+              "idHand": "33333",
+              "cardTitle": "Might",
+              "description": "Used for strength and resistance",
+              "cardType": "pool",
+              "dieRoll": "d6",
+              "poolValue": 10,
+              "currentValue": 10,
+              "tags": "C2, Static"
+            },
+            {
+              "idCard": "333335",
+              "idHand": "33333",
+              "cardTitle": "Speed",
+              "description": "Used for moving, dodging",
+              "cardType": "pool",
+              "dieRoll": "d6",
+              "poolValue": 10,
+              "currentValue": 10,
+              "tags": "C3, Static"
+            },
+            {
+              "idCard": "333336",
+              "idHand": "33333",
+              "cardTitle": "Intellect",
+              "description": "Used for thinking, figuring, charming",
+              "cardType": "pool",
+              "dieRoll": "d6",
+              "poolValue": 16,
+              "currentValue": 7,
+              "tags": "C3, Static"
             }
           ]
         },
@@ -475,6 +512,18 @@
                 "stat": "Intellect",
                 "cost": 2
               }
+            },
+            {
+              "idCard": "443",
+              "idHand": "44",
+              "cardTitle": "Onslaught",
+              "description": "static-blast!",
+              "cardType": "action",
+              "customProperties": {
+                "stat": "Intellect",
+                "cost": 2
+              },
+              "dieRoll": "4d6+3"
             }
           ]
         },
@@ -537,7 +586,7 @@
     "33333": {
       "idHand": "33333",
       "handType": "grid",
-      "handTitle": "Traits",
+      "handTitle": "Traits ",
       "handState": "Condensed",
       "groupAddable": false,
       "cards": [
@@ -548,8 +597,9 @@
           "description": "Used for strength and resistance",
           "cardType": "pool",
           "dieRoll": "d6",
-          "poolValue": 11,
-          "currentValue": 9
+          "poolValue": 9,
+          "currentValue": 9,
+          "tags": "C1, Dolores"
         },
         {
           "idCard": "333332",
@@ -559,7 +609,8 @@
           "cardType": "pool",
           "dieRoll": "d6",
           "poolValue": 10,
-          "currentValue": 10
+          "currentValue": 10,
+          "tags": "C1, Dolores"
         },
         {
           "idCard": "333333",
@@ -568,8 +619,42 @@
           "description": "Used for thinking, figuring, charming",
           "cardType": "pool",
           "dieRoll": "d6",
-          "poolValue": 13,
-          "currentValue": 11
+          "poolValue": 16,
+          "currentValue": 16,
+          "tags": "C1, Dolores"
+        },
+        {
+          "idCard": "333334",
+          "idHand": "33333",
+          "cardTitle": "Might",
+          "description": "Used for strength and resistance",
+          "cardType": "pool",
+          "dieRoll": "d6",
+          "poolValue": 10,
+          "currentValue": 10,
+          "tags": "C2, Static"
+        },
+        {
+          "idCard": "333335",
+          "idHand": "33333",
+          "cardTitle": "Speed",
+          "description": "Used for moving, dodging",
+          "cardType": "pool",
+          "dieRoll": "d6",
+          "poolValue": 10,
+          "currentValue": 10,
+          "tags": "C3, Static"
+        },
+        {
+          "idCard": "333336",
+          "idHand": "33333",
+          "cardTitle": "Intellect",
+          "description": "Used for thinking, figuring, charming",
+          "cardType": "pool",
+          "dieRoll": "d6",
+          "poolValue": 16,
+          "currentValue": 7,
+          "tags": "C3, Static"
         }
       ]
     },
@@ -602,6 +687,18 @@
             "stat": "Intellect",
             "cost": 2
           }
+        },
+        "443": {
+          "idCard": "443",
+          "idHand": "44",
+          "cardTitle": "Onslaught",
+          "description": "static-blast!",
+          "cardType": "action",
+          "customProperties": {
+            "stat": "Intellect",
+            "cost": 2
+          },
+          "dieRoll": "4d6+3"
         }
       }
     },
@@ -611,8 +708,8 @@
       "handTitle": "Recoveries",
       "handState": "Closed",
       "groupAddable": false,
-      "cards": {
-        "451": {
+      "cards": [
+        {
           "idCard": "451",
           "idHand": "45",
           "cardTitle": "Action",
@@ -620,32 +717,57 @@
           "dieRoll": "1d6 + {Tier}",
           "faceColor": "green"
         },
-        "452": {
+        {
           "idCard": "452",
           "idHand": "45",
           "cardTitle": "10 Minutes",
           "cardType": "action",
           "dieRoll": "1d6 + {Tier}"
         },
-        "453": {
+        {
           "idCard": "453",
           "idHand": "45",
           "cardTitle": "1 Hour",
           "cardType": "action",
           "dieRoll": "1d6 + {Tier}"
         },
-        "454": {
+        {
           "idCard": "454",
           "idHand": "45",
           "cardTitle": "10 Hours",
           "cardType": "action",
           "dieRoll": "1d6 + {Tier}"
         }
-      }
+      ]
     }
   },
   "gameChats": {
     "8323": {
+      "lastMessage": 1625161756,
+      "chats": [
+        {
+          "idGame": "8323",
+          "idUser": "dael",
+          "message": "I am so gonna make a die roll",
+          "when": 1626459657,
+          "systemText": "d6: [3] + 2 = 5"
+        },
+        {
+          "idGame": "8323",
+          "idUser": "js",
+          "message": "What a success!",
+          "when": 1626459677
+        },
+        {
+          "idGame": "8323",
+          "idUser": "pol",
+          "message": "Smashing! Roll initiative > 2",
+          "when": 1626459657,
+          "systemText": "d6: [1] + 1 = 2"
+        }
+      ]
+    },
+    "398": {
     }
   }
 }

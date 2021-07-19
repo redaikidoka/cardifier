@@ -95,11 +95,12 @@ export interface Hand {
 
   groupAddable?: boolean;
 
-  cards?: Card[];
+  cards: Card[];
 }
 
 export interface Card {
   idCard: string;
+  order?: number;
 
   idHand: string;
 
@@ -122,10 +123,18 @@ export interface Card {
 
   // rollable
   dieRoll?: string; // e.g. '2d6+1'
+  rollResults?: DieRollResults;
 
   poolValue?: number;
   currentValue?: number;
 
 
   customProperties?: Map<string, number>;
+}
+
+
+export enum DieRollResults {
+  sum = 'Dice Total',
+  successes = 'Success Count',
+  list = 'List of Dice'
 }

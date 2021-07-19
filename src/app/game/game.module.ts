@@ -11,17 +11,24 @@ import {CoreModule} from '../core/core.module';
 import {PlayComponent} from './play/play.component';
 import {AreaTitleComponent} from './area-title/area-title.component';
 import {HandBlocksComponent} from './hand-blocks/hand-blocks.component';
+import { HandDropdownComponent } from './hand-dropdown/hand-dropdown.component';
+import { MatSelectModule} from '@angular/material/select';
+import { ChatListComponent } from './chat-list/chat-list.component';
+import { ChatMessageComponent } from './chat-message/chat-message.component';
 
 @NgModule({
   declarations: [
     PlayComponent,
     AreaTitleComponent,
-    HandBlocksComponent
+    HandBlocksComponent,
+    HandDropdownComponent,
+    ChatListComponent,
+    ChatMessageComponent
   ],
   imports: [
     CommonModule,
     GameRoutingModule, CoreModule,
-    MatTooltipModule, MatDialogModule
+    MatTooltipModule, MatDialogModule, MatSelectModule
   ]
 })
 export class GameModule {

@@ -3,6 +3,7 @@ import {Card, Hand} from '../../core/data/game';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {UnsubscribeOnDestroyAdapter} from '../../root/unsubscribe-on-destroy-adapter';
 import {ModalLightboxComponent} from '../../core/modal-lightbox/modal-lightbox.component';
+import {DiceService} from '../../root/dice.service';
 
 export interface DialogData {
   imageUrl: string;
@@ -20,14 +21,14 @@ export class HandBlocksComponent extends UnsubscribeOnDestroyAdapter implements 
 
   @Input() iconUrl: string | undefined;
 
-  @Input() iconSize = 'h-5';
+  @Input() iconSize = 'h-6';
   @Input() titleSize = ' inline-block text-xl';
   @Input() cardStyle = 'inline-block bg-gray-200';
   @Input() cardTextStyle = '';
   @Input() bgStyle = '';
   @Input() bgImage = '';
 
-  constructor(private picDialog: MatDialog) {
+  constructor(private picDialog: MatDialog, private roller: DiceService) {
     super();
   }
 
@@ -67,5 +68,11 @@ export class HandBlocksComponent extends UnsubscribeOnDestroyAdapter implements 
   getCardTextStyle(card: Card): string {
     return this.cardTextStyle +
       ( this.cardTagIs(card, 'NPC') ? ' text-red-300 ' : '' );
+  }
+
+  rollDice(card: Card): void {
+    console.log('I am gonna roll ', card.dieRoll, ' for ', card.cardTitle);
+    const result = this.roller.roll(card.dieRoll ?? '');
+    console.log('hand-blocks.rollDice', result);
   }
 }

@@ -3,10 +3,12 @@ import {UnsubscribeOnDestroyAdapter} from '../../root/unsubscribe-on-destroy-ada
 import {ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs';
 
-import {Game} from '../../core/data/game';
+import {Game, GameSession} from '../../core/data/game';
 
 import {GameService} from '../../root/game.service';
 import {LoggerService} from '../../root/logger.service';
+import {ChatService} from '../../root/chat.service';
+import {Chat} from '../../core/data/chat';
 
 @Component({
   selector: 'app-play',
@@ -19,8 +21,10 @@ export class PlayComponent extends UnsubscribeOnDestroyAdapter {
   // theGame: Game | undefined;
 
   game$: Observable<Game> | undefined;
+  chats$: Observable<Chat[]> | undefined;
 
-  constructor(private aRoute: ActivatedRoute, private gameService: GameService, private logger: LoggerService) {
+  constructor(private aRoute: ActivatedRoute, private gameService: GameService, private logger: LoggerService,
+              private chatService: ChatService) {
     super();
 
     // get our id
@@ -30,7 +34,8 @@ export class PlayComponent extends UnsubscribeOnDestroyAdapter {
         this.idGame = params.id;
 
         this.game$ = this.gameService.getGame$(this.idGame);
-        // this.gameService.getGame$(idGame).subscribe( g=> {
+
+        this.chats$ = this.chatService.getGameChat$(this.idGame);
       } else {
         // this.snackBar.open('ERROR: NO ID!');
         this.logger.logErr('Game::Play() - no id', 'No Game ID passed in', 'Could not start GamePlay screen');
@@ -43,4 +48,12 @@ export class PlayComponent extends UnsubscribeOnDestroyAdapter {
 
   }
 
+  // stupid
+  createSessionHand(session: GameSession | undefined): void {
+    if (!session) {
+      return;
+    }
+
+    console.log('make session', session);
+  }
 }

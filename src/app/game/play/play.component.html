@@ -9,13 +9,20 @@
       <div class="md:w-1/2 w-full pr-4 border-blue-900 border-2">
         <app-area-title [titleText]="game.gameTitle" [iconUrl]="game?.iconUrl"></app-area-title>
         <span class="block text-gray-200 ml-8 mt-2"> Hours played: 55</span>
-        <button class="" (click)="createGameHand(game)"></button>
+
       </div>
       <!-- session -->
       <div class="md:w-1/2 w-full border-green-800 border-2">
         <ng-container *ngIf="game?.currentSession; else no_session">
-          <h2
-            class="align-middle text-gray-300 font-semibold text-xl mt-3 mb-2 ml-2">Session {{game.currentSession?.sessionNumber}} {{game.currentSession?.sessionTitle}} </h2>
+          <h2 class="align-middle text-gray-300 font-semibold text-xl mt-3 mb-2 ml-2">
+            Session {{game.currentSession?.sessionNumber}}
+            <em class="text-lg text-purple-400"> {{game.currentSession?.sessionTitle}} </em>
+          </h2>
+          <button class="text-sm m-1 p-1 bg-purple-300 text-gray-600 rounded-lg float-right"
+                  (click)="createSessionHand(game.currentSession)">
+            <i class="fas fa-plus"></i>
+            Hand
+          </button>
           <!--          <ng-container *ngIf="game.currentSession?.hands" -->
           <div *ngFor="let hand of game.currentSession?.hands" class="w-full">
             <app-hand-blocks [hand]="hand"></app-hand-blocks>
@@ -34,43 +41,56 @@
       <!-- play -->
       <div class="lg:w-3/4 w-full backdrop-grayscale ">
         <div class="flex flex-row flex-wrap ">
-<!--          &lt;!&ndash; bg &ndash;&gt;-->
-<!--          <div *ngIf="game.imageUrl" class="absolute lg:w-3/4 w-full  border-4 border-blue-500 ">-->
-<!--            <img class="w-full object-cover rounded-xl filter brightness-50 saturate-50 bg-cover overflow-clip"-->
-<!--                 src="{{game.imageUrl}}" alt=""/>-->
-<!--          </div>-->
-<!--          &lt;!&ndash; content &ndash;&gt;-->
-<!--          <div class="relative h-full w-full flex border-4 border-green-500">-->
-<!--            <h2 class="text-gray-300">play area</h2>-->
-<!--          </div>-->
+          <!--          &lt;!&ndash; bg &ndash;&gt;-->
+          <!--          <div *ngIf="game.imageUrl" class="absolute lg:w-3/4 w-full  border-4 border-blue-500 ">-->
+          <!--            <img class="w-full object-cover rounded-xl filter brightness-50 saturate-50 bg-cover overflow-clip"-->
+          <!--                 src="{{game.imageUrl}}" alt=""/>-->
+          <!--          </div>-->
+          <!--          &lt;!&ndash; content &ndash;&gt;-->
+          <!--          <div class="relative h-full w-full flex border-4 border-green-500">-->
+          <!--            <h2 class="text-gray-300">play area</h2>-->
+          <!--          </div>-->
           <!-- row -->
           <div class="w-full border-blue-900 border-2 bg-cover h-min-300 bg-opacity-25"
                [ngStyle]="{'background-image': 'url(' + game?.imageUrl + ')'}">
-<!--            <div class=""-->
-              <h2 class="text-gray-200 ml-2">{{game?.playArea?.areaTitle}}</h2>
+            <!--            <div class=""-->
+            <h2 class="text-gray-200 ml-2">{{game?.playArea?.areaTitle}}</h2>
             <div class="flex flex-row flex-wrap content-center">
               <div *ngFor="let hand of game.playArea?.hands" class="flex-col md:w-1/4 w-full">
-                <app-hand-blocks [hand]="hand" [titleSize]="' block text-xl bg-gray-700'" [bgStyle]="' bg-gray-800 bg-opacity-25'" [cardStyle]="'block bg-gray-800 text-white ml-4'"></app-hand-blocks>
+                <app-hand-blocks [hand]="hand" [titleSize]="' block text-xl bg-gray-700'"
+                                 [bgStyle]="' bg-gray-800 bg-opacity-25'"
+                                 [cardStyle]="'block bg-gray-800 text-white ml-4'"></app-hand-blocks>
               </div>
-              </div>
+            </div>
           </div>
         </div>
         <!-- play -->
         <div class="flex flex-row flex-wrap">
           <div class="w-full border-green-400 border-4">
-            <span class="text-green-500">character area</span>
+            <div *ngFor="let character of game.characters">
+              <h4 class="text-green-400 font-semibold"
+                  matTooltip="{{character.characterDescription}}"> {{character.characterName}}</h4>
+              <div *ngFor="let hand of character.hands | handType: 'dropdown'" class="float-right">
+                <app-hand-dropdown [hand]="hand" [titleSize]="' block text-xl bg-gray-700'"
+                                   [bgStyle]="' bg-gray-800 bg-opacity-50'"
+                                   [cardStyle]="'block bg-gray-800 text-white ml-4'"></app-hand-dropdown>
+              </div>
+              <div *ngFor="let hand of character.hands" class="flex-col md:w-1/4 w-full">
+                <app-hand-blocks [hand]="hand" [titleSize]="' block text-xl bg-gray-700'"
+                                 [bgStyle]="' bg-gray-800 bg-opacity-25'"
+                                 [cardStyle]="'block bg-gray-800 text-white ml-4'"></app-hand-blocks>
+              </div>
+            </div>
           </div>
         </div>
 
       </div>
       <!-- chat -->
       <div class="lg:w-1/4 w-full border-red-800 border-2">
-        <h1 class="text-purple-400">icons go here</h1>
-        <ul>
-          <li>game chat</li>
-          <li>game actions</li>
-        </ul>
-        <h2 class="text-purple-400">chat list /etc</h2>
+        <h1 class="text-purple-400">Chat</h1>
+        <div class="overflow-y-scroll h-full">
+          <app-chat-list [chats$]="chats$"></app-chat-list>
+        </div>
       </div>
     </div>
   </section>

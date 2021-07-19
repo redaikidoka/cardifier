@@ -8,6 +8,7 @@ export interface CharacterList {
 export interface Character {
   idCharacter: string;
   characterName: string;
+  characterDescription?: string;
 
   idGame: string; // parent
   idUser: string; // owner of the character
@@ -16,5 +17,5 @@ export interface Character {
   sIdUserCreate?: number;
   sIdUserUpdate?: number;
 
-  hands?: Hand[];
+  hands: Hand[];
 }

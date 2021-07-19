@@ -1,0 +1,3 @@
+<div *ngFor="let chat of chats$ | async">
+  <app-chat-message [chat]="chat"></app-chat-message>
+</div>
