@@ -15,6 +15,7 @@ import { HandDropdownComponent } from './hand-dropdown/hand-dropdown.component';
 import { MatSelectModule} from '@angular/material/select';
 import { ChatListComponent } from './chat-list/chat-list.component';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { ChatMessageComponent } from './chat-message/chat-message.component';
   imports: [
     CommonModule,
     GameRoutingModule, CoreModule,
-    MatTooltipModule, MatDialogModule, MatSelectModule
+    MatTooltipModule, MatDialogModule, MatSelectModule, MatTabsModule
   ]
 })
 export class GameModule {

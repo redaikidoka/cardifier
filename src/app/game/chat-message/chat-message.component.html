@@ -1,1 +1,17 @@
-<p>chat-message works!</p>
+<div class="flex items-start mb-4 text-sm" >
+  <img src="{{(user$ | async)?.imageUrl }}" class="w-10 h-10 rounded mr-3" *ngIf="(user$ | async)?.imageUrl"/>
+  <div class="w-10 h-10 rounded mr-3 bg-gray-600 text-center align-middle" *ngIf="!(user$ | async)?.imageUrl">
+    <span class="pt-4 text-center text-white align-middle" matTooltip="{{(user$|async)?.userName}}" *ngIf="user$ | async as user">{{ getInitials(user) }}</span>
+  </div>
+  <div class="flex-1 overflow-hidden">
+    <div>
+      <span class="font-bold mr-1" *ngIf="user$ | async as user">{{user.userName}}</span>
+      <span class="text-grey text-xs" *ngIf="chat?.when">{{chat?.when | date:'shortTime'}}</span>
+    </div>
+    <p class="text-black leading-normal">{{chat?.message}}</p>
+    <div *ngIf="chat?.systemText"
+      class="bg-gray-300 border border-gray-400 text-gray-700 text-sm font-mono rounded p-3 mt-2 whitespace-pre overflow-scroll">
+      {{chat?.systemText}}
+    </div>
+  </div>
+</div>

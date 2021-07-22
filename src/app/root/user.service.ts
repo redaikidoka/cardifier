@@ -11,6 +11,8 @@ import { CardUser } from '../core/data/card-user';
 import { LoggerService } from './logger.service';
 
 import { UnsubscribeOnDestroyAdapter } from './unsubscribe-on-destroy-adapter';
+import {Game} from '../core/data/game';
+import {AngularFireDatabase} from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root',
@@ -71,7 +73,7 @@ export class UserService extends UnsubscribeOnDestroyAdapter {
   // subUser: Subscription;
   // notifications: BehaviorSubject<UsrNotify[] | null> = new BehaviorSubject<UsrNotify[]>(null);
 
-  constructor(private logger: LoggerService) {
+  constructor(private logger: LoggerService, private db: AngularFireDatabase) {
     super();
 
     this.me = null;
@@ -79,6 +81,29 @@ export class UserService extends UnsubscribeOnDestroyAdapter {
 
   setUser(user: CardUser): void {
     this.me = user;
+  }
+
+
+  getUser$(idUser: string): Observable<CardUser> {
+    // let ourGame: Game = {} as Game;
+
+    return this.db.list<CardUser>('/users', ref => ref.orderByKey().equalTo(idUser)).valueChanges().pipe(
+      // tap(characters => console.log('user.service::getUser$[]', idUser, characters)),
+      map(characters => characters[0] ?? null),
+      // tap( character => console.log('user.service::singleton', idUser, character))
+    );
+    // const qSingleUser = gql`{ CardUserByIdAdmUserAndIdAdmApp( idAdmUser: ${idUser}, idAdmApp: ${idAdmApp}) {
+    //     ${usrFields}
+    //   } }`;
+
+    // console.log('UserService::getuser', idUser, idAdmApp, qSingleUser);
+    // // return new Observable((observer: Observer<CardUser>) => {
+    // return this.apollo.query<any>({query: qSingleUser}).pipe(
+    //   tap(usr => console.log('UserService::getUser', usr),
+    //     err => this.logger.logErrObject( 'UserService::getUser', err, 'Could not load user')),
+    //   map(userData => UserService.dataToCardUserQuery(userData, 'CardUserByIdAdmUserAndIdAdmApp'))
+    // );
+    return of({} as CardUser);
   }
 
   getUser(idUser: string): Observable<CardUser> {

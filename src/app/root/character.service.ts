@@ -126,7 +126,7 @@ export class CharacterService {
 
     // return of(this.faker);
 
-    return this.db.list<Character>('characters', ref => ref.orderByKey().equalTo(idCharacter)).valueChanges().pipe(
+    return this.db.list<Character>('/characters', ref => ref.orderByKey().equalTo(idCharacter)).valueChanges().pipe(
       // tap(character => console.log('character.service::getCharacter$', idCharacter, character)),
       map(characters => characters[0] ?? null),
       tap(character => console.log('character.service::getCharacter$ singleton', character))

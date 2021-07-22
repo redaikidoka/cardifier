@@ -435,7 +435,7 @@
               "dieRoll": "d6",
               "poolValue": 10,
               "currentValue": 10,
-              "tags": "C1, Dolores"
+              "tags": "C2, Dolores"
             },
             {
               "idCard": "333333",
@@ -446,7 +446,7 @@
               "dieRoll": "d6",
               "poolValue": 16,
               "currentValue": 16,
-              "tags": "C1, Dolores"
+              "tags": "C3, Dolores"
             },
             {
               "idCard": "333334",
@@ -457,7 +457,7 @@
               "dieRoll": "d6",
               "poolValue": 10,
               "currentValue": 10,
-              "tags": "C2, Static"
+              "tags": "C1, Static"
             },
             {
               "idCard": "333335",
@@ -468,7 +468,7 @@
               "dieRoll": "d6",
               "poolValue": 10,
               "currentValue": 10,
-              "tags": "C3, Static"
+              "tags": "C2, Static"
             },
             {
               "idCard": "333336",
@@ -748,6 +748,7 @@
         {
           "idGame": "8323",
           "idUser": "dael",
+          "userName": "Dael Franke",
           "message": "I am so gonna make a die roll",
           "when": 1626459657,
           "systemText": "d6: [3] + 2 = 5"
@@ -755,12 +756,14 @@
         {
           "idGame": "8323",
           "idUser": "js",
+          "userName": "Johnny S.",
           "message": "What a success!",
           "when": 1626459677
         },
         {
           "idGame": "8323",
           "idUser": "pol",
+          "userName": "P to the S",
           "message": "Smashing! Roll initiative > 2",
           "when": 1626459657,
           "systemText": "d6: [1] + 1 = 2"
