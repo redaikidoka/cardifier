@@ -1,6 +1,6 @@
 {
   "name": "cardifier",
-  "version": "12.0.2021-06-17",
+  "version": "12.0.2021-07-23",
   "scripts": {
     "ng": "ng",
     "start:dev": "ng serve --hmr --port 4210 --configuration=dev",
