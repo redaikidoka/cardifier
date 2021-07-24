@@ -4,19 +4,18 @@
     <!-- <h1 class="text-white font-semibold text-2xl mb-6">Home Page</h1> -->
 
     <!-- Game & Session -->
-    <div class="flex flex-row flex-wrap">
+    <div class="flex flex-row flex-wrap" style="background-color: rgba(0, 0, 0, 0.3)">
       <!-- game -->
-      <div class="md:w-1/2 w-full pr-4  border-2">
+      <div class="md:w-1/2 w-full pr-4 ">
         <app-area-title [titleText]="game.gameTitle" [iconUrl]="game?.iconUrl"></app-area-title>
-        <span class="block text-gray-200 ml-8 mt-2"> Hours played: 55</span>
+        <span class="block text-gray-200 ml-8 mt-2"> Hours played: {{game.hoursPlayed}}</span>
 
       </div>
       <!-- session -->
-      <div class="md:w-1/2 w-full  border-2">
+      <div class="md:w-1/2 w-full ">
         <ng-container *ngIf="game?.currentSession; else no_session">
           <h2 class="align-middle text-gray-300 font-semibold text-xl mt-3 mb-2 ml-2">
-            Session {{game.currentSession?.sessionNumber}}
-            <em class="text-lg text-purple-400"> {{game.currentSession?.sessionTitle}} </em>
+            <em class="text-lg text-purple-400" matTooltip="Session {{game.currentSession?.sessionNumber}}"> {{game.currentSession?.sessionTitle}} </em>
           </h2>
           <button class="text-sm m-1 p-1 bg-purple-300 text-gray-600 rounded-lg float-right"
                   (click)="createSessionHand(game.currentSession)">
@@ -51,7 +50,7 @@
           <!--            <h2 class="text-gray-300">play area</h2>-->
           <!--          </div>-->
           <!-- row -->
-          <div class="w-full border-blue-900 border-2 bg-cover h-min-300 bg-opacity-25"
+          <div class="w-full  bg-cover h-min-300 bg-opacity-25"
                [ngStyle]="{'background-image': 'url(' + game?.imageUrl + ')'}">
             <!--            <div class=""-->
             <h2 class="text-gray-200 ml-2">{{game?.playArea?.areaTitle}}</h2>

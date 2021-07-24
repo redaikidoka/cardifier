@@ -3,7 +3,7 @@ export interface Chat {
   idUser: string;
   userName: string;
   message: string;
-  when: Date;
+  when: number;
   systemText?: string;
 }
 

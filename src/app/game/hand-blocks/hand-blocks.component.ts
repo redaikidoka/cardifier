@@ -4,6 +4,10 @@ import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {UnsubscribeOnDestroyAdapter} from '../../root/unsubscribe-on-destroy-adapter';
 import {ModalLightboxComponent} from '../../core/modal-lightbox/modal-lightbox.component';
 import {DiceService} from '../../root/dice.service';
+import {ChatService} from '../../root/chat.service';
+import {Chat} from '../../core/data/chat';
+import {AuthService} from '../../root/auth.service';
+import {LoggerService} from '../../root/logger.service';
 
 export interface DialogData {
   imageUrl: string;
@@ -28,7 +32,8 @@ export class HandBlocksComponent extends UnsubscribeOnDestroyAdapter implements 
   @Input() bgStyle = '';
   @Input() bgImage = '';
 
-  constructor(private picDialog: MatDialog, private roller: DiceService) {
+  constructor(private picDialog: MatDialog, private roller: DiceService, private chatService: ChatService,
+              private auth: AuthService, private logger: LoggerService) {
     super();
   }
 
@@ -36,10 +41,13 @@ export class HandBlocksComponent extends UnsubscribeOnDestroyAdapter implements 
   }
 
   showHandImage(hand: Hand | undefined): void {
-    if (!hand) { return; }
+    if (!hand) {
+      return;
+    }
 
-    this.showImage( hand.imageUrl ?? '', hand.handTitle ?? '');
+    this.showImage(hand.imageUrl ?? '', hand.handTitle ?? '');
   }
+
   showFaceImage(card: Card): void {
     // this.picDialog.open(data: {imageUrl: url; minX: x ?? 300; minY: y?? 300})
     this.showImage(card?.faceImage ?? '', card.cardTitle);
@@ -67,12 +75,25 @@ export class HandBlocksComponent extends UnsubscribeOnDestroyAdapter implements 
 
   getCardTextStyle(card: Card): string {
     return this.cardTextStyle +
-      ( this.cardTagIs(card, 'NPC') ? ' text-red-300 ' : '' );
+      (this.cardTagIs(card, 'NPC') ? ' text-red-300 ' : '');
   }
 
   rollDice(card: Card): void {
     console.log('I am gonna roll ', card.dieRoll, ' for ', card.cardTitle);
-    const result = this.roller.roll(card.dieRoll ?? '');
-    console.log('hand-blocks.rollDice', result);
+    const rolled = this.roller.roll(card.dieRoll ?? '');
+    console.log('hand-blocks.rollDice', rolled);
+
+    const chat = {
+      idGame: this.hand?.idGame,
+      idUser: this.auth.myId(),
+      userName: this.auth.me().userName,
+      message: `For ${card.cardTitle}, I rolled ${rolled.total}`,
+      when: (new Date()).valueOf(),
+      systemText: card.dieRoll + ':' + rolled.verbose
+    } as Chat;
+
+    this.chatService.createChat(chat).then(result =>
+      console.log('hand-blocks.rollDice', result, chat))
+      .catch(err => this.logger.logErrObject('hand-blocks.rollDice', err, 'Could not make dice roll message'));
   }
 }

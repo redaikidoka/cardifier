@@ -82,6 +82,7 @@ export type HandState = 'Open' | 'Condensed' | 'Closed' | 'Hidden' | '';
 export interface Hand {
   idHand: string;
 
+  idGame: string;
   idArea?: string; // parent?
 
   handType: string;
