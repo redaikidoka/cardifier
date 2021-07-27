@@ -399,9 +399,9 @@
       "Jacob-Magician": "444"
     }
   },
-  "characters": {
-    "Dolores-Static": {
-      "idCharacter": 32,
+  "characters": [
+    {
+      "idCharacter": "Dolores-Static",
       "characterName": "Dolores-Static",
       "characterDescription": "Dolores/Static is a Charming Adept who Defends the Weak",
       "idGame": "8323",
@@ -412,7 +412,6 @@
         "45": true
       },
       "hands": [
-
         {
           "idHand": "33333",
           "idGame": "8323",
@@ -496,6 +495,7 @@
           "handTitle": "Abilities",
           "handState": "Condensed",
           "groupAddable": false,
+          "tags": "remote",
           "cards": [
             {
               "idCard": "441",
@@ -575,21 +575,21 @@
         }
       ]
     },
-    "Samuel-Jedermann": {
-      "idCharacter": 42,
+    {
+      "idCharacter": "Samuel-Jedermann",
       "characterName": "Samuel-Jedermann",
       "characterDescription": "Samuel/Jedermann is an Intuitive Explorer who Infiltrates with Lethal Force ",
       "idGame": "8323",
       "idUser": "js"
     },
-    "Jacob-Magician": {
-      "idCharacter": 52,
+    {
+      "idCharacter": "Jacob-Magician",
       "characterName": "Jacob-Magician",
       "characterDescription": "Magician is an Intuitive Speaker who Masters Spells",
       "idGame": "8323",
       "idUser": "444"
     }
-  },
+  ],
   "hands": {
     "33333": {
       "idHand": "33333",
@@ -669,6 +669,7 @@
     },
     "44": {
       "idHand": "44",
+      "order": 10,
       "idGame": "8323",
       "handType": "stack",
       "handTitle": "Abilities",
@@ -752,8 +753,9 @@
       ]
     }
   },
-  "gameChats": {
-    "8323": {
+  "gameChats": [
+    {
+      "idGame": "8323",
       "lastMessage": 1625161756,
       "chats": [
         {
@@ -781,13 +783,11 @@
         }
       ]
     },
-    "398": {
-    }
-  },
-  "chatGames": {
-    "8323": {
-      "chat1":
+    {
+      "idGame": "398",
+      "chats": [
         {
+          "idChat": "ch1",
           "idGame": "8323",
           "idUser": "dael",
           "userName": "Dael Franke",
@@ -796,21 +796,43 @@
           "when": "Fri Jul 23 2021 21:16:50 GMT-0700",
           "systemText": "d6: [3] + 2 = 5"
         },
-      "chat2": {
+        {
+          "idChat": "ch2",
           "idGame": "8323",
           "idUser": "js",
           "userName": "Johnny S.",
           "message": "What a success!",
           "when": 1626459677
-        },
-      "chat3": {
-          "idGame": "8323",
-          "idUser": "pol",
-          "userName": "P to the S",
-          "message": "Smashing! Roll initiative > 2",
-          "when": 1626459667,
-          "systemText": "d6: [1] + 1 = 2"
         }
+      ]
+    }
+  ],
+  "chatGames": {
+    "8323": {
+      "chat1": {
+        "idGame": "8323",
+        "idUser": "dael",
+        "userName": "Dael Franke",
+        "message": "I am so gonna make a die roll",
+        "then": 1626459657,
+        "when": "Fri Jul 23 2021 21:16:50 GMT-0700",
+        "systemText": "d6: [3] + 2 = 5"
+      },
+      "chat2": {
+        "idGame": "8323",
+        "idUser": "js",
+        "userName": "Johnny S.",
+        "message": "What a success!",
+        "when": 1626459677
+      },
+      "chat3": {
+        "idGame": "8323",
+        "idUser": "pol",
+        "userName": "P to the S",
+        "message": "Smashing! Roll initiative > 2",
+        "when": 1626459667,
+        "systemText": "d6: [1] + 1 = 2"
+      }
     },
     "398": {
       "chat9": {

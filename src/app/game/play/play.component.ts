@@ -3,12 +3,13 @@ import {UnsubscribeOnDestroyAdapter} from '../../root/unsubscribe-on-destroy-ada
 import {ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs';
 
-import {Game, GameSession} from '../../core/data/game';
+import {Game, GameSession, Hand} from '../../core/data/game';
 
 import {GameService} from '../../root/game.service';
 import {LoggerService} from '../../root/logger.service';
 import {ChatService} from '../../root/chat.service';
 import {Chat} from '../../core/data/chat';
+import {HandService} from '../../root/hand.service';
 
 @Component({
   selector: 'app-play',
@@ -22,10 +23,14 @@ export class PlayComponent extends UnsubscribeOnDestroyAdapter {
 
   game$: Observable<Game> | undefined;
   chats$: Observable<Chat[]> | undefined;
+  hand$: Observable<Hand> ;
 
   constructor(private aRoute: ActivatedRoute, private gameService: GameService, private logger: LoggerService,
-              private chatService: ChatService) {
+              private chatService: ChatService, private handService: HandService) {
     super();
+
+    this.hand$ = this.handService.getHand$('44');
+
 
     // get our id
     this.subs.sink = this.aRoute.params.subscribe(params => {

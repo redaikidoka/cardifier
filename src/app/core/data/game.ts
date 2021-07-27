@@ -81,6 +81,7 @@ export type HandState = 'Open' | 'Condensed' | 'Closed' | 'Hidden' | '';
 
 export interface Hand {
   idHand: string;
+  order: number;
 
   idGame: string;
   idArea?: string; // parent?
@@ -93,6 +94,7 @@ export interface Hand {
 
   handState: HandState;
   tags?: string;
+
 
   groupAddable?: boolean;
 

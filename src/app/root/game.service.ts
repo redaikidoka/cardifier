@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, of, forkJoin} from 'rxjs';
+import {Observable, of} from 'rxjs';
 
 import {Game, GameSession, GameArea, GameAreaType, Hand} from '../core/data/game';
 import {AngularFireDatabase} from '@angular/fire/database';
@@ -81,4 +81,5 @@ export class GameService {
 
     return of(game);
   }
+
 }

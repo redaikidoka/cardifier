@@ -1,0 +1,828 @@
+{
+  "users": {
+    "33": {
+      "idUser": "33",
+      "userEmail": "nevyn@simplecommunion.com",
+      "userName": "Nevyn Twyll",
+      "imageUrl": "http://rpg.simplecommunion.com/pds/me-md.jpeg",
+      "hoursPlayed": 19,
+      "isActive": true,
+      "tags": "GM, Arcodd",
+      "idUserType": 13,
+      "userTypeTitle": "Administrator",
+      "userTypeNotes": "-",
+      "games": {
+        "19": false
+      }
+    },
+    "pol": {
+      "idUser": "pol",
+      "userEmail": "pol@simplecommunion.com",
+      "userName": "Pól Stafford",
+      "imageUrl": "http://rpg.simplecommunion.com/pds/me-md.jpeg",
+      "hoursPlayed": 19,
+      "isActive": true,
+      "tags": "GM, Arcodd",
+      "idUserType": 100,
+      "userTypeTitle": "Paying Storyteller",
+      "userTypeNotes": "Reward",
+      "games": {
+        "8323": true,
+        "398": true,
+        "19": true,
+        "10": false
+      }
+    },
+    "js": {
+      "idUser": "js",
+      "userEmail": "jschiav@gmail.com",
+      "userName": "John Schiavone",
+      "imageUrl": "",
+      "hoursPlayed": 37,
+      "isActive": true,
+      "tags": "Dark!",
+      "idUserType": 200,
+      "userTypeTitle": "Unpaid Player",
+      "userTypeNotes": "Encourage",
+      "games": {
+        "8323": false,
+        "398": true,
+        "19": true,
+        "10": true
+      }
+    },
+    "dael": {
+      "idUser": "dael",
+      "userEmail": "chaetophile@gmail.com",
+      "userName": "Dael Franke",
+      "imageUrl": "",
+      "hoursPlayed": 89,
+      "isActive": true,
+      "tags": "",
+      "idUserType": 300,
+      "userTypeTitle": "Unpaid Player",
+      "userTypeNotes": "Ignore",
+      "games": {
+        "8323": false,
+        "398": false
+      }
+    },
+    "444": {
+      "idUser": "444",
+      "userEmail": "paulkhash@gmail.com",
+      "userName": "The Jew",
+      "imageUrl": "",
+      "hoursPlayed": 33,
+      "isActive": true,
+      "tags": "",
+      "idUserType": 300,
+      "userTypeTitle": "Unpaid Player",
+      "userTypeNotes": "Ignore",
+      "games": {
+        "8323": false
+      }
+    }
+  },
+  "gameList": {
+  },
+  "games": {
+    "8323": {
+      "idGame": "8323",
+      "gameTitle": "A Time for Masks",
+      "imageUrl": "https://rpg.simplecommunion.com/tfm/itunes.jpg",
+      "iconUrl": "https://rpg.simplecommunion.com/pds/favicon_src.png",
+      "hoursPlayed": 39,
+      "isActive": true,
+      "idSystem": "23",
+      "systemName": "Cypher*",
+      "idUser": "pol",
+      "lastPlayed": 1623369739,
+      "sCreate": 1623329739,
+      "sUpdate": 1623369739,
+      "sIdUserCreate": "pol",
+      "sIdUserUpdate": "pol",
+      "idCurrentSession": "138343",
+      "users": {
+        "pol": true,
+        "js": false,
+        "dael": false
+      },
+      "characterList": [
+        {
+          "idCharacter": "Dolores-Static",
+          "idUser": "dael"
+        },
+        {
+          "idCharacter": "Samuel-Jedermann",
+          "idUser": "js"
+        },
+        {
+          "idCharacter": "Jacob-Magician",
+          "idUser": "444"
+        }
+      ],
+      "areas": [
+        {
+          "idArea": "222",
+          "idGame": "8323",
+          "areaTitle": "Game",
+          "areaId": 0,
+          "sCreate": 1623369739,
+          "sUpdate": 1623369749,
+          "hands": [
+            {
+              "idHand": "11",
+              "idGame": "8323",
+              "idArea": "138343",
+              "handType": "block",
+              "handTitle": "Mysteries",
+              "cards": [
+                {
+                  "idCard": "mel",
+                  "idHand": "11",
+                  "cardTitle": "Melodius Ecanto",
+                  "cardType": "image",
+                  "faceImage": "https://rpg.simplecommunion.com/tfm/paraclipse-night.jpg"
+                },
+                {
+                  "idCard": "1111",
+                  "idHand": "11",
+                  "cardTitle": "Ally: Shiori",
+                  "cardType": "image",
+                  "faceImage": "https://rpg.simplecommunion.com/tfm/shiori.jpg"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "idArea": "223",
+          "idGame": "8323",
+          "areaTitle": "Play",
+          "areaId": 1,
+          "hands": [
+            {
+              "idHand": "22",
+              "idGame": "8323",
+              "idArea": "223",
+              "handType": "block-vertical",
+              "handTitle": "The Warehouse",
+              "imageUrl": "https://rpg.simplecommunion.com/tfm/dogpatch-warehouse.png",
+              "cards": [
+                {
+                  "idCard": "firebrand",
+                  "idHand": "22",
+                  "cardTitle": "Firebrand",
+                  "cardType": "image",
+                  "cardIcon": "https://rpg.simplecommunion.com/tfm/mask-white.png",
+                  "faceImage": "https://rpg.simplecommunion.com/tfm/firebrand.png"
+                },
+                {
+                  "idCard": "danzer",
+                  "idHand": "22",
+                  "cardTitle": "Danzer",
+                  "cardType": "block",
+                  "faceImage": "https://rpg.simplecommunion.com/tfm/danzer.png"
+                },
+                {
+                  "idCard": "thug1",
+                  "idHand": "22",
+                  "cardTitle": "Thug 1",
+                  "cardType": "block"
+                },
+                {
+                  "idCard": "thug2",
+                  "idHand": "22",
+                  "cardTitle": "Thug 2",
+                  "cardType": "block"
+                }
+              ]
+            },
+            {
+              "idHand": "88",
+              "idGame": "8323",
+              "idArea": "223",
+              "handType": "character",
+              "handTitle": "Initiative",
+              "tags": "ordered, vertical",
+              "cards": [
+                {
+                  "idCard": "firebrand",
+                  "idHand": "22",
+                  "cardTitle": "Firebrand",
+                  "cardType": "image",
+                  "cardIcon": "https://rpg.simplecommunion.com/tfm/mask-white.png",
+                  "faceImage": "https://rpg.simplecommunion.com/tfm/firebrand.png",
+                  "tags": "NPC"
+                },
+                {
+                  "idCard": "danzer",
+                  "idHand": "22",
+                  "cardTitle": "Danzer",
+                  "cardType": "block",
+                  "tags": "NPC",
+                  "faceImage": "https://rpg.simplecommunion.com/tfm/danzer.png"
+                },
+                {
+                  "idCard": "thug1",
+                  "idHand": "22",
+                  "cardTitle": "Thug 1",
+                  "cardType": "block",
+                  "tags": "NPC"
+                },
+                {
+                  "idCard": "thug2",
+                  "idHand": "22",
+                  "cardTitle": "Thug 2",
+                  "cardType": "block",
+                  "tags": "NPC"
+                },
+                {
+                  "idCard": "static",
+                  "idHand": "22",
+                  "cardTitle": "Static",
+                  "cardType": "block",
+                  "cardIcon": "https://rpg.simplecommunion.com/tfm/mask-white.png",
+                  "tags": "USER"
+                },
+                {
+                  "idCard": "magician",
+                  "idHand": "22",
+                  "cardTitle": "Magician",
+                  "cardType": "block",
+                  "description": "current form: DEVIL",
+                  "cardIcon": "https://rpg.simplecommunion.com/tfm/mask-white.png",
+                  "tags": "USER"
+                },
+                {
+                  "idCard": "Jaederman",
+                  "idHand": "22",
+                  "cardTitle": "Jaederman",
+                  "cardType": "block",
+                  "cardIcon": "https://rpg.simplecommunion.com/tfm/mask-white.png",
+                  "tags": "USER"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "sessions": [
+        {
+          "idSession": "138343",
+          "sessionNumber": 12,
+          "sessionTitle": "12: Gig is Up",
+          "when": 1623369749,
+          "length": 3,
+          "imageUrl": "https://rpg.simplecommunion.com/tfm/paraclipse-night.jpg",
+          "hands": [
+            {
+              "idHand": "11",
+              "idGame": "8323",
+              "idArea": "138343",
+              "handType": "?",
+              "handTitle": "Support",
+              "cards": [
+                {
+                  "idCard": "paraclipse",
+                  "idHand": "11",
+                  "cardTitle": "Refuge: Paraclipse",
+                  "cardType": "image",
+                  "faceImage": "https://rpg.simplecommunion.com/tfm/paraclipse-night.jpg"
+                },
+                {
+                  "idCard": "1111",
+                  "idHand": "11",
+                  "cardTitle": "Ally: Shiori",
+                  "cardType": "image",
+                  "faceImage": "https://rpg.simplecommunion.com/tfm/shiori.jpg"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "idSession": "138342",
+          "sessionNumber": 11,
+          "sessionTitle": "11: Raggedy",
+          "when": 1623339749,
+          "length": 3.5,
+          "hands": [
+            {
+              "idHand": "111",
+              "idGame": "8323",
+              "idArea": "138343",
+              "handType": "?",
+              "handTitle": "Reference",
+              "cards": [
+                {
+                  "idCard": "1111",
+                  "idHand": 11,
+                  "cardTitle": "Paraclipse: Shiori",
+                  "cardType": "simple"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "398": {
+      "idGame": "398",
+      "gameTitle": "Arcodd: A Marriage of Serpents",
+      "imageUrl": "http://rpg.simplecommunion.com/mos/mos.jpg",
+      "hoursPlayed": 198,
+      "isActive": true,
+      "idSystem": 383,
+      "systemName": "City of Mist*",
+      "idUser": "pol",
+      "lastPlayed": 1623334739,
+      "users": {
+        "pol": true,
+        "js": false,
+        "dael": false
+      }
+    },
+    "19": {
+      "idGame": "19",
+      "gameTitle": "Exalted: A Fire in Heaven",
+      "imageUrl": "",
+      "hoursPlayed": 198,
+      "isActive": false,
+      "idSystem": 383,
+      "systemName": "Exalted, 2nd Edition",
+      "idUser": "pol",
+      "users": {
+        "pol": true,
+        "js": false,
+        "dael": false
+      }
+    },
+    "10": {
+      "idGame": "10",
+      "gameTitle": "Ten Candles: Sacramento",
+      "imageUrl": "https://mykindofmeeple.com/wp-content/uploads/2020/05/ten-candles-bowl-burning-10052020.jpg",
+      "hoursPlayed": 2,
+      "isActive": false,
+      "idSystem": 999,
+      "systemName": "Ten Candles",
+      "idUser": "js",
+      "users": {
+        "js": true
+      }
+    }
+  },
+  "gameUsers": {
+    "10": {
+      "js": true
+    },
+    "19": {
+      "pol": true,
+      "js": false,
+      "dael": false
+    },
+    "398": {
+      "pol": true,
+      "js": false,
+      "dael": false
+    },
+    "8323": {
+      "pol": true,
+      "js": false,
+      "dael": false
+    }
+  },
+  "gameCharacters": {
+    "8323": {
+      "Dolores-Static": "dael",
+      "Samuel-Jedermann": "js",
+      "Jacob-Magician": "444"
+    }
+  },
+  "characters": {
+    "Dolores-Static": {
+      "idCharacter": 32,
+      "characterName": "Dolores-Static",
+      "characterDescription": "Dolores/Static is a Charming Adept who Defends the Weak",
+      "idGame": "8323",
+      "idUser": "dael",
+      "handsList": {
+        "33333": true,
+        "44": true,
+        "45": true
+      },
+      "hands": [
+
+        {
+          "idHand": "33333",
+          "idGame": "8323",
+          "handType": "grid",
+          "handTitle": "Traits",
+          "handState": "Condensed",
+          "groupAddable": false,
+          "cards": [
+            {
+              "idCard": "333331",
+              "idHand": "33333",
+              "cardTitle": "Might",
+              "description": "Used for strength and resistance",
+              "cardType": "pool",
+              "dieRoll": "d6",
+              "poolValue": 9,
+              "currentValue": 9,
+              "tags": "C1, Dolores"
+            },
+            {
+              "idCard": "333332",
+              "idHand": "33333",
+              "cardTitle": "Speed",
+              "description": "Used for moving, dodging",
+              "cardType": "pool",
+              "dieRoll": "d6",
+              "poolValue": 10,
+              "currentValue": 10,
+              "tags": "C2, Dolores"
+            },
+            {
+              "idCard": "333333",
+              "idHand": "33333",
+              "cardTitle": "Intellect",
+              "description": "Used for thinking, figuring, charming",
+              "cardType": "pool",
+              "dieRoll": "d6",
+              "poolValue": 16,
+              "currentValue": 16,
+              "tags": "C3, Dolores"
+            },
+            {
+              "idCard": "333334",
+              "idHand": "33333",
+              "cardTitle": "Might",
+              "description": "Used for strength and resistance",
+              "cardType": "pool",
+              "dieRoll": "d6",
+              "poolValue": 10,
+              "currentValue": 10,
+              "tags": "C1, Static"
+            },
+            {
+              "idCard": "333335",
+              "idHand": "33333",
+              "cardTitle": "Speed",
+              "description": "Used for moving, dodging",
+              "cardType": "pool",
+              "dieRoll": "d6",
+              "poolValue": 10,
+              "currentValue": 10,
+              "tags": "C2, Static"
+            },
+            {
+              "idCard": "333336",
+              "idHand": "33333",
+              "cardTitle": "Intellect",
+              "description": "Used for thinking, figuring, charming",
+              "cardType": "pool",
+              "dieRoll": "d6",
+              "poolValue": 16,
+              "currentValue": 7,
+              "tags": "C3, Static"
+            }
+          ]
+        },
+        {
+          "idHand": "44",
+          "idGame": "8323",
+          "handType": "stack",
+          "handTitle": "Abilities",
+          "handState": "Condensed",
+          "groupAddable": false,
+          "tags": "remote",
+          "cards": [
+            {
+              "idCard": "441",
+              "idHand": "44",
+              "cardTitle": "Far Step",
+              "description": "short-range teleport",
+              "cardType": "action",
+              "customProperties": {
+                "stat": "Intellect",
+                "cost": 2,
+                "page": 136
+              }
+            },
+            {
+              "idCard": "442",
+              "idHand": "44",
+              "cardTitle": "Resonance Field",
+              "description": "protective shield",
+              "cardType": "action",
+              "customProperties": {
+                "stat": "Intellect",
+                "cost": 2
+              }
+            },
+            {
+              "idCard": "443",
+              "idHand": "44",
+              "cardTitle": "Onslaught",
+              "description": "static-blast!",
+              "cardType": "action",
+              "customProperties": {
+                "stat": "Intellect",
+                "cost": 2
+              },
+              "dieRoll": "4d6+3"
+            }
+          ]
+        },
+        {
+          "idHand": 45,
+          "idGame": "8323",
+          "handType": "dropdown",
+          "handTitle": "Recoveries",
+          "handState": "Closed",
+          "groupAddable": false,
+          "cards": [
+            {
+              "idCard": "451",
+              "idHand": "45",
+              "cardTitle": "Action",
+              "cardType": "action",
+              "dieRoll": "1d6 + {Tier}",
+              "faceColor": "green"
+            },
+            {
+              "idCard": "452",
+              "idHand": "45",
+              "cardTitle": "10 Minutes",
+              "cardType": "action",
+              "dieRoll": "1d6 + {Tier}"
+            },
+            {
+              "idCard": "453",
+              "idHand": "45",
+              "cardTitle": "1 Hour",
+              "cardType": "action",
+              "dieRoll": "1d6 + {Tier}"
+            },
+            {
+              "idCard": "454",
+              "idHand": "45",
+              "cardTitle": "10 Hours",
+              "cardType": "action",
+              "dieRoll": "1d6 + {Tier}"
+            }
+          ]
+        }
+      ]
+    },
+    "Samuel-Jedermann": {
+      "idCharacter": 42,
+      "characterName": "Samuel-Jedermann",
+      "characterDescription": "Samuel/Jedermann is an Intuitive Explorer who Infiltrates with Lethal Force ",
+      "idGame": "8323",
+      "idUser": "js"
+    },
+    "Jacob-Magician": {
+      "idCharacter": 52,
+      "characterName": "Jacob-Magician",
+      "characterDescription": "Magician is an Intuitive Speaker who Masters Spells",
+      "idGame": "8323",
+      "idUser": "444"
+    }
+  },
+  "hands": {
+    "33333": {
+      "idHand": "33333",
+      "idGame": "8323",
+      "handType": "grid",
+      "handTitle": "Traits ",
+      "handState": "Condensed",
+      "groupAddable": false,
+      "cards": [
+        {
+          "idCard": "333331",
+          "idHand": "33333",
+          "cardTitle": "Might",
+          "description": "Used for strength and resistance",
+          "cardType": "pool",
+          "dieRoll": "d6",
+          "poolValue": 9,
+          "currentValue": 9,
+          "tags": "C1, Dolores"
+        },
+        {
+          "idCard": "333332",
+          "idHand": "33333",
+          "cardTitle": "Speed",
+          "description": "Used for moving, dodging",
+          "cardType": "pool",
+          "dieRoll": "d6",
+          "poolValue": 10,
+          "currentValue": 10,
+          "tags": "C1, Dolores"
+        },
+        {
+          "idCard": "333333",
+          "idHand": "33333",
+          "cardTitle": "Intellect",
+          "description": "Used for thinking, figuring, charming",
+          "cardType": "pool",
+          "dieRoll": "d6",
+          "poolValue": 16,
+          "currentValue": 16,
+          "tags": "C1, Dolores"
+        },
+        {
+          "idCard": "333334",
+          "idHand": "33333",
+          "cardTitle": "Might",
+          "description": "Used for strength and resistance",
+          "cardType": "pool",
+          "dieRoll": "d6",
+          "poolValue": 10,
+          "currentValue": 10,
+          "tags": "C2, Static"
+        },
+        {
+          "idCard": "333335",
+          "idHand": "33333",
+          "cardTitle": "Speed",
+          "description": "Used for moving, dodging",
+          "cardType": "pool",
+          "dieRoll": "d6",
+          "poolValue": 10,
+          "currentValue": 10,
+          "tags": "C3, Static"
+        },
+        {
+          "idCard": "333336",
+          "idHand": "33333",
+          "cardTitle": "Intellect",
+          "description": "Used for thinking, figuring, charming",
+          "cardType": "pool",
+          "dieRoll": "d6",
+          "poolValue": 16,
+          "currentValue": 7,
+          "tags": "C3, Static"
+        }
+      ]
+    },
+    "44": {
+      "idHand": "44",
+      "order": 10,
+      "idGame": "8323",
+      "handType": "stack",
+      "handTitle": "Abilities",
+      "handState": "Condensed",
+      "groupAddable": false,
+      "cards": {
+        "441": {
+          "idCard": "441",
+          "idHand": "44",
+          "cardTitle": "Far Step",
+          "description": "short-range teleport",
+          "cardType": "action",
+          "customProperties": {
+            "stat": "Intellect",
+            "cost": 2,
+            "page": 136
+          }
+        },
+        "442": {
+          "idCard": "442",
+          "idHand": "44",
+          "cardTitle": "Resonance Field",
+          "description": "protective shield",
+          "cardType": "action",
+          "customProperties": {
+            "stat": "Intellect",
+            "cost": 2
+          }
+        },
+        "443": {
+          "idCard": "443",
+          "idHand": "44",
+          "cardTitle": "Onslaught",
+          "description": "static-blast!",
+          "cardType": "action",
+          "customProperties": {
+            "stat": "Intellect",
+            "cost": 2
+          },
+          "dieRoll": "4d6+3"
+        }
+      }
+    },
+    "45": {
+      "idHand": 45,
+      "idGame": "8323",
+      "handType": "dropdown",
+      "handTitle": "Recoveries",
+      "handState": "Closed",
+      "groupAddable": false,
+      "cards": [
+        {
+          "idCard": "451",
+          "idHand": "45",
+          "cardTitle": "Action",
+          "cardType": "action",
+          "dieRoll": "1d6 + {Tier}",
+          "faceColor": "green"
+        },
+        {
+          "idCard": "452",
+          "idHand": "45",
+          "cardTitle": "10 Minutes",
+          "cardType": "action",
+          "dieRoll": "1d6 + {Tier}"
+        },
+        {
+          "idCard": "453",
+          "idHand": "45",
+          "cardTitle": "1 Hour",
+          "cardType": "action",
+          "dieRoll": "1d6 + {Tier}"
+        },
+        {
+          "idCard": "454",
+          "idHand": "45",
+          "cardTitle": "10 Hours",
+          "cardType": "action",
+          "dieRoll": "1d6 + {Tier}"
+        }
+      ]
+    }
+  },
+  "gameChats": {
+    "8323": {
+      "lastMessage": 1625161756,
+      "chats": [
+        {
+          "idGame": "8323",
+          "idUser": "dael",
+          "userName": "Dael Franke",
+          "message": "I am so gonna make a die roll",
+          "when": 1626459657,
+          "systemText": "d6: [3] + 2 = 5"
+        },
+        {
+          "idGame": "8323",
+          "idUser": "js",
+          "userName": "Johnny S.",
+          "message": "What a success!",
+          "when": 1626459677
+        },
+        {
+          "idGame": "8323",
+          "idUser": "pol",
+          "userName": "P to the S",
+          "message": "Smashing! Roll initiative > 2",
+          "when": 1626459657,
+          "systemText": "d6: [1] + 1 = 2"
+        }
+      ]
+    },
+    "398": {
+    }
+  },
+  "chatGames": {
+    "8323": {
+      "chat1":
+        {
+          "idGame": "8323",
+          "idUser": "dael",
+          "userName": "Dael Franke",
+          "message": "I am so gonna make a die roll",
+          "then": 1626459657,
+          "when": "Fri Jul 23 2021 21:16:50 GMT-0700",
+          "systemText": "d6: [3] + 2 = 5"
+        },
+      "chat2": {
+          "idGame": "8323",
+          "idUser": "js",
+          "userName": "Johnny S.",
+          "message": "What a success!",
+          "when": 1626459677
+        },
+      "chat3": {
+          "idGame": "8323",
+          "idUser": "pol",
+          "userName": "P to the S",
+          "message": "Smashing! Roll initiative > 2",
+          "when": 1626459667,
+          "systemText": "d6: [1] + 1 = 2"
+        }
+    },
+    "398": {
+      "chat9": {
+        "idGame": "398",
+        "idUser": "js",
+        "userName": "chat 9 from outer space",
+        "message": "Smashing! Roll initiative > 2",
+        "when": 1626459657,
+        "systemText": "d6: [1] + 1 = 2; 0 Successes"
+      }
+    }
+  }
+}

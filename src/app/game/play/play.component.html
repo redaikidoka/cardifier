@@ -10,6 +10,7 @@
         <app-area-title [titleText]="game.gameTitle" [iconUrl]="game?.iconUrl"></app-area-title>
         <span class="block text-gray-200 ml-8 mt-2"> Hours played: {{game.hoursPlayed}}</span>
 
+        <app-hand-blocks *ngIf="hand$ | async as hand44" [hand]="hand44"></app-hand-blocks>
       </div>
       <!-- session -->
       <div class="md:w-1/2 w-full ">
