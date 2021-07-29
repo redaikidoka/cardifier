@@ -85,8 +85,8 @@
   },
   "gameList": {
   },
-  "games": {
-    "8323": {
+  "games": [
+    {
       "idGame": "8323",
       "gameTitle": "A Time for Masks",
       "imageUrl": "https://rpg.simplecommunion.com/tfm/itunes.jpg",
@@ -267,7 +267,7 @@
           ]
         }
       ],
-      "sessions": [
+      "sessionsAll": [
         {
           "idSession": "138343",
           "sessionNumber": 12,
@@ -327,7 +327,7 @@
         }
       ]
     },
-    "398": {
+    {
       "idGame": "398",
       "gameTitle": "Arcodd: A Marriage of Serpents",
       "imageUrl": "http://rpg.simplecommunion.com/mos/mos.jpg",
@@ -343,7 +343,7 @@
         "dael": false
       }
     },
-    "19": {
+    {
       "idGame": "19",
       "gameTitle": "Exalted: A Fire in Heaven",
       "imageUrl": "",
@@ -358,7 +358,7 @@
         "dael": false
       }
     },
-    "10": {
+    {
       "idGame": "10",
       "gameTitle": "Ten Candles: Sacramento",
       "imageUrl": "https://mykindofmeeple.com/wp-content/uploads/2020/05/ten-candles-bowl-burning-10052020.jpg",
@@ -371,27 +371,8 @@
         "js": true
       }
     }
-  },
-  "gameUsers": {
-    "10": {
-      "js": true
-    },
-    "19": {
-      "pol": true,
-      "js": false,
-      "dael": false
-    },
-    "398": {
-      "pol": true,
-      "js": false,
-      "dael": false
-    },
-    "8323": {
-      "pol": true,
-      "js": false,
-      "dael": false
-    }
-  },
+  ],
+
   "gameCharacters": {
     "8323": {
       "Dolores-Static": "dael",
