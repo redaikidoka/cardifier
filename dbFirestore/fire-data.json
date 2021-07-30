@@ -1,6 +1,6 @@
 {
-  "users": {
-    "33": {
+  "users": [
+    {
       "idUser": "33",
       "userEmail": "nevyn@simplecommunion.com",
       "userName": "Nevyn Twyll",
@@ -15,7 +15,7 @@
         "19": false
       }
     },
-    "pol": {
+    {
       "idUser": "pol",
       "userEmail": "pol@simplecommunion.com",
       "userName": "Pól Stafford",
@@ -33,7 +33,7 @@
         "10": false
       }
     },
-    "js": {
+    {
       "idUser": "js",
       "userEmail": "jschiav@gmail.com",
       "userName": "John Schiavone",
@@ -51,7 +51,7 @@
         "10": true
       }
     },
-    "dael": {
+    {
       "idUser": "dael",
       "userEmail": "chaetophile@gmail.com",
       "userName": "Dael Franke",
@@ -67,7 +67,7 @@
         "398": false
       }
     },
-    "444": {
+    {
       "idUser": "444",
       "userEmail": "paulkhash@gmail.com",
       "userName": "The Jew",
@@ -82,7 +82,7 @@
         "8323": false
       }
     }
-  },
+  ],
   "gameList": {
   },
   "games": [
@@ -372,7 +372,6 @@
       }
     }
   ],
-
   "gameCharacters": {
     "8323": {
       "Dolores-Static": "dael",
@@ -505,13 +504,52 @@
               "idCard": "443",
               "idHand": "44",
               "cardTitle": "Onslaught",
-              "description": "static-blast!",
+              "description": "static-blast!; 2 Int",
               "cardType": "action",
               "customProperties": {
                 "stat": "Intellect",
-                "cost": 2
+                "cost": 2,
+                "damage": 12
               },
-              "dieRoll": "4d6+3"
+              "dieRoll": "1d6"
+            },
+            {
+              "idCard": "444",
+              "idHand": "44",
+              "cardTitle": "Ward",
+              "description": "+1 Armor; 1 Int",
+              "cardType": "action",
+              "customProperties": {
+                "stat": "Intellect",
+                "cost": 1
+              }
+            },
+            {
+              "idCard": "443",
+              "idHand": "44",
+              "cardTitle": "Stasis",
+              "description": "Freeze for 1 minute; 3 Int",
+              "cardType": "action",
+              "customProperties": {
+                "stat": "Intellect",
+                "cost": 3,
+                "page": 186
+              },
+              "dieRoll": "1d6"
+            },
+            {
+              "idCard": "443",
+              "idHand": "44",
+              "cardTitle": "Mind for Might",
+              "description": "exchange spending Int/Might",
+              "cardType": "passive"
+            },
+            {
+              "idCard": "443",
+              "idHand": "44",
+              "cardTitle": "Adaptation",
+              "description": "No need to cool/heat/breathe/etc.",
+              "cardType": "passive"
             }
           ]
         },

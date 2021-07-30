@@ -31,3 +31,23 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+
+
+# GIT going
+
+## Tagging
+`git tag -a 1.7.2 -m "email and new date setting"`
+
+`git push origin 1.7.2`
+
+## Branching
+    1  new branch
+
+`git checkout -b iss53`
+
+    2 work work work
+
+`git checkout master`
+
+`git merge iss53`

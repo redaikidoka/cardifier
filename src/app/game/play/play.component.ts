@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UnsubscribeOnDestroyAdapter} from '../../root/unsubscribe-on-destroy-adapter';
 import {ActivatedRoute} from '@angular/router';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 
 import {Game, GameSession, Hand} from '../../core/data/game';
 
@@ -21,7 +21,7 @@ export class PlayComponent extends UnsubscribeOnDestroyAdapter {
   idGame = '8323';
   // theGame: Game | undefined;
 
-  game$: Observable<Game> | undefined;
+  game$: Observable<Game | undefined> = of(undefined);
   chats$: Observable<Chat[]> | undefined;
   hand$: Observable<Hand> ;
 

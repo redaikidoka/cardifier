@@ -31,6 +31,7 @@ export class HandBlocksComponent extends UnsubscribeOnDestroyAdapter implements 
   @Input() cardTextStyle = '';
   @Input() bgStyle = '';
   @Input() bgImage = '';
+  @Input() isOpen = true;
 
   constructor(private picDialog: MatDialog, private roller: DiceService, private chatService: ChatService,
               private auth: AuthService, private logger: LoggerService) {
@@ -92,8 +93,8 @@ export class HandBlocksComponent extends UnsubscribeOnDestroyAdapter implements 
       systemText: card.dieRoll + ':' + rolled.verbose
     } as Chat;
 
-    this.chatService.createChat(chat).then(result =>
+    this.chatService.createChat(chat).then((result: any) =>
       console.log('hand-blocks.rollDice', result, chat))
-      .catch(err => this.logger.logErrObject('hand-blocks.rollDice', err, 'Could not make dice roll message'));
+      .catch((err: Error) => this.logger.logErrObject('hand-blocks.rollDice', err, 'Could not make dice roll message'));
   }
 }

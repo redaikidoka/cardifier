@@ -64,7 +64,7 @@
             </div>
           </div>
         </div>
-        <!-- play -->
+        <!-- characters -->
         <div class="flex flex-row flex-wrap">
           <div class="w-full border-green-400 border-4">
             <div *ngFor="let character of game.characters">
@@ -76,7 +76,7 @@
                                    [cardStyle]="'block bg-gray-800 text-white ml-4'"></app-hand-dropdown>
               </div>
               <div *ngFor="let hand of character.hands" class="flex-col md:w-1/4 w-full">
-                <app-hand-blocks [hand]="hand" [titleSize]="' block text-xl bg-gray-700'"
+                <app-hand-blocks [hand]="hand" [titleSize]="'w-full block text-xl bg-gray-700'"
                                  [bgStyle]="' bg-gray-800 bg-opacity-25'"
                                  [cardStyle]="'block bg-gray-800 text-white ml-4'"></app-hand-blocks>
               </div>

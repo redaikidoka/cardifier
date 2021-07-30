@@ -47,3 +47,4 @@ dataObjectFromFile.games.forEach(function (game) {
     console.log('  - no sessions');
   }
 });
+

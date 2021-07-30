@@ -20,8 +20,8 @@ export interface Game {
 
   sCreate: Date;
   sUpdate: Date;
-  sIdUserCreate?: number;
-  sIdUserUpdate?: number;
+  sIdUserCreate?: string;
+  sIdUserUpdate?: string;
 
   idSystem?: number;
   systemName?: string;
