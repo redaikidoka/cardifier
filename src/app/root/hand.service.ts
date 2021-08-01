@@ -24,7 +24,8 @@ export class HandService {
           return {} as Hand;
         }
 
-        hand.cards = hand.cards ? hand.cards.sort((a, b) => (a.order ?? 0) > (b.order ?? 0) ? -1 : 1) : [] as Card[];
+        hand.cards = (hand.cards && hand.cards.length > 0) ? hand.cards.sort((a, b) => (a.order ?? 0) > (b.order ?? 0) ? -1 : 1)
+          : [] as Card[];
         return hand;
       }),
       tap(hand => console.log('hand.service::getHand$ ', idHand, hand))

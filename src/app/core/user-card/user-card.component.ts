@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/root/auth.service';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'cf-user-card',
   templateUrl: './user-card.component.html',
   styleUrls: ['./user-card.component.scss'],

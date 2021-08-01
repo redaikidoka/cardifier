@@ -12,7 +12,7 @@ import {UserService} from '../../root/user.service';
 export class ChatMessageComponent  implements OnInit {
   @Input() chat: Chat | undefined;
 
-  user$: Observable<CardUser> | undefined;
+  user$: Observable<CardUser | undefined> | undefined;
 
   constructor(private userService: UserService) {
   }

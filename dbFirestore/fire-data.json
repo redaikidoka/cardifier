@@ -11,9 +11,9 @@
       "idUserType": 13,
       "userTypeTitle": "Administrator",
       "userTypeNotes": "-",
-      "games": {
-        "19": false
-      }
+      "games": [
+        "19"
+      ]
     },
     {
       "idUser": "pol",
@@ -26,12 +26,12 @@
       "idUserType": 100,
       "userTypeTitle": "Paying Storyteller",
       "userTypeNotes": "Reward",
-      "games": {
-        "8323": true,
-        "398": true,
-        "19": true,
-        "10": false
-      }
+      "games": [
+        "8323",
+        "398",
+        "19",
+        "10"
+      ]
     },
     {
       "idUser": "js",
@@ -42,14 +42,14 @@
       "isActive": true,
       "tags": "Dark!",
       "idUserType": 200,
-      "userTypeTitle": "Unpaid Player",
-      "userTypeNotes": "Encourage",
-      "games": {
-        "8323": false,
-        "398": true,
-        "19": true,
-        "10": true
-      }
+      "userTypeTitle": "Paying Player",
+      "userTypeNotes": "Thank",
+      "games": [
+        "8323",
+        "398",
+        "19",
+        "10"
+      ]
     },
     {
       "idUser": "dael",
@@ -62,10 +62,10 @@
       "idUserType": 300,
       "userTypeTitle": "Unpaid Player",
       "userTypeNotes": "Ignore",
-      "games": {
-        "8323": false,
-        "398": false
-      }
+      "games": [
+        "8323",
+        "398"
+      ]
     },
     {
       "idUser": "444",
@@ -78,9 +78,9 @@
       "idUserType": 300,
       "userTypeTitle": "Unpaid Player",
       "userTypeNotes": "Ignore",
-      "games": {
-        "8323": false
-      }
+      "games": [
+        "8323"
+      ]
     }
   ],
   "gameList": {
@@ -550,6 +550,48 @@
               "cardTitle": "Adaptation",
               "description": "No need to cool/heat/breathe/etc.",
               "cardType": "passive"
+            }
+          ]
+        },
+        {
+          "idHand": "health",
+          "idGame": "8323",
+          "handType": "dropdown",
+          "handTitle": "Health",
+          "handState": "Closed",
+          "groupAddable": false,
+          "cards": [
+            {
+              "idHand": "health",
+              "idCard": "hale",
+              "cardTitle": "Hale",
+              "cardType": "status",
+              "faceColor": "green",
+              "description": "No penalties"
+            },
+            {
+              "idHand": "health",
+              "idCard": "Impaired",
+              "cardTitle": "Impaired",
+              "cardType": "status",
+              "faceColor": "yellow",
+              "description": "Each level of Effort used costs one more point. Ignore minor/major effects on special rolls and any rolls of 17 or higher only deal +1 damage"
+            },
+            {
+              "idHand": "health",
+              "idCard": "Debilitated",
+              "cardTitle": "Debilitated,",
+              "cardType": "status",
+              "faceColor": "red",
+              "description": "Can take no actions and may only move an immediate distance(10ft). Characters cannot move at all if their Speed Pool is at zero."
+            },
+            {
+              "idCard": "Dead",
+              "idHand": "health",
+              "cardTitle": "Dead",
+              "cardType": "status",
+              "faceColor": "black",
+              "description": "Deal with it"
             }
           ]
         },

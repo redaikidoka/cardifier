@@ -3,16 +3,12 @@ import { Injectable } from '@angular/core';
 
 import { map, tap, catchError } from 'rxjs/operators';
 
-// import {AdmApp} from './data/adm-app';
 import { CardUser } from '../core/data/card-user';
-// import {qCardUserActive, usrFields} from './data/q-user';
 
-// import {UsrNotify} from './data/UsrNotify';
 import { LoggerService } from './logger.service';
 
 import { UnsubscribeOnDestroyAdapter } from './unsubscribe-on-destroy-adapter';
-import {Game} from '../core/data/game';
-import {AngularFireDatabase} from '@angular/fire/database';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -41,39 +37,13 @@ export class UserService extends UnsubscribeOnDestroyAdapter {
       .toUpperCase();
   }
 
-  static dataToCardUserQuery(loadedUser: any, queryName: string): CardUser {
-    // console.log('UserService::datatoCardUser', loadedUser);
-    return loadedUser.data[queryName];
-    // if (usr) {
-    //   return usr;
-    // } else {
-    //   console.warn('UserService::dataToCardUser - dis data bad');
-    //   // @ts-ignore
-    //   return ();
-    // }
-  }
-
-  // static dataToCardUsers(loadedUsers: any): CardUser[] {
-  //   return loadedUsers.data.allCardUsersList;
-  //   // if (users && users.nodes.length > 0) {
-  //   //   return users.nodes as CardUser[];
-  //   // } else {
-  //   //   console.warn('UserService::dataToCardUsers - dis data bad');
-  //   //   return ([]);
-  //   // }
+  // static dataToCardUserQuery(loadedUser: any, queryName: string): CardUser {
+  //   // console.log('UserService::datatoCardUser', loadedUser);
+  //   return loadedUser.data[queryName];
   // }
 
-  // static dataToUsrNotify(notifies: any): UsrNotify[] {
-  //   const n = notifies.data.allUsrNotifies.nodes;
-  //   if (n && n.length > 0) {
-  //     return <UsrNotify[]>n;
-  //   }
-  // }
 
-  // subUser: Subscription;
-  // notifications: BehaviorSubject<UsrNotify[] | null> = new BehaviorSubject<UsrNotify[]>(null);
-
-  constructor(private logger: LoggerService, private db: AngularFireDatabase) {
+  constructor(private logger: LoggerService, private afs: AngularFirestore) {
     super();
 
     this.me = null;
@@ -84,26 +54,12 @@ export class UserService extends UnsubscribeOnDestroyAdapter {
   }
 
 
-  getUser$(idUser: string): Observable<CardUser> {
-    // let ourGame: Game = {} as Game;
+  getUser$(idUser: string): Observable<CardUser | undefined> {
 
-    return this.db.list<CardUser>('/users', ref => ref.orderByKey().equalTo(idUser)).valueChanges().pipe(
-      // tap(characters => console.log('user.service::getUser$[]', idUser, characters)),
-      map(characters => characters[0] ?? null),
-      // tap( character => console.log('user.service::singleton', idUser, character))
+    return this.afs.collection<CardUser>('users').doc(idUser).valueChanges().pipe(
+      tap(user => console.log('UserService::getuser$', idUser, user))
     );
-    // const qSingleUser = gql`{ CardUserByIdAdmUserAndIdAdmApp( idAdmUser: ${idUser}, idAdmApp: ${idAdmApp}) {
-    //     ${usrFields}
-    //   } }`;
 
-    // console.log('UserService::getuser', idUser, idAdmApp, qSingleUser);
-    // // return new Observable((observer: Observer<CardUser>) => {
-    // return this.apollo.query<any>({query: qSingleUser}).pipe(
-    //   tap(usr => console.log('UserService::getUser', usr),
-    //     err => this.logger.logErrObject( 'UserService::getUser', err, 'Could not load user')),
-    //   map(userData => UserService.dataToCardUserQuery(userData, 'CardUserByIdAdmUserAndIdAdmApp'))
-    // );
-    return of({} as CardUser);
   }
 
   getUser(idUser: string): Observable<CardUser> {
@@ -137,7 +93,7 @@ export class UserService extends UnsubscribeOnDestroyAdapter {
     //     err => this.logger.logErrObject( 'UserService::getUser', err, 'Could not load user')),
     //   map(userData => UserService.dataToCardUserQuery(userData, 'CardUserByIdAdmUserAndIdAdmApp'))
     // );
-    return of({} as CardUser);
+    // return of({} as CardUser);
   }
 
   getUserByEmail(email: string): Observable<CardUser> {
@@ -153,8 +109,13 @@ export class UserService extends UnsubscribeOnDestroyAdapter {
     return of({} as CardUser);
   }
 
-  getUserList(): Observable<CardUser[]> {
-    // console.log('UserService::getUserList', qCardUserActive);
+  userList$(): Observable<CardUser[]> {
+
+    console.log('UserService::userList$');
+
+    return this.afs.collection<CardUser>('users').valueChanges().pipe(
+      tap(users => console.log('userService::userList$', users))
+    );
 
     // return this.apollo.query<any>({query: qCardUserActive}).pipe(
     //   tap(res => console.log('UserService::getUserList', res),
@@ -162,7 +123,6 @@ export class UserService extends UnsubscribeOnDestroyAdapter {
     //       this.logger.logErrObject( 'UserService::getUserList()', err, 'Could not load user list')),
     //   map(userData => UserService.dataToCardUsers(userData))
     // );
-    return of([] as CardUser[]);
   }
 
   // getAppAccessUserList(idApp: number, accessLevel: number): Observable<CardUser[]> {

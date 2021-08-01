@@ -41,6 +41,24 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
 
   public me$: Observable<CardUser> = this.currentUser$.asObservable();
 
+  static userIcon(idUserType: number): string {
+    switch (idUserType) {
+      case 13:
+        return 'fa-dragon';
+
+      case 100:
+        return 'fa-user-astronaut';
+
+      case 200:
+        return 'fa-user-check';
+
+      case 300:
+      default:
+        return 'fa-user';
+
+    }
+  }
+
   getCurrentUser$(): Observable<CardUser> {
     return this.currentUser$.asObservable() as Observable<CardUser>;
   }
@@ -219,8 +237,11 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
       this.logout(false);
     }
 
-    return this.userService.getUser(idUser).pipe(
+    return this.userService.getUser$(idUser).pipe(
       map((found) => {
+        if (!found) {
+          console.error('auth.service::testLogin could not login:', idUser);
+          return of(null); }
         console.log('AuthService::testLogin(): LOADED test USER', found);
         this.currentUser$.next(found);
         this.authInfo = {
@@ -419,6 +440,7 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
         this.authInfo?.token === this.testToken
     );
   }
+
   isSysAdmin(): boolean {
     return this.isLoggedIn() && this.me().idUserType === 13;
   }

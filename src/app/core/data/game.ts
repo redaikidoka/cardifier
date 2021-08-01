@@ -2,7 +2,7 @@ import {Character, CharacterList} from './character';
 
 export interface Game {
   idGame: string;
-
+  idUser: string;
   gameTitle: string;
 
   imageUrl?: string;
@@ -99,6 +99,8 @@ export interface Hand {
   groupAddable?: boolean;
 
   cards: Card[];
+  // used in dropdown cards
+  currentIdCard?: string;
 }
 
 export interface Card {

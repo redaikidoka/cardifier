@@ -4,7 +4,6 @@ require("firebase/firestore");
 
 const dataObjectFromFile = require('./fire-data.json');
 
-
 // Initialize Cloud Firestore through Firebase
 firebase.initializeApp({
   apiKey: "AIzaSyCkKKSqbGqlH77JpjVYiUNdDgtghTms6-g",

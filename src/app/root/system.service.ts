@@ -12,7 +12,7 @@ export class SystemService {
   private appVersion: string;
 
   constructor() {
-    this.appVersion = '12.0.2021-07-23';
+    this.appVersion = '12.0.2021-08-01';
   }
 
   getVersion(): string {
@@ -21,5 +21,9 @@ export class SystemService {
 
   getAppName(): string {
     return environment.APP_NAME;
+  }
+
+  isProduction(): boolean {
+    return environment.production;
   }
 }

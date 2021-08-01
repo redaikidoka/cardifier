@@ -3,6 +3,7 @@ export interface CardUser {
 
   userEmail: string;
   userName: string;
+
   imageUrl?: string;
   imageLink?: string;
   hoursPlayed: number;
@@ -14,10 +15,15 @@ export interface CardUser {
 
   sCreate: Date;
   sUpdate: Date;
-  sIdUserCreate?: number;
-  sIdUserUpdate?: number;
+  sIdUserCreate?: string;
+  sIdUserUpdate?: string;
 
   idUserType: number;
+
   userTypeTitle?: string;
   userTypeNotes?: string;
+
+  games?: string[];
 }
+
+

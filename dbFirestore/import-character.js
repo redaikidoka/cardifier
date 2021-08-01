@@ -4,13 +4,6 @@ require("firebase/firestore");
 
 const dataObjectFromFile = require('./fire-data.json');
 
-
-// console.log('data file ', dataObjectFromFile);
-
-// var myData = JSON.parse(dataObjectFromFile);
-
-// console.log('loaded data as object', myData);
-
 // Initialize Cloud Firestore through Firebase
 firebase.initializeApp({
   apiKey: "AIzaSyCkKKSqbGqlH77JpjVYiUNdDgtghTms6-g",
@@ -23,29 +16,6 @@ firebase.initializeApp({
 });
 
 var db = firebase.firestore();
-
-// dataObjectFromFile.characters.forEach(function(char) {
-//   console.log('character: ', char);
-//   db.collection("characters").add(char)
-//     .then(function(docRef) {
-//     console.log("Document written with ID: ", docRef.id);
-//   })
-//     .catch(function(error) {
-//       console.error("Error adding document: ", error);
-//     });
-// });
-
-// characters - direct;
-// dataObjectFromFile.characters.forEach(function(char) {
-//   console.log('character: ', char.idCharacter);
-//   db.collection("characters").doc(char.idCharacter).set(char)
-//     .then(function(docRef) {
-//     console.log("character doc written : ", char.characterName);
-//   })
-//     .catch(function(error) {
-//       console.error("Error setting doc: ", error);
-//     });
-// });
 
 // characters <- games
 dataObjectFromFile.characters.forEach(function (char) {

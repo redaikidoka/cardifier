@@ -9,8 +9,10 @@
       <div class="md:w-1/2 w-full pr-4 ">
         <app-area-title [titleText]="game.gameTitle" [iconUrl]="game?.iconUrl"></app-area-title>
         <span class="block text-gray-200 ml-8 mt-2"> Hours played: {{game.hoursPlayed}}</span>
+        <div *ngFor="let hand of game.gameArea?.hands" class="w-full">
+          <app-hand-blocks [hand]="hand"></app-hand-blocks>
+        </div>
 
-        <app-hand-blocks *ngIf="hand$ | async as hand44" [hand]="hand44"></app-hand-blocks>
       </div>
       <!-- session -->
       <div class="md:w-1/2 w-full ">
@@ -23,7 +25,6 @@
             <i class="fas fa-plus"></i>
             Hand
           </button>
-          <!--          <ng-container *ngIf="game.currentSession?.hands" -->
           <div *ngFor="let hand of game.currentSession?.hands" class="w-full">
             <app-hand-blocks [hand]="hand"></app-hand-blocks>
           </div>
@@ -51,7 +52,7 @@
           <!--            <h2 class="text-gray-300">play area</h2>-->
           <!--          </div>-->
           <!-- row -->
-          <div class="w-full  bg-cover h-min-300 bg-opacity-25"
+          <div class="w-full bg-cover h-min-300 bg-opacity-25"
                [ngStyle]="{'background-image': 'url(' + game?.imageUrl + ')'}">
             <!--            <div class=""-->
             <h2 class="text-gray-200 ml-2">{{game?.playArea?.areaTitle}}</h2>
@@ -66,8 +67,8 @@
         </div>
         <!-- characters -->
         <div class="flex flex-row flex-wrap">
-          <div class="w-full border-green-400 border-4">
-            <div *ngFor="let character of game.characters">
+          <div class="w-full ">
+            <div *ngFor="let character of game.characters" class="flex flex-row flex-wrap">
               <h4 class="text-green-400 font-semibold"
                   matTooltip="{{character.characterDescription}}"> {{character.characterName}}</h4>
               <div *ngFor="let hand of character.hands | handType: 'dropdown'" class="float-right">
@@ -75,7 +76,12 @@
                                    [bgStyle]="' bg-gray-800 bg-opacity-50'"
                                    [cardStyle]="'block bg-gray-800 text-white ml-4'"></app-hand-dropdown>
               </div>
-              <div *ngFor="let hand of character.hands" class="flex-col md:w-1/4 w-full">
+              <div *ngFor="let hand of character.hands| handType: 'grid'" class="flex-col md:w-1/4 w-full">
+                <app-hand-blocks [hand]="hand" [titleSize]="'w-full block text-xl bg-gray-700'"
+                                 [bgStyle]="' bg-gray-800 bg-opacity-25'"
+                                 [cardStyle]="'block bg-gray-800 text-white ml-4'"></app-hand-blocks>
+              </div>
+              <div *ngFor="let hand of character.hands| handType: 'stack'" class="flex-col md:w-1/4 w-full">
                 <app-hand-blocks [hand]="hand" [titleSize]="'w-full block text-xl bg-gray-700'"
                                  [bgStyle]="' bg-gray-800 bg-opacity-25'"
                                  [cardStyle]="'block bg-gray-800 text-white ml-4'"></app-hand-blocks>
