@@ -83,8 +83,6 @@
       ]
     }
   ],
-  "gameList": {
-  },
   "games": [
     {
       "idGame": "8323",
@@ -96,17 +94,18 @@
       "idSystem": "23",
       "systemName": "Cypher*",
       "idUser": "pol",
-      "lastPlayed": 1623369739,
+      "lastPlayed": 1626459657,
       "sCreate": 1623329739,
       "sUpdate": 1623369739,
       "sIdUserCreate": "pol",
       "sIdUserUpdate": "pol",
       "idCurrentSession": "138343",
-      "users": {
-        "pol": true,
-        "js": false,
-        "dael": false
-      },
+      "users": [
+        "pol",
+        "js",
+        "dael",
+        "444"
+      ],
       "characterList": [
         {
           "idCharacter": "Dolores-Static",
@@ -336,12 +335,12 @@
       "idSystem": 383,
       "systemName": "City of Mist*",
       "idUser": "pol",
-      "lastPlayed": 1623334739,
-      "users": {
-        "pol": true,
-        "js": false,
-        "dael": false
-      }
+      "lastPlayed": 1626439627,
+      "users": [
+        "pol",
+        "js",
+        "dael"
+      ]
     },
     {
       "idGame": "19",
@@ -352,11 +351,11 @@
       "idSystem": 383,
       "systemName": "Exalted, 2nd Edition",
       "idUser": "pol",
-      "users": {
-        "pol": true,
-        "js": false,
-        "dael": false
-      }
+      "users": [
+        "pol",
+        "js",
+        "dael"
+      ]
     },
     {
       "idGame": "10",
@@ -367,18 +366,11 @@
       "idSystem": 999,
       "systemName": "Ten Candles",
       "idUser": "js",
-      "users": {
-        "js": true
-      }
+      "users": [
+        "js"
+      ]
     }
   ],
-  "gameCharacters": {
-    "8323": {
-      "Dolores-Static": "dael",
-      "Samuel-Jedermann": "js",
-      "Jacob-Magician": "444"
-    }
-  },
   "characters": [
     {
       "idCharacter": "Dolores-Static",
@@ -596,7 +588,7 @@
           ]
         },
         {
-          "idHand": 45,
+          "idHand": "recovery",
           "idGame": "8323",
           "handType": "dropdown",
           "handTitle": "Recoveries",
@@ -637,6 +629,441 @@
       ]
     },
     {
+      "idCharacter": "Bricklayer-pol",
+      "characterName": "Bricklayer-Bob",
+      "characterDescription": " is a Tough Warrior who Performs Feats of Strength",
+      "idGame": "8323",
+      "idUser": "pol",
+      "hands": [
+        {
+          "idHand": "Details",
+          "order": 10,
+          "idGame": "8323",
+          "handType": "block",
+          "handTitle": "Details",
+          "handState": "Open",
+          "cards": [
+            {
+              "idCard": "tier",
+              "idHand": "Details",
+              "cardTitle": "Tier",
+              "description": "Cypher Level",
+              "cardType": "badge",
+              "dieRoll": "d6 + #CurrentValue",
+              "currentValue": 3,
+              "tags": "small"
+            },
+            {
+              "idCard": "effort",
+              "idHand": "Details",
+              "cardTitle": "Effort",
+              "description": "how many times can I make an action better?",
+              "cardType": "badge",
+              "currentValue": 2,
+              "tags": "small"
+            },
+            {
+              "idCard": "armor",
+              "idHand": "Details",
+              "cardTitle": "Armor",
+              "description": "Damage absorbed by attack",
+              "cardType": "badge",
+              "currentValue": 3,
+              "tags": "small"
+            }
+          ]
+        },
+        {
+          "idHand": "traits",
+          "order": 200,
+          "idGame": "8323",
+          "handType": "grid",
+          "handTitle": "Traits",
+          "handState": "Condensed",
+          "groupAddable": false,
+          "cards": [
+            {
+              "idCard": "bmight",
+              "idHand": "traits",
+              "cardTitle": "Might",
+              "description": "Used for strength and resistance",
+              "cardType": "pool",
+              "dieRoll": "d6",
+              "poolValue": 12,
+              "currentValue": 9,
+              "tags": "C1, Bob"
+            },
+            {
+              "idCard": "bSpeed",
+              "idHand": "traits",
+              "cardTitle": "Speed",
+              "description": "Used for moving, dodging",
+              "cardType": "pool",
+              "dieRoll": "d6",
+              "poolValue": 9,
+              "currentValue": 2,
+              "tags": "C2, Bob"
+            },
+            {
+              "idCard": "bIntellect",
+              "idHand": "traits",
+              "cardTitle": "Intellect",
+              "description": "Used for thinking, figuring, charming",
+              "cardType": "pool",
+              "dieRoll": "d6",
+              "poolValue": 8,
+              "currentValue": 8,
+              "tags": "C3, Bob"
+            },
+            {
+              "idCard": "blMight",
+              "idHand": "traits",
+              "cardTitle": "Might",
+              "description": "Used for strength and resistance",
+              "cardType": "pool",
+              "dieRoll": "d6",
+              "poolValue": 22,
+              "currentValue": 10,
+              "tags": "C1, Bricklayer, Edge:2"
+            },
+            {
+              "idCard": "blSpeed",
+              "idHand": "traits",
+              "cardTitle": "Speed",
+              "description": "Used for moving, dodging",
+              "cardType": "pool",
+              "dieRoll": "d6",
+              "poolValue": 16,
+              "currentValue": 13,
+              "tags": "C2, Bricklayer, Edge:2"
+            },
+            {
+              "idCard": "blInt",
+              "idHand": "traits",
+              "cardTitle": "Intellect",
+              "description": "Used for thinking, figuring, charming",
+              "cardType": "pool",
+              "dieRoll": "d6",
+              "poolValue": 8,
+              "currentValue": 7,
+              "tags": "C3, Bricklayer"
+            }
+          ]
+        },
+        {
+          "idHand": "blSkills*Might",
+          "order": 210,
+          "idGame": "8323",
+          "handType": "stack",
+          "handTitle": "Skills",
+          "handState": "Condensed",
+          "groupAddable": false,
+          "tags": "Bricklayer, remote",
+          "cards": [
+            {
+              "idCard": "carry",
+              "idHand": "blSkills*Might",
+              "cardTitle": "Carrying",
+              "description": "big heavy things!",
+              "cardType": "action",
+              "dieRoll": "d6",
+              "tags": "trained",
+              "customProperties": {
+                "stat": "Might"
+              }
+            },
+            {
+              "idCard": "climb",
+              "idHand": "blSkills*Might",
+              "cardTitle": "Climbing",
+              "description": "up, Simba!",
+              "cardType": "action",
+              "dieRoll": "d6",
+              "tags": "trained",
+              "customProperties": {
+                "stat": "Might"
+              }
+            },
+            {
+              "idCard": "jump",
+              "idHand": "blSkills*Might",
+              "cardTitle": "Jumping",
+              "description": "Leaping > 1 meter",
+              "cardType": "action",
+              "dieRoll": "d6",
+              "tags": "trained",
+              "customProperties": {
+                "stat": "Might"
+              }
+            },
+            {
+              "idCard": "mightdef",
+              "idHand": "blSkills*Might",
+              "cardTitle": "Might Defense",
+              "description": "Defend Might!",
+              "cardType": "action",
+              "dieRoll": "d6",
+              "tags": "trained",
+              "customProperties": {
+                "stat": "Might",
+                "powerShift": 3
+              }
+            },
+            {
+              "idCard": "smashing",
+              "idHand": "blSkills*Might",
+              "cardTitle": "Smash",
+              "description": "Break something",
+              "cardType": "action",
+              "dieRoll": "d6",
+              "tags": "trained",
+              "customProperties": {
+                "stat": "Might"
+              }
+            }
+          ]
+        },
+        {
+          "idHand": "blAbilities",
+          "order": 210,
+          "idGame": "8323",
+          "handType": "stack",
+          "handTitle": "Abilities",
+          "handState": "Condensed",
+          "groupAddable": false,
+          "tags": "Bricklayer, remote",
+          "cards": [
+            {
+              "idCard": "bash",
+              "idHand": "blAbilities",
+              "cardTitle": "Bash",
+              "description": "break things!",
+              "cardType": "action",
+              "dieRoll": "d6",
+              "tags": "trained",
+              "customProperties": {
+                "stat": "Might",
+                "cost": 1
+              }
+            },
+            {
+              "idCard": "smash",
+              "idHand": "blAbilities",
+              "cardTitle": "Smash",
+              "description": "extra damage",
+              "cardType": "action",
+              "dieRoll": "d6",
+              "tags": "trained",
+              "customProperties": {
+                "stat": "Might",
+                "cost": 1
+              }
+            }
+          ]
+        },
+        {
+          "idHand": "blAbilitiesPassive",
+          "order": 510,
+          "idGame": "8323",
+          "handType": "stack",
+          "handTitle": "Passive Abilities",
+          "handState": "Closed",
+          "groupAddable": false,
+          "tags": "Bricklayer,",
+          "cards": [
+            {
+              "idCard": "Athlete",
+              "idHand": "blAbilitiesPassive",
+              "cardTitle": "Athlete",
+              "description": "Skills, Stats",
+              "cardType": "info",
+              "tags": "",
+              "customProperties": {
+              }
+            },
+            {
+              "idCard": "ExtraEdge",
+              "idHand": "blAbilitiesPassive",
+              "cardTitle": "Climbing",
+              "description": "protective shield",
+              "cardType": "info",
+              "tags": "",
+              "customProperties": {
+                "stat": "Might"
+              }
+            },
+            {
+              "idCard": "Healthy",
+              "idHand": "blAbilitiesPassive",
+              "cardTitle": "Jumping",
+              "description": "Leaping > 1 meter",
+              "cardType": "info",
+              "tags": "",
+              "customProperties": {
+              }
+            },
+            {
+              "idCard": "Practiced in Armor",
+              "idHand": "blAbilitiesPassive",
+              "cardTitle": "Practiced in Armor",
+              "description": "Can wear armor",
+              "cardType": "info",
+              "tags": "",
+              "customProperties": {
+              }
+            },
+            {
+              "idCard": "Practiced with All Weapons",
+              "idHand": "blAbilitiesPassive",
+              "cardTitle": "Practiced with All Weapons",
+              "description": "Wield Any Weapon",
+              "cardType": "info",
+              "tags": "",
+              "customProperties": {
+              }
+            },
+            {
+              "idCard": "Resilient",
+              "idHand": "blAbilitiesPassive",
+              "cardTitle": "Smash",
+              "description": "Break something",
+              "cardType": "info",
+              "tags": "",
+              "customProperties": {
+              }
+            },
+            {
+              "idCard": "Strong",
+              "idHand": "blAbilitiesPassive",
+              "cardTitle": "Smash",
+              "description": "Break something",
+              "cardType": "info",
+              "tags": "",
+              "customProperties": {
+              }
+            }
+          ]
+        },
+        {
+          "idHand": "cyphers",
+          "order": 300,
+          "idGame": "8323",
+          "handType": "stack",
+          "handTitle": "Cyphers",
+          "handState": "Open",
+          "groupAddable": false,
+          "tags": "limit:2",
+          "cards": [
+            {
+              "idCard": "cypher-yes",
+              "idHand": "cyphers",
+              "cardTitle": "Yes!",
+              "description": "Gain +5 Armor for one hour",
+              "cardType": "frangible",
+              "tags": "armor, inspiration",
+              "customProperties": {
+              }
+            },
+            {
+              "idCard": "cypher-splat",
+              "idHand": "cyphers",
+              "cardTitle": "Grrr!",
+              "description": "Deal 3 additional points of damage for 10 minutes!",
+              "cardType": "frangible",
+              "tags": "armor, inspiration"
+            }
+          ]
+        },
+        {
+          "idHand": "health",
+          "order": 10,
+          "idGame": "8323",
+          "handType": "dropdown",
+          "handTitle": "Health",
+          "handState": "Closed",
+          "groupAddable": false,
+          "cards": [
+            {
+              "idHand": "health",
+              "idCard": "hale",
+              "cardTitle": "Hale",
+              "cardType": "status",
+              "faceColor": "green",
+              "description": "No penalties"
+            },
+            {
+              "idHand": "health",
+              "idCard": "Impaired",
+              "cardTitle": "Impaired",
+              "cardType": "status",
+              "faceColor": "yellow",
+              "description": "Each level of Effort used costs one more point. Ignore minor/major effects on special rolls and any rolls of 17 or higher only deal +1 damage"
+            },
+            {
+              "idHand": "health",
+              "idCard": "Debilitated",
+              "cardTitle": "Debilitated,",
+              "cardType": "status",
+              "faceColor": "red",
+              "description": "Can take no actions and may only move an immediate distance(10ft). Characters cannot move at all if their Speed Pool is at zero."
+            },
+            {
+              "idCard": "Dead",
+              "idHand": "health",
+              "cardTitle": "Dead",
+              "cardType": "status",
+              "faceColor": "black",
+              "description": "Deal with it"
+            }
+          ]
+        },
+        {
+          "idHand": "recovery",
+          "order": 5,
+          "idGame": "8323",
+          "handType": "dropdown",
+          "handTitle": "Next Recovery",
+          "handState": "Closed",
+          "groupAddable": false,
+          "cards": [
+            {
+              "idCard": "451",
+              "idHand": "45",
+              "cardTitle": "Action",
+              "cardType": "action",
+              "dieRoll": "1d6 + {Tier}",
+              "faceColor": "bg-gray-900",
+              "tags": "default"
+            },
+            {
+              "idCard": "452",
+              "idHand": "45",
+              "cardTitle": "10 Minutes",
+              "cardType": "action",
+              "dieRoll": "1d6 + {Tier}",
+              "faceColor": "bg-gray-800"
+            },
+            {
+              "idCard": "453",
+              "idHand": "45",
+              "cardTitle": "1 Hour",
+              "cardType": "action",
+              "dieRoll": "1d6 + {Tier}",
+              "faceColor": "bg-green-600"
+            },
+            {
+              "idCard": "454",
+              "idHand": "45",
+              "cardTitle": "10 Hours",
+              "cardType": "action",
+              "dieRoll": "1d6 + {Tier}",
+              "faceColor": "bg-gray-500"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "idCharacter": "Samuel-Jedermann",
       "characterName": "Samuel-Jedermann",
       "characterDescription": "Samuel/Jedermann is an Intuitive Explorer who Infiltrates with Lethal Force ",
@@ -651,169 +1078,6 @@
       "idUser": "444"
     }
   ],
-  "hands": {
-    "33333": {
-      "idHand": "33333",
-      "idGame": "8323",
-      "handType": "grid",
-      "handTitle": "Traits ",
-      "handState": "Condensed",
-      "groupAddable": false,
-      "cards": [
-        {
-          "idCard": "333331",
-          "idHand": "33333",
-          "cardTitle": "Might",
-          "description": "Used for strength and resistance",
-          "cardType": "pool",
-          "dieRoll": "d6",
-          "poolValue": 9,
-          "currentValue": 9,
-          "tags": "C1, Dolores"
-        },
-        {
-          "idCard": "333332",
-          "idHand": "33333",
-          "cardTitle": "Speed",
-          "description": "Used for moving, dodging",
-          "cardType": "pool",
-          "dieRoll": "d6",
-          "poolValue": 10,
-          "currentValue": 10,
-          "tags": "C1, Dolores"
-        },
-        {
-          "idCard": "333333",
-          "idHand": "33333",
-          "cardTitle": "Intellect",
-          "description": "Used for thinking, figuring, charming",
-          "cardType": "pool",
-          "dieRoll": "d6",
-          "poolValue": 16,
-          "currentValue": 16,
-          "tags": "C1, Dolores"
-        },
-        {
-          "idCard": "333334",
-          "idHand": "33333",
-          "cardTitle": "Might",
-          "description": "Used for strength and resistance",
-          "cardType": "pool",
-          "dieRoll": "d6",
-          "poolValue": 10,
-          "currentValue": 10,
-          "tags": "C2, Static"
-        },
-        {
-          "idCard": "333335",
-          "idHand": "33333",
-          "cardTitle": "Speed",
-          "description": "Used for moving, dodging",
-          "cardType": "pool",
-          "dieRoll": "d6",
-          "poolValue": 10,
-          "currentValue": 10,
-          "tags": "C3, Static"
-        },
-        {
-          "idCard": "333336",
-          "idHand": "33333",
-          "cardTitle": "Intellect",
-          "description": "Used for thinking, figuring, charming",
-          "cardType": "pool",
-          "dieRoll": "d6",
-          "poolValue": 16,
-          "currentValue": 7,
-          "tags": "C3, Static"
-        }
-      ]
-    },
-    "44": {
-      "idHand": "44",
-      "order": 10,
-      "idGame": "8323",
-      "handType": "stack",
-      "handTitle": "Abilities",
-      "handState": "Condensed",
-      "groupAddable": false,
-      "cards": {
-        "441": {
-          "idCard": "441",
-          "idHand": "44",
-          "cardTitle": "Far Step",
-          "description": "short-range teleport",
-          "cardType": "action",
-          "customProperties": {
-            "stat": "Intellect",
-            "cost": 2,
-            "page": 136
-          }
-        },
-        "442": {
-          "idCard": "442",
-          "idHand": "44",
-          "cardTitle": "Resonance Field",
-          "description": "protective shield",
-          "cardType": "action",
-          "customProperties": {
-            "stat": "Intellect",
-            "cost": 2
-          }
-        },
-        "443": {
-          "idCard": "443",
-          "idHand": "44",
-          "cardTitle": "Onslaught",
-          "description": "static-blast!",
-          "cardType": "action",
-          "customProperties": {
-            "stat": "Intellect",
-            "cost": 2
-          },
-          "dieRoll": "4d6+3"
-        }
-      }
-    },
-    "45": {
-      "idHand": 45,
-      "idGame": "8323",
-      "handType": "dropdown",
-      "handTitle": "Recoveries",
-      "handState": "Closed",
-      "groupAddable": false,
-      "cards": [
-        {
-          "idCard": "451",
-          "idHand": "45",
-          "cardTitle": "Action",
-          "cardType": "action",
-          "dieRoll": "1d6 + {Tier}",
-          "faceColor": "green"
-        },
-        {
-          "idCard": "452",
-          "idHand": "45",
-          "cardTitle": "10 Minutes",
-          "cardType": "action",
-          "dieRoll": "1d6 + {Tier}"
-        },
-        {
-          "idCard": "453",
-          "idHand": "45",
-          "cardTitle": "1 Hour",
-          "cardType": "action",
-          "dieRoll": "1d6 + {Tier}"
-        },
-        {
-          "idCard": "454",
-          "idHand": "45",
-          "cardTitle": "10 Hours",
-          "cardType": "action",
-          "dieRoll": "1d6 + {Tier}"
-        }
-      ]
-    }
-  },
   "gameChats": [
     {
       "idGame": "8323",
@@ -867,43 +1131,5 @@
         }
       ]
     }
-  ],
-  "chatGames": {
-    "8323": {
-      "chat1": {
-        "idGame": "8323",
-        "idUser": "dael",
-        "userName": "Dael Franke",
-        "message": "I am so gonna make a die roll",
-        "then": 1626459657,
-        "when": "Fri Jul 23 2021 21:16:50 GMT-0700",
-        "systemText": "d6: [3] + 2 = 5"
-      },
-      "chat2": {
-        "idGame": "8323",
-        "idUser": "js",
-        "userName": "Johnny S.",
-        "message": "What a success!",
-        "when": 1626459677
-      },
-      "chat3": {
-        "idGame": "8323",
-        "idUser": "pol",
-        "userName": "P to the S",
-        "message": "Smashing! Roll initiative > 2",
-        "when": 1626459667,
-        "systemText": "d6: [1] + 1 = 2"
-      }
-    },
-    "398": {
-      "chat9": {
-        "idGame": "398",
-        "idUser": "js",
-        "userName": "chat 9 from outer space",
-        "message": "Smashing! Roll initiative > 2",
-        "when": 1626459657,
-        "systemText": "d6: [1] + 1 = 2; 0 Successes"
-      }
-    }
-  }
+  ]
 }

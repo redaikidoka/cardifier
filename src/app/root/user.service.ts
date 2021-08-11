@@ -1,20 +1,22 @@
-import { Observable, of } from 'rxjs';
-import { Injectable } from '@angular/core';
+import {Observable, of} from 'rxjs';
+import {Injectable} from '@angular/core';
 
-import { map, tap, catchError } from 'rxjs/operators';
+import {map, tap, catchError} from 'rxjs/operators';
 
-import { CardUser } from '../core/data/card-user';
+import {CardUser} from '../core/data/card-user';
 
-import { LoggerService } from './logger.service';
+import {LoggerService} from './logger.service';
 
-import { UnsubscribeOnDestroyAdapter } from './unsubscribe-on-destroy-adapter';
+import {UnsubscribeOnDestroyAdapter} from './unsubscribe-on-destroy-adapter';
 import {AngularFirestore} from '@angular/fire/firestore';
+import {Game} from '../core/data/game';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService extends UnsubscribeOnDestroyAdapter {
   me: CardUser | null;
+  private userCache: CardUser[] = [];
 
   static getInitials(userName: string): string {
     if (!userName) {
@@ -54,47 +56,47 @@ export class UserService extends UnsubscribeOnDestroyAdapter {
   }
 
 
-  getUser$(idUser: string): Observable<CardUser | undefined> {
+  getUser$(idUser: string, force = false): Observable<CardUser | undefined> {
+    if (!force && this.userCache.filter(cached => cached.idUser === idUser)) {
+      // console.log('user.Service::getUser$ - have cache', idUser);
+      return of(this.userCache.filter(cached => cached.idUser === idUser)[0]);
+    }
 
     return this.afs.collection<CardUser>('users').doc(idUser).valueChanges().pipe(
-      tap(user => console.log('UserService::getuser$', idUser, user))
+      tap(user => console.log('UserService::getUser$', idUser, user))
     );
 
   }
 
-  getUser(idUser: string): Observable<CardUser> {
-    // TODO: fix!
+  cacheUsers(userIds: string[]): number {
+    if (userIds.length < 1) { return 0; }
 
-    const faker = {
-      idUser: 'pol',
-      userEmail: 'somebody@simplecommunion.com',
-      userName: 'Pól Stafford',
-      imageUrl: 'http://rpg.simplecommunion.com/pds/me-md.jpeg',
-      hoursPlayed: 19,
-      isActive: true,
-      tags: 'GM, Arcodd',
-      sCreate: new Date('2019-04-03'),
-      sUpdate: new Date('2021-05-28'),
-      idUserType: 300,
-      userTypeTitle: 'Paying Storyteller',
-      userTypeNotes: 'Encourage',
-    } as CardUser;
+    let cacheCount = 0;
 
-    return of(faker);
+    this.subs.sink = this.afs.collection<CardUser>('users', ref => ref.where('idUser', 'in', userIds)).valueChanges().subscribe(
+      users => {
 
-    // const qSingleUser = gql`{ CardUserByIdAdmUserAndIdAdmApp( idAdmUser: ${idUser}, idAdmApp: ${idAdmApp}) {
-    //     ${usrFields}
-    //   } }`;
+        users.forEach(u  => {
+          const found = this.userCache.filter(cached => cached.idUser === u.idUser);
+          if ( !found || found.length < 1 ) {
+            console.log('user.Service::cacheUsers - caching', u.idUser);
+            this.userCache.push(u);
+            cacheCount++;
+          }
+        });
 
-    // console.log('UserService::getuser', idUser, idAdmApp, qSingleUser);
-    // // return new Observable((observer: Observer<CardUser>) => {
-    // return this.apollo.query<any>({query: qSingleUser}).pipe(
-    //   tap(usr => console.log('UserService::getUser', usr),
-    //     err => this.logger.logErrObject( 'UserService::getUser', err, 'Could not load user')),
-    //   map(userData => UserService.dataToCardUserQuery(userData, 'CardUserByIdAdmUserAndIdAdmApp'))
-    // );
-    // return of({} as CardUser);
+        // console.log('user.service.cacheUsers() - final cache', this.userCache);
+
+      }
+    );
+
+    return cacheCount;
   }
+
+  clearCache(): void {
+    this.userCache = [];
+  }
+
 
   getUserByEmail(email: string): Observable<CardUser> {
     // const qSingleUser = gql`{ allCardUsersList(condition: {userEmail: "${email}"}) {
@@ -109,11 +111,11 @@ export class UserService extends UnsubscribeOnDestroyAdapter {
     return of({} as CardUser);
   }
 
-  userList$(): Observable<CardUser[]> {
+  userList$(limit = 10): Observable<CardUser[]> {
 
     console.log('UserService::userList$');
 
-    return this.afs.collection<CardUser>('users').valueChanges().pipe(
+    return this.afs.collection<CardUser>('users', ref => ref.limit(limit)).valueChanges().pipe(
       tap(users => console.log('userService::userList$', users))
     );
 

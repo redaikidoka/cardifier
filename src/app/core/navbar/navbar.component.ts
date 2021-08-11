@@ -11,10 +11,16 @@ export class NavbarComponent implements OnInit {
   me$ = this.auth.me$;
   loggedIn$ = this.auth.loggedIn$();
 
-  toggleNavbar() {
+  toggleNavbar(): void {
     this.showMenu = !this.showMenu;
   }
   constructor(private auth: AuthService) {}
 
   ngOnInit(): void {}
+
+
+  userIcon(idUserType: number): string {
+    // console.log('login.userIcon', idUserType);
+    return AuthService.userIcon(idUserType);
+  }
 }

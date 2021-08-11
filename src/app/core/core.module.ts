@@ -10,12 +10,14 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {UserCardComponent} from './user-card/user-card.component';
 import {ModalLightboxComponent} from './modal-lightbox/modal-lightbox.component';
 import { HandTypePipe } from './pipe/hand-type.pipe';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { HandTypesPipe } from './hand-types.pipe';
 
 
 
 @NgModule({
-  declarations: [FooterComponent, NavbarComponent, UserCardComponent, ModalLightboxComponent, HandTypePipe],
-  imports: [CommonModule, RouterModule, MatDialogModule
+  declarations: [FooterComponent, NavbarComponent, UserCardComponent, ModalLightboxComponent, HandTypePipe, HandTypesPipe],
+  imports: [CommonModule, RouterModule, MatDialogModule, MatTooltipModule
   ],
   exports: [FooterComponent, NavbarComponent, UserCardComponent, ModalLightboxComponent, HandTypePipe]
 })

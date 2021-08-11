@@ -37,8 +37,8 @@ export class LoginComponent extends UnsubscribeOnDestroyAdapter implements OnIni
     });
   }
 
-  userIcon(idUserType: number): string {
-    // console.log('login.userIcon', idUserType);
-    return AuthService.userIcon(idUserType);
-  }
+userIcon(idUserType: number): string {
+  // console.log('login.userIcon', idUserType);
+  return AuthService.userIcon(idUserType);
+}
 }

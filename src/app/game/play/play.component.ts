@@ -19,10 +19,10 @@ import {AuthService} from '../../root/auth.service';
 })
 export class PlayComponent extends UnsubscribeOnDestroyAdapter {
 
-  idGame = '8323';
-  // theGame: Game | undefined;
+  idGame = '';
 
   game$: Observable<Game | undefined> = of(undefined);
+  game: Game | undefined;
   chats$: Observable<Chat[]> | undefined;
 
   constructor(private aRoute: ActivatedRoute, private gameService: GameService, private logger: LoggerService,
@@ -36,6 +36,14 @@ export class PlayComponent extends UnsubscribeOnDestroyAdapter {
         this.idGame = params.id;
 
         this.game$ = this.gameService.getGame$(this.idGame, this.auth.myId());
+
+        this.subs.sink = this.game$.subscribe(game => {
+          if (!game) {
+            console.log('Play.comp::game$Sub', game);
+            this.game = undefined;
+            return;
+          }
+        })
 
         this.chats$ = this.chatService.getGameChat$(this.idGame);
       } else {
@@ -57,5 +65,10 @@ export class PlayComponent extends UnsubscribeOnDestroyAdapter {
     }
 
     console.log('make session', session);
+  }
+
+  initializeGame(): void {
+    if (!this.idGame) { return; }
+
   }
 }

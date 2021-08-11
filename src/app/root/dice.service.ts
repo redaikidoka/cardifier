@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Dice } from 'dice-typescript';
+import {ChatService} from './chat.service';
+import {Card} from '../core/data/game';
+import {Chat} from '../core/data/chat';
+import {AuthService} from './auth.service';
+import {LoggerService} from './logger.service';
 
 export interface RollResults {
   total: number;
@@ -13,7 +18,7 @@ export interface RollResults {
 export class DiceService {
   private dieRoller: Dice;
 
-  constructor() {
+  constructor(private auth: AuthService, private chatService: ChatService, private logger: LoggerService) {
     this.dieRoller = new Dice();
   }
 
@@ -25,32 +30,35 @@ export class DiceService {
     return {total: rolled.total, verbose: rolled.renderedExpression} as RollResults;
     // return this.dieRoller.roll(rollMe).total;
   }
-  // rollDice(rollMe: string): RollResults {
-  //   const results = {} as RollResults;
-  //   let count = 0;
-  //   let dieType = 0;
-  //
-  //   results.sum = 0;
-  //
-  //
-  //   count = this.parseCount(rollMe);
-  //   dieType = this.parseDieType(rollMe);
-  //
-  //   for (let d = 0; d < count; d++ ) {
-  //     const roll = this.randomIntFromInterval(1, dieType);
-  //
-  //   }
-  //
-  //   return results;
-  // }
 
-  // private parseCount(rollMe: string): number {
-  //
-  // }
-  //
-  // private parseDieType(rollMe: string): number {
-  //
-  // }
+  rollCardDice(card: Card, cardIdGame: string, makeChat: boolean = true): RollResults {
+    console.log('DiceService::rollCardDice - bout to roll ', card.dieRoll, ' for ', card.cardTitle);
 
+    let rolling = card.dieRoll || '';
 
+    if (rolling.indexOf('#CurrentValue') > 0) {
+      console.log('dice.service::rollCardDice - replacing Current Value', rolling);
+      rolling = rolling.replace('#CurrentValue', card.currentValue?.toString() || '') ;
+    }
+
+    const rolled = this.roll(rolling );
+    console.log('hand-blocks.rollDice', rolling, rolled);
+
+    if (makeChat) {
+      const chat = {
+        idGame: cardIdGame,
+        idUser: this.auth.myId(),
+        userName: this.auth.me().userName,
+        message: `For ${card.cardTitle}, I rolled ${rolled.total}`,
+        when: (new Date()).valueOf(),
+        systemText: `${card.dieRoll}  =  ${rolled.verbose}`
+      } as Chat;
+
+      this.chatService.createChat(chat).then((result: any) =>
+        console.log('hand-blocks.rollDice', result, chat))
+        .catch((err: Error) => this.logger.logErrObject('dice.service::rollCardDice', err, 'Could not make dice roll message'));
+    }
+
+    return rolled;
+  }
 }

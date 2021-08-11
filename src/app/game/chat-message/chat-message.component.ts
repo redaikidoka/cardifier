@@ -11,6 +11,7 @@ import {UserService} from '../../root/user.service';
 })
 export class ChatMessageComponent  implements OnInit {
   @Input() chat: Chat | undefined;
+  @Input() showSystem = true;
 
   user$: Observable<CardUser | undefined> | undefined;
 
@@ -21,7 +22,6 @@ export class ChatMessageComponent  implements OnInit {
   ngOnInit(): void {
     if (this.chat) {
       this.user$ = this.userService.getUser$(this.chat?.idUser);
-
     } else {
       console.log('chatMessage.onInit - no Chat!!');
     }

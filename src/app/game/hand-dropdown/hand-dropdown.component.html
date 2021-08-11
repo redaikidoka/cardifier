@@ -1,10 +1,11 @@
 <div [ngClass]="cardStyle">
   <mat-label [ngClass]="getLabelStyle"> {{hand?.handTitle}}</mat-label>
-  <mat-select [(value)]="currentCard" >
+  <mat-select [(value)]="currentCard" (valueChange)="newValue()">
     <mat-select-trigger class="text-white"> {{currentCard?.cardTitle}} </mat-select-trigger>
     <mat-option [value]=""></mat-option>
     <mat-option *ngFor="let card of hand?.cards" [value]="card" >{{card.cardTitle}}
       <i class="ml-2 fas fa-info-circle" *ngIf="card.description" matTooltip="{{card.description}}"></i>
+      <i *ngIf="card.dieRoll" class="ml-2 fas fa-dice float-right"  matTooltip="click to roll {{card.dieRoll}}"></i>
     </mat-option>
   </mat-select>
 </div>

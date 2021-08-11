@@ -1,5 +1,5 @@
 <cf-navbar></cf-navbar>
-<main class="h-full w-full" style="background-color: rgba(0, 0, 0, 0.8)">
+<main class="h-screen w-full" style="background-color: rgba(0, 0, 0, 0.8)">
   <section *ngIf="game$ | async as game; else no_game" class="pt-16 pb-32">
     <!-- <h1 class="text-white font-semibold text-2xl mb-6">Home Page</h1> -->
 
@@ -71,12 +71,16 @@
             <div *ngFor="let character of game.characters" class="flex flex-row flex-wrap">
               <h4 class="text-green-400 font-semibold"
                   matTooltip="{{character.characterDescription}}"> {{character.characterName}}</h4>
-              <div *ngFor="let hand of character.hands | handType: 'dropdown'" class="float-right">
+              <div *ngFor="let hand of character.hands | handType: 'block'" class="flex flex-col m:w-1/2 xs:w-full">
+                <app-hand-blocks [hand]="hand" [showTitle]="false" [titleSize]="' '"
+                                   ></app-hand-blocks>
+              </div>
+              <div *ngFor="let hand of character.hands | handType: 'dropdown'" class="flex-col md:w-1/4 w-1/2">
                 <app-hand-dropdown [hand]="hand" [titleSize]="' block text-xl bg-gray-700'"
                                    [bgStyle]="' bg-gray-800 bg-opacity-50'"
                                    [cardStyle]="'block bg-gray-800 text-white ml-4'"></app-hand-dropdown>
               </div>
-              <div *ngFor="let hand of character.hands| handType: 'grid'" class="flex-col md:w-1/4 w-full">
+              <div *ngFor="let hand of character.hands| handType: 'grid'" class="flex-col md:w-1/4 w-1/2">
                 <app-hand-blocks [hand]="hand" [titleSize]="'w-full block text-xl bg-gray-700'"
                                  [bgStyle]="' bg-gray-800 bg-opacity-25'"
                                  [cardStyle]="'block bg-gray-800 text-white ml-4'"></app-hand-blocks>

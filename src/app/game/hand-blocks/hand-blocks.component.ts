@@ -32,6 +32,7 @@ export class HandBlocksComponent extends UnsubscribeOnDestroyAdapter implements 
   @Input() bgStyle = '';
   @Input() bgImage = '';
   @Input() isOpen = true;
+  @Input() showTitle = true;
 
   constructor(private picDialog: MatDialog, private roller: DiceService, private chatService: ChatService,
               private auth: AuthService, private logger: LoggerService) {
@@ -80,21 +81,10 @@ export class HandBlocksComponent extends UnsubscribeOnDestroyAdapter implements 
   }
 
   rollDice(card: Card): void {
-    console.log('I am gonna roll ', card.dieRoll, ' for ', card.cardTitle);
-    const rolled = this.roller.roll(card.dieRoll ?? '');
-    console.log('hand-blocks.rollDice', rolled);
+    this.roller.rollCardDice(card, this.hand?.idGame || '');
+  }
 
-    const chat = {
-      idGame: this.hand?.idGame,
-      idUser: this.auth.myId(),
-      userName: this.auth.me().userName,
-      message: `For ${card.cardTitle}, I rolled ${rolled.total}`,
-      when: (new Date()).valueOf(),
-      systemText: card.dieRoll + ':' + rolled.verbose
-    } as Chat;
-
-    this.chatService.createChat(chat).then((result: any) =>
-      console.log('hand-blocks.rollDice', result, chat))
-      .catch((err: Error) => this.logger.logErrObject('hand-blocks.rollDice', err, 'Could not make dice roll message'));
+  takeAction(card: Card): void {
+    const actionText = `Taking Action: ${card.cardTitle}:  `;
   }
 }

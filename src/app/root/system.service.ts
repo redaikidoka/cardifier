@@ -9,10 +9,9 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class SystemService {
-  private appVersion: string;
+  private readonly appVersion: string = '12.0.2021-08-11';
 
   constructor() {
-    this.appVersion = '12.0.2021-08-01';
   }
 
   getVersion(): string {

@@ -32,15 +32,19 @@ export interface Game {
 
   hands?: Hand[];
 
+  users?: string[];
+
+  // sub-collections
+  areas?: GameArea[];
+  sessions?: GameSession[];
+  characters?: Character[];
+
+
   // lookups
   currentSession?: GameSession;
   gameArea?: GameArea;
   playArea?: GameArea;
 
-  // added bits
-  areas?: GameArea[];
-  sessions?: GameSession[];
-  characters?: Character[];
 
 }
 
@@ -53,6 +57,11 @@ export interface GameSession {
   length: number;
 
   imageUrl?: string;
+
+  sCreate: Date;
+  sUpdate: Date;
+  sIdUserCreate?: string;
+  sIdUserUpdate?: string;
 
   hands?: Hand[];
 }
@@ -71,8 +80,8 @@ export interface GameArea {
 
   sCreate: Date;
   sUpdate: Date;
-  sIdUserCreate?: number;
-  sIdUserUpdate?: number;
+  sIdUserCreate?: string;
+  sIdUserUpdate?: string;
 
   hands?: Hand[];
 }

@@ -6,11 +6,11 @@
   <div class="flex-1 overflow-hidden">
     <div>
       <span class="font-bold mr-1" *ngIf="user$ | async as user">{{user.userName}}</span>
-      <span class="text-grey text-xs" *ngIf="chat?.when">{{ chat?.when | date:'short' }} </span>
+      <span class="text-grey text-sm" *ngIf="chat?.when">{{ chat?.when | date:'short' }} </span>
     </div>
     <p class="text-black leading-normal">{{chat?.message}}</p>
-    <div *ngIf="chat?.systemText"
-      class="bg-gray-300  text-gray-700 text-sm font-mono rounded-xl  p-3 mt-2  ">
+    <div *ngIf="showSystem && chat?.systemText"
+      class="bg-gray-300  text-gray-700 text-xs font-mono rounded-xl  p-3 mt-2  ">
       {{chat?.systemText}}
     </div>
   </div>

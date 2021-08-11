@@ -10,6 +10,7 @@ import {Chat} from '../../core/data/chat';
 })
 export class ChatListComponent implements OnInit {
   @Input() chats$: Observable<Chat[]> | undefined;
+  @Input() showSystem = true;
 
   constructor() { }
 

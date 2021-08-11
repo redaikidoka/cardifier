@@ -14,8 +14,8 @@ export interface Character {
   idUser: string; // owner of the character
   sCreate: Date;
   sUpdate: Date;
-  sIdUserCreate?: number;
-  sIdUserUpdate?: number;
+  sIdUserCreate?: string;
+  sIdUserUpdate?: string;
 
   hands: Hand[];
 }

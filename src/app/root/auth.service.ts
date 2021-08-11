@@ -237,7 +237,7 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
       this.logout(false);
     }
 
-    return this.userService.getUser$(idUser).pipe(
+    return this.userService.getUser$(idUser, true).pipe(
       map((found) => {
         if (!found) {
           console.error('auth.service::testLogin could not login:', idUser);
@@ -257,11 +257,7 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
         if (goHome) { this.navigateHome(); }
       }),
       catchError((err) => {
-        this.logger.logErrObject(
-          'AuthService::testLogin',
-          err,
-          'Could not login user id ' + idUser
-        );
+        this.logger.logErrObject( 'AuthService::testLogin', err, 'Could not login user id ' + idUser );
         return of({} as CardUser);
       })
     );
