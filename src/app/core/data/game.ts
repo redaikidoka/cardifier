@@ -98,6 +98,8 @@ export interface Hand {
   handType: string;
   handTitle: string;
 
+  handDescription?: string;
+
   iconUrl?: string;
   imageUrl?: string;
 
@@ -126,6 +128,7 @@ export interface Card {
   backImage?: string;
 
   faceColor?: string;
+  textColor?: string;
   backColor?: string;
 
   headerText?: string;

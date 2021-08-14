@@ -31,10 +31,13 @@ export class DiceService {
     // return this.dieRoller.roll(rollMe).total;
   }
 
-  rollCardDice(card: Card, cardIdGame: string, makeChat: boolean = true): RollResults {
+  rollCardDice(card: Card, cardIdGame: string, explicitFor: string = '', makeChat: boolean = true): RollResults {
     console.log('DiceService::rollCardDice - bout to roll ', card.dieRoll, ' for ', card.cardTitle);
 
     let rolling = card.dieRoll || '';
+    if (explicitFor === '') {
+      explicitFor = card.cardTitle;
+    }
 
     if (rolling.indexOf('#CurrentValue') > 0) {
       console.log('dice.service::rollCardDice - replacing Current Value', rolling);
@@ -49,7 +52,7 @@ export class DiceService {
         idGame: cardIdGame,
         idUser: this.auth.myId(),
         userName: this.auth.me().userName,
-        message: `For ${card.cardTitle}, I rolled ${rolled.total}`,
+        message: `For _${explicitFor}_, I rolled ${rolled.total}`,
         when: (new Date()).valueOf(),
         systemText: `${card.dieRoll}  =  ${rolled.verbose}`
       } as Chat;

@@ -69,11 +69,14 @@
         <div class="flex flex-row flex-wrap">
           <div class="w-full ">
             <div *ngFor="let character of game.characters" class="flex flex-row flex-wrap">
-              <h4 class="text-green-400 font-semibold"
+              <h4 class="text-white font-semibold mt-2 mx-1"
                   matTooltip="{{character.characterDescription}}"> {{character.characterName}}</h4>
               <div *ngFor="let hand of character.hands | handType: 'block'" class="flex flex-col m:w-1/2 xs:w-full">
                 <app-hand-blocks [hand]="hand" [showTitle]="false" [titleSize]="' '"
                                    ></app-hand-blocks>
+              </div>
+              <div *ngFor="let hand of character.hands | handType: 'track'" class="flex flex-col m:w-1/2 xs:w-full">
+                <app-hand-track [hand]="hand"  ></app-hand-track>
               </div>
               <div *ngFor="let hand of character.hands | handType: 'dropdown'" class="flex-col md:w-1/4 w-1/2">
                 <app-hand-dropdown [hand]="hand" [titleSize]="' block text-xl bg-gray-700'"

@@ -20,7 +20,10 @@ export class HandDropdownComponent implements OnInit {
   @Input() cardStyle = 'inline-block bg-gray-200 text-white';
   @Input() cardTextStyle = '';
   @Input() bgStyle = '';
-  @Input() bgImage = '';
+  // @Input() bgImage = '';
+  @Input() includeEmpty = false;
+
+  @Input() showTitle = true;
 
   constructor(private roller: DiceService) { }
 
@@ -50,7 +53,7 @@ export class HandDropdownComponent implements OnInit {
   newValue(): void {
     if (this.currentCard) {
       if (this.currentCard.dieRoll) {
-        this.roller.rollCardDice(this.currentCard, this.hand?.idGame || '');
+        this.roller.rollCardDice(this.currentCard, this.hand?.idGame || '', this.hand?.handTitle + ': ' + this.currentCard.cardTitle);
       }
     }
   }

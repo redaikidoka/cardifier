@@ -1,11 +1,25 @@
-<div [ngClass]="cardStyle">
-  <mat-label [ngClass]="getLabelStyle"> {{hand?.handTitle}}</mat-label>
-  <mat-select [(value)]="currentCard" (valueChange)="newValue()">
-    <mat-select-trigger class="text-white"> {{currentCard?.cardTitle}} </mat-select-trigger>
-    <mat-option [value]=""></mat-option>
-    <mat-option *ngFor="let card of hand?.cards" [value]="card" >{{card.cardTitle}}
-      <i class="ml-2 fas fa-info-circle" *ngIf="card.description" matTooltip="{{card.description}}"></i>
-      <i *ngIf="card.dieRoll" class="ml-2 fas fa-dice float-right"  matTooltip="click to roll {{card.dieRoll}}"></i>
-    </mat-option>
-  </mat-select>
+<div [ngClass]="bgStyle">
+  <label *ngIf="showTitle"
+         class="align-middle text-gray-200  mt-6 mb-2  mr-1 p-2" [ngClass]="titleSize">
+    {{hand?.handTitle}} :
+    <!--    <i *ngIf="hand?.imageUrl" class="fas fa-image ml-2" (click)="showHandImage(hand)"></i>-->
+  </label>
+  <select [ngClass]="cardTextStyle">
+    <option *ngFor="let card of hand?.cards" [value]="card" [ngClass]="card.faceColor ||''"
+            matTooltip="{{card.description}}"
+    >
+      {{card.cardTitle}}
+<!--      <i class="ml-2 fas fa-dice" *ngIf="card.dieRoll" matTooltip="select to roll {{card.dieRoll}}"></i>-->
+    </option>
+  </select>
+  <!--  <mat-label [ngClass]="getLabelStyle" matTooltip="{{hand?.handDescription}}"> {{hand?.handTitle}}</mat-label>-->
+  <!--  <mat-select [(value)]="currentCard" (valueChange)="newValue()">-->
+  <!--    <mat-select-trigger class="text-white"> {{currentCard?.cardTitle}} </mat-select-trigger>-->
+  <!--    <mat-option [value]=""></mat-option>-->
+  <!--    <mat-option *ngFor="let card of hand?.cards" [value]="card" >-->
+  <!--      {{card.cardTitle}}-->
+  <!--      <i class="ml-2 fas fa-info-circle" *ngIf="card.description" matTooltip="{{card.description}}"></i>-->
+  <!--      <i class="ml-2 fas fa-dice"  *ngIf="card.dieRoll"  matTooltip="select to roll {{card.dieRoll}}"></i>-->
+  <!--    </mat-option>-->
+  <!--  </mat-select>-->
 </div>

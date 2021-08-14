@@ -631,7 +631,7 @@
     {
       "idCharacter": "Bricklayer-pol",
       "characterName": "Bricklayer-Bob",
-      "characterDescription": " is a Tough Warrior who Performs Feats of Strength",
+      "characterDescription": "is a Tough Warrior who Performs Feats of Strength",
       "idGame": "8323",
       "idUser": "pol",
       "hands": [
@@ -978,7 +978,7 @@
           "idHand": "health",
           "order": 10,
           "idGame": "8323",
-          "handType": "dropdown",
+          "handType": "track",
           "handTitle": "Health",
           "handState": "Closed",
           "groupAddable": false,
@@ -988,32 +988,33 @@
               "idCard": "hale",
               "cardTitle": "Hale",
               "cardType": "status",
-              "faceColor": "green",
-              "description": "No penalties"
+              "faceColor": "bg-green-600 text-gray-200",
+              "description": "No penalties",
+              "tags": "#default"
             },
             {
               "idHand": "health",
               "idCard": "Impaired",
               "cardTitle": "Impaired",
               "cardType": "status",
-              "faceColor": "yellow",
-              "description": "Each level of Effort used costs one more point. Ignore minor/major effects on special rolls and any rolls of 17 or higher only deal +1 damage"
+              "faceColor": "bg-yellow-600 text-gray-200",
+              "description": "Each level of Effort used costs 1 more point. Ignore minor/major effects on special rolls and any rolls of 17 or higher only deal +1 damage"
             },
             {
               "idHand": "health",
               "idCard": "Debilitated",
-              "cardTitle": "Debilitated,",
+              "cardTitle": "Debilitated",
               "cardType": "status",
-              "faceColor": "red",
+              "faceColor": "bg-red-800 text-gray-200",
               "description": "Can take no actions and may only move an immediate distance(10ft). Characters cannot move at all if their Speed Pool is at zero."
             },
             {
               "idCard": "Dead",
               "idHand": "health",
-              "cardTitle": "Dead",
+              "cardTitle": "Dying",
               "cardType": "status",
-              "faceColor": "black",
-              "description": "Deal with it"
+              "faceColor": "bg-black text-white",
+              "description": "Deal with it. No, like ... fast!"
             }
           ]
         },
@@ -1021,8 +1022,8 @@
           "idHand": "recovery",
           "order": 5,
           "idGame": "8323",
-          "handType": "dropdown",
-          "handTitle": "Next Recovery",
+          "handType": "track",
+          "handTitle": "Recovery",
           "handState": "Closed",
           "groupAddable": false,
           "cards": [
@@ -1032,32 +1033,35 @@
               "cardTitle": "Action",
               "cardType": "action",
               "dieRoll": "1d6 + {Tier}",
-              "faceColor": "bg-gray-900",
-              "tags": "default"
+              "faceColor": "bg-gray-500",
+              "description": "Take an action and recover your pools."
             },
             {
               "idCard": "452",
               "idHand": "45",
-              "cardTitle": "10 Minutes",
+              "cardTitle": "Minutes: 10",
               "cardType": "action",
               "dieRoll": "1d6 + {Tier}",
-              "faceColor": "bg-gray-800"
+              "faceColor": "bg-gray-500",
+              "description": "Take 10 minutes and recover your pools."
             },
             {
               "idCard": "453",
               "idHand": "45",
-              "cardTitle": "1 Hour",
+              "cardTitle": "Hour: 1",
               "cardType": "action",
               "dieRoll": "1d6 + {Tier}",
-              "faceColor": "bg-green-600"
+              "faceColor": "bg-yellow-600",
+              "description": "Take an Hour and recover your pools."
             },
             {
               "idCard": "454",
               "idHand": "45",
-              "cardTitle": "10 Hours",
+              "cardTitle": "Night: 10 Hours",
               "cardType": "action",
               "dieRoll": "1d6 + {Tier}",
-              "faceColor": "bg-gray-500"
+              "faceColor": "bg-red-500",
+              "description": "Take 10 hours and recover your pools."
             }
           ]
         }

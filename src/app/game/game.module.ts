@@ -16,6 +16,7 @@ import { MatSelectModule} from '@angular/material/select';
 import { ChatListComponent } from './chat-list/chat-list.component';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import {HandTrackComponent} from './hand-track/hand-track.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     AreaTitleComponent,
     HandBlocksComponent,
     HandDropdownComponent,
+    HandTrackComponent,
     ChatListComponent,
     ChatMessageComponent
   ],
