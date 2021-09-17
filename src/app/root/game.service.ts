@@ -1,20 +1,23 @@
 import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
-
-import {Game, GameSession, GameArea, GameAreaType, Hand} from '../core/data/game';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {from, Observable, of} from 'rxjs';
 import {concatMap, map, mergeMap, switchMap, tap} from 'rxjs/operators';
-import {CharacterService} from './character.service';
+
+import {AngularFirestore} from '@angular/fire/firestore';
+
 import {Character, CharacterList} from '../core/data/character';
+import {Game, GameSession, GameArea, GameAreaType, Hand, Card, AREA_CURRENT_ID} from '../core/data/game';
+
+import {CharacterService} from './character.service';
 import {AuthService} from './auth.service';
 import {UserService} from './user.service';
+import {HandService} from './hand.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GameService {
   constructor(private afs: AngularFirestore, private characterService: CharacterService, private auth: AuthService,
-              private userService: UserService) {
+              private userService: UserService, private handService: HandService) {
   }
 
   getCurrentUserGames$(): Observable<Game[]> {
@@ -61,6 +64,9 @@ export class GameService {
             // AREA: Play (game.playArea)
             // @ts-ignore
             game?.playArea = game.areas.find(a => a.areaId === GameAreaType.Play);
+            // if (game?.playArea) {
+            //   this.createAreaCurrentHand(game, game.playArea);
+            // }
           }
 
           // console.log('game.service::getGame$ game setup', game);
@@ -115,16 +121,68 @@ export class GameService {
 
   }
 
-
-  createHand(game: Game, hand: Hand): Observable<any> {
-    if (game.hands) {
-      game.hands.push(hand);
-    } else {
-      game.hands = [hand];
+  createAreaCurrentHand(game: Game, area: GameArea): Observable<Hand | undefined> {
+    if (game && area && area.hands) {
+      // check to see if it's there!
+      if (area.hands.some(hand => hand.idHand === AREA_CURRENT_ID)) {
+        return of(area.hands.find(hand => hand.idHand === AREA_CURRENT_ID));
+      }
     }
 
-    return of(game);
+    if (!area.hands) {
+      area.hands = [];
+    }
+
+    const currentHand = {
+      idHand: AREA_CURRENT_ID,
+      order: 10000,
+      idGame: area.idGame,
+      idArea: area.idArea,
+      handType: 'current',
+      handTitle: 'Current Effects',
+      handDescription: 'Player and Scene FX go here',
+      handState: 'Open',
+      cards: [{
+        idCard: 'base',
+        order: 0,
+        idHand: AREA_CURRENT_ID,
+        cardTitle: 'Add Player FX Here',
+        description: 'Click the hand to close',
+        faceColor: 'bg-red-500',
+        tags: 'frangible'
+      } as Card]
+    } as Hand;
+
+    return from(this.handService.createGameHand$(currentHand)).pipe(
+      tap(returned => console.log('returned value', returned)),
+      map( res => {
+        area.hands?.push(currentHand);
+        return currentHand;
+      })
+    );
+      //
+      // .then(
+      //   () => {
+      //     area.hands?.push(currentHand);
+      //     return of(currentHand);
+      //   }
+      // )
+      // .catch(err => {
+      //   console.log('game.service::createAreaCurrentHand failed', err);
+      //   return of({} as Hand);
+      // });
+
   }
+
+  // createHand(game: Game, hand: Hand): Observable<any> {
+  //   if (game.hands) {
+  //     game.hands.push(hand);
+  //   } else {
+  //     game.hands = [hand];
+  //   }
+  //
+  //   return of(game);
+  // }
 
   getGameSession$(idGame: string, idSession: string): Observable<GameSession | undefined> {
     return this.afs.collection('games').doc(idGame).collection('sessions').doc<GameSession>(idSession).valueChanges();

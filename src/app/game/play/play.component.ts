@@ -43,7 +43,7 @@ export class PlayComponent extends UnsubscribeOnDestroyAdapter {
             this.game = undefined;
             return;
           }
-        })
+        });
 
         this.chats$ = this.chatService.getGameChat$(this.idGame);
       } else {

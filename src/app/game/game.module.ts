@@ -17,6 +17,7 @@ import { ChatListComponent } from './chat-list/chat-list.component';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {HandTrackComponent} from './hand-track/hand-track.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {HandTrackComponent} from './hand-track/hand-track.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     GameRoutingModule, CoreModule,
     MatTooltipModule, MatDialogModule, MatSelectModule, MatTabsModule
   ]

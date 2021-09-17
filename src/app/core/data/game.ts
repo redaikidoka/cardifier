@@ -83,11 +83,12 @@ export interface GameArea {
   sIdUserCreate?: string;
   sIdUserUpdate?: string;
 
-  hands?: Hand[];
+  hands: Hand[];
 }
 
 export type HandState = 'Open' | 'Condensed' | 'Closed' | 'Hidden' | '';
 
+export const AREA_CURRENT_ID = 'current';
 export interface Hand {
   idHand: string;
   order: number;
@@ -121,6 +122,7 @@ export interface Card {
   idHand: string;
 
   cardTitle: string;
+  cardShortTitle?: string;
   description?: string;
 
   cardIcon?: string;

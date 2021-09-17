@@ -8,6 +8,7 @@ import {ChatService} from '../../root/chat.service';
 import {Chat} from '../../core/data/chat';
 import {AuthService} from '../../root/auth.service';
 import {LoggerService} from '../../root/logger.service';
+import {HandService} from '../../root/hand.service';
 
 export interface DialogData {
   imageUrl: string;
@@ -35,7 +36,7 @@ export class HandBlocksComponent extends UnsubscribeOnDestroyAdapter implements 
   @Input() showTitle = true;
 
   constructor(private picDialog: MatDialog, private roller: DiceService, private chatService: ChatService,
-              private auth: AuthService, private logger: LoggerService) {
+              private auth: AuthService, private logger: LoggerService, private handService: HandService) {
     super();
   }
 
@@ -85,6 +86,32 @@ export class HandBlocksComponent extends UnsubscribeOnDestroyAdapter implements 
   }
 
   takeAction(card: Card): void {
-    const actionText = `Taking Action: ${card.cardTitle}:  `;
+    const actionText = `Uses ${this.hand?.handTitle}: ${card.cardTitle}:  `;
+
+    const newChat = {
+      idGame: this.hand?.idGame,
+      idUser: this.auth.myId(),
+      userName: this.auth.me().userName,
+      message: actionText,
+      when: (new Date()).valueOf(),
+      systemText: card.description
+    } as Chat;
+
+    this.chatService.createChat(newChat);
+
+    // add a new current card matching this thingy - probably via EventEmitter
+    this is an error
+    // ask the hand service to delete this card from this hand
+    this.handService.deleteCardFromHand(this.hand ?? {} as Hand, card).then(
+      (returnValue) => {// and then actually delete it locally
+        this.getHand().cards = this.getHand().cards.filter(c => c.idCard !== card.idCard);
+      }
+    );
+
+
+  }
+
+  private getHand(): Hand {
+    return this.hand ?? {cards: [] as Card[]} as Hand;
   }
 }

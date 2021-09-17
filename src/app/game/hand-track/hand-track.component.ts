@@ -7,6 +7,7 @@ import {DiceService} from '../../root/dice.service';
   templateUrl: './hand-track.component.html',
   styleUrls: ['./hand-track.component.scss']
 })
+
 export class HandTrackComponent implements OnInit {
   @Input() hand: Hand = {} as Hand;
 
@@ -83,7 +84,7 @@ export class HandTrackComponent implements OnInit {
     let theStyle = card.faceColor || '';
 
     if (card.idCard === this.currentCard?.idCard) {
-      theStyle += ' border-4 border-white text-white ';
+      theStyle = ' text-black bg-gray-100 border-4 border-white text-sm '; // text-white
     } else {
       theStyle += ' border-1 border-gray-500 ';
     }

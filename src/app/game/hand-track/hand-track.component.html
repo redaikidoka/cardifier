@@ -1,13 +1,17 @@
-<div class="p-1  block rounded-xl" [ngClass]="currentBg()">
-  <span class="inline-block text-gray-200 mr-2 ml-1 text-sm py-0"
+<div class="p-1 block rounded-l" [ngClass]="currentBg()">
+  <span class="inline-block text-gray-200 mr-2 ml-1 text-sm py-1"
         (dblclick)="fullExpandContract()"
-        *ngIf="this.hand?.handState !== 'Closed'"
+        *ngIf="this.hand?.handState !== 'Closed' "
   >
     {{hand?.handTitle}}</span>
+  <em class="inline-block text-gray-200 mr-2 ml-1 text-sm py-1 cursor-pointer"
+    *ngIf="(this.hand?.handState === 'Closed' && !currentCard)" matTooltip="No current value"> {{hand?.handTitle}}
+  </em>
   <ul class="inline-block">
-    <li *ngFor="let card of hand?.cards" class=" inline-block p-1  text-center ">
+    <li *ngFor="let card of hand?.cards" class=" inline-block  text-center "
+      >
       <button
-        class=" px-2 py-1 text-xs shadow-sm font-medium tracking-wider rounded-xl hover:border-4 hover:border-white hover:shadow-2xl hover:bg-gray-100 hover:text-black "
+        class=" mx-1 px-2 py-1 text-xs shadow-sm  font-medium tracking-wider rounded-xl hover:border-4 hover:border-white hover:shadow-2xl hover:bg-gray-100 hover:text-black "
         [ngClass]="cardStyle(card)"
         (click)="selectCard(card)"
         matTooltip="{{card.cardTitle}}: {{card.description}}"

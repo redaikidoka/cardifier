@@ -87,7 +87,7 @@
     {
       "idGame": "8323",
       "gameTitle": "A Time for Masks",
-      "imageUrl": "https://rpg.simplecommunion.com/tfm/itunes.jpg",
+      "imageUrl": "https://rpg.simplecommunion.com/tfm/tfm-dull.png",
       "iconUrl": "https://rpg.simplecommunion.com/pds/favicon_src.png",
       "hoursPlayed": 39,
       "isActive": true,
@@ -1061,7 +1061,8 @@
               "cardType": "action",
               "dieRoll": "1d6 + {Tier}",
               "faceColor": "bg-red-500",
-              "description": "Take 10 hours and recover your pools."
+              "description": "Take 10 hours and recover your pools.",
+              "cardIcon":
             }
           ]
         }
