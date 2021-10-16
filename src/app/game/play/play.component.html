@@ -6,13 +6,18 @@
     <!-- Game & Session -->
     <div class="flex flex-row flex-wrap" style="background-color: rgba(0, 0, 0, 0.3)">
       <!-- game -->
-      <div class="md:w-1/2 w-full pr-4 ">
-        <app-area-title [titleText]="game.gameTitle" [iconUrl]="game?.iconUrl"></app-area-title>
-        <span class="block text-gray-200 ml-8 mt-2"> Hours played: {{game.hoursPlayed}}</span>
-        <div *ngFor="let hand of game.gameArea?.hands" class="w-full">
-          <app-hand-blocks [hand]="hand"></app-hand-blocks>
-        </div>
+      <div class="w-full md:w-1/2  pr-4 ">
+        <div class="float-left" (click)="showGameFull = !showGameFull">
+          <i class="fas text-white" [ngClass]="showGameFull ? 'fa-chevron-circle-up' : 'fa-chevron-circle-down' "> </i>
 
+        </div>
+        <app-area-title [titleText]="game.gameTitle" [iconUrl]="game?.iconUrl"></app-area-title>
+        <div *ngIf="showGameFull">
+          <span class="block text-gray-200 ml-8 mt-2"> Hours played: {{game.hoursPlayed}}</span>
+          <div *ngFor="let hand of game.gameArea?.hands" class="w-full">
+            <app-hand-blocks [hand]="hand"></app-hand-blocks>
+          </div>
+        </div>
       </div>
       <!-- session -->
       <div class="md:w-1/2 w-full ">
@@ -21,13 +26,15 @@
             <em class="text-lg text-purple-400"
                 matTooltip="Session {{game.currentSession?.sessionNumber}}"> {{game.currentSession?.sessionTitle}} </em>
           </h2>
-          <button class="text-sm m-1 p-1 bg-purple-300 text-gray-600 rounded-lg float-right"
-                  (click)="createSessionHand(game.currentSession)">
-            <i class="fas fa-plus"></i>
-            Hand
-          </button>
-          <div *ngFor="let hand of game.currentSession?.hands" class="w-full">
-            <app-hand-blocks [hand]="hand"></app-hand-blocks>
+          <div *ngIf="showGameFull">
+            <button class="text-sm m-1 p-1 bg-purple-300 text-gray-600 rounded-lg float-right"
+                    (click)="createSessionHand(game.currentSession)">
+              <i class="fas fa-plus"></i>
+              Hand
+            </button>
+            <div *ngFor="let hand of game.currentSession?.hands" class="w-full">
+              <app-hand-blocks [hand]="hand"></app-hand-blocks>
+            </div>
           </div>
         </ng-container>
         <ng-template #no_session>
@@ -41,7 +48,7 @@
     <!-- play-character / sidebar -->
     <div class="flex flex-row flex-wrap h-100">
       <!-- play -->
-      <div class="lg:w-3/4 w-full backdrop-grayscale ">
+      <div class="lg:w-3/4 w-full ">
         <div class="flex flex-row flex-wrap ">
           <!--          &lt;!&ndash; bg &ndash;&gt;-->
           <!--          <div *ngIf="game.imageUrl" class="absolute lg:w-3/4 w-full  border-4 border-blue-500 ">-->
@@ -58,7 +65,8 @@
             <!--            <div class=""-->
             <h2 class="text-gray-200 ml-2">{{game.playArea?.areaTitle}}</h2>
             <div class="flex flex-row flex-wrap content-center" *ngIf="game.playArea?.hands">
-              <div  *ngFor="let hand of game?.playArea?.hands ?? []  | handType: 'current'"  class="float-right flex flex-col xl:w-1/6 m:w-1/4 xs:w-full">
+              <div *ngFor="let hand of game?.playArea?.hands ?? []  | handType: 'current'"
+                   class="float-right flex flex-col xl:w-1/6 m:w-1/4 xs:w-full">
                 <app-hand-blocks [hand]="hand" [titleSize]="' block text-lg bg-gray-700'"
                                  [bgStyle]="' bg-gray-800 bg-opacity-85'"
                                  [cardStyle]="'block bg-gray-800 text-white ml-4'"></app-hand-blocks>
@@ -93,7 +101,8 @@
                 </div>
               </div>
               <div class="flex flex-row flex-wrap">
-                <div *ngFor="let hand of character.hands| handType: 'grid'" class="flex-col 2xl:w-1/12 xl:w-1/8 lg:w-1/6 md:w-1/4 w-1/2">
+                <div *ngFor="let hand of character.hands| handType: 'grid'"
+                     class="flex-col 2xl:w-1/12 xl:w-1/8 lg:w-1/6 md:w-1/4 w-1/2">
                   <app-hand-blocks [hand]="hand" [titleSize]="'w-full block text-xl bg-gray-700'"
                                    [bgStyle]="' bg-gray-800 bg-opacity-25'"
                                    [cardStyle]="'block bg-gray-800 text-white ml-4'"></app-hand-blocks>

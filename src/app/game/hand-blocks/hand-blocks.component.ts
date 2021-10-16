@@ -100,7 +100,7 @@ export class HandBlocksComponent extends UnsubscribeOnDestroyAdapter implements 
     this.chatService.createChat(newChat);
 
     // add a new current card matching this thingy - probably via EventEmitter
-    this is an error
+    // this is an error
     // ask the hand service to delete this card from this hand
     this.handService.deleteCardFromHand(this.hand ?? {} as Hand, card).then(
       (returnValue) => {// and then actually delete it locally

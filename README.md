@@ -42,12 +42,13 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 `git push origin 1.7.2`
 
 ## Branching
-    1  new branch
 
-`git checkout -b iss53`
+1.  new branch
 
-    2 work work work
+    `git checkout -b branchname`
 
-`git checkout master`
+2. work work work
 
-`git merge iss53`
+    `git checkout parent-branch-name`
+
+    `git merge branchname`

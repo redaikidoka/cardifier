@@ -336,45 +336,50 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
   checkSavedUser(): boolean {
     console.log('AuthService::checkSavedUser - faking up someone saved');
 
-    // TODO: FIX
-    const faker = {
-      idUser: 'pol',
-      userEmail: 'pol@simplecommunion.com',
-      userName: 'Pól Stafford',
-      imageUrl: 'http://rpg.simplecommunion.com/pds/me-md.jpeg',
-      hoursPlayed: 999,
-      isActive: true,
-      tags: 'GM, Arcodd',
-      sCreate: new Date('2019-04-03'),
-      sUpdate: new Date('2021-05-28'),
-      idUserType: 300,
-      userTypeTitle: 'Paying Storyteller',
-      userTypeNotes: 'Encourage',
-    } as CardUser;
+    // // TODO: FIX
+    // const faker = {
+    //   idUser: 'pol',
+    //   userEmail: 'pol@simplecommunion.com',
+    //   userName: 'Pól Stafford',
+    //   imageUrl: 'http://rpg.simplecommunion.com/pds/me-md.jpeg',
+    //   hoursPlayed: 999,
+    //   isActive: true,
+    //   tags: 'GM, Arcodd',
+    //   sCreate: new Date('2019-04-03'),
+    //   sUpdate: new Date('2021-05-28'),
+    //   idUserType: 300,
+    //   userTypeTitle: 'Paying Storyteller',
+    //   userTypeNotes: 'Encourage',
+    // } as CardUser;
+    //
+    // console.log('AuthService::checkSavedUser(): make fake user', faker);
+    // this.currentUser$.next(faker);
+    // this.authInfo = {
+    //   user: { displayName: faker.userName, email: faker.userEmail },
+    //   token: this.testToken,
+    // };
+    //
+    // this.loginUser(faker);
+    // return true;
 
-    console.log('AuthService::checkSavedUser(): make fake user', faker);
-    this.currentUser$.next(faker);
-    this.authInfo = {
-      user: { displayName: faker.userName, email: faker.userEmail },
-      token: this.testToken,
-    };
-
-    this.loginUser(faker);
-    return true;
-
-    const token = localStorage.getItem(environment.APP_NAME + '-Token');
+    const savedToken = localStorage.getItem(environment.APP_NAME + '-Token');
     const savedUser =
       localStorage.getItem(environment.APP_NAME + '-User') ?? '';
     const dataUrl = localStorage.getItem(environment.APP_NAME + '-Server');
 
-    if (token && savedUser && dataUrl === environment.DATA_URL) {
+    if (savedToken && savedUser && dataUrl === environment.DATA_URL) {
       console.log(
         'AuthService::checkSavedUser - user exists!',
-        token,
+        savedToken,
         'user: ',
         savedUser
       );
       const convertedUser = JSON.parse(savedUser) as CardUser;
+
+      this.authInfo = {
+        user: { displayName: convertedUser.userName, email: convertedUser.userEmail },
+        token: savedToken || '',
+      };
 
       this.loginUser(convertedUser);
 
@@ -400,10 +405,10 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
         environment.APP_NAME + '-User',
         JSON.stringify(user)
       );
-      // localStorage.setItem(
-      //   environment.APP_NAME + '-Server',
-      //   environment.DATA_URL
-      // );
+      localStorage.setItem(
+        environment.APP_NAME + '-Server',
+        environment.DATA_URL
+      );
     } catch (err) {
       this.logger.logErrObject(
         'AuthService::saveUser',

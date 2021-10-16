@@ -25,6 +25,8 @@ export class PlayComponent extends UnsubscribeOnDestroyAdapter {
   game: Game | undefined;
   chats$: Observable<Chat[]> | undefined;
 
+  showGameFull = true;
+
   constructor(private aRoute: ActivatedRoute, private gameService: GameService, private logger: LoggerService,
               private chatService: ChatService, private handService: HandService, private auth: AuthService) {
     super();
