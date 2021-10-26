@@ -8,7 +8,8 @@
       <!-- game -->
       <div class="w-full md:w-1/2  pr-4 ">
         <div class="float-left" (click)="showGameFull = !showGameFull">
-          <i class="fas text-white" [ngClass]="showGameFull ? 'fa-chevron-circle-up' : 'fa-chevron-circle-down' "> </i>
+          <i class="fas text-gray-500" [ngClass]="showGameFull ? 'fa-chevron-circle-up' : 'fa-chevron-circle-down'"
+             matTooltip="{{showGameFull ? 'Collapse' : 'Expand'}}"> </i>
 
         </div>
         <app-area-title [titleText]="game.gameTitle" [iconUrl]="game?.iconUrl"></app-area-title>
@@ -50,21 +51,15 @@
       <!-- play -->
       <div class="lg:w-3/4 w-full ">
         <div class="flex flex-row flex-wrap ">
-          <!--          &lt;!&ndash; bg &ndash;&gt;-->
-          <!--          <div *ngIf="game.imageUrl" class="absolute lg:w-3/4 w-full  border-4 border-blue-500 ">-->
-          <!--            <img class="w-full object-cover rounded-xl filter brightness-50 saturate-50 bg-cover overflow-clip"-->
-          <!--                 src="{{game.imageUrl}}" alt=""/>-->
-          <!--          </div>-->
-          <!--          &lt;!&ndash; content &ndash;&gt;-->
-          <!--          <div class="relative h-full w-full flex border-4 border-green-500">-->
-          <!--            <h2 class="text-gray-300">play area</h2>-->
-          <!--          </div>-->
-          <!-- row -->
           <div *ngIf="game?.playArea" class="w-full bg-cover h-min-300 bg-opacity-25 "
                [ngStyle]="{'background-image': 'url(' + game?.imageUrl + ')'}">
-            <!--            <div class=""-->
-            <h2 class="text-gray-200 ml-2">{{game.playArea?.areaTitle}}</h2>
-            <div class="flex flex-row flex-wrap content-center" *ngIf="game.playArea?.hands">
+            <h2 class="text-gray-200 ml-2" (click)="showPlayFull = !showPlayFull">
+              <i class="fas text-gray-500 mr-2" [ngClass]="showPlayFull ? 'fa-chevron-circle-up' : 'fa-chevron-circle-down'"
+                 matTooltip="{{showPlayFull ? 'Collapse' : 'Expand'}}"> </i>
+              {{game.playArea?.areaTitle}}
+            </h2>
+
+            <div class="flex flex-row flex-wrap content-center" *ngIf="game.playArea?.hands && showPlayFull">
               <div *ngFor="let hand of game?.playArea?.hands ?? []  | handType: 'current'"
                    class="float-right flex flex-col xl:w-1/6 m:w-1/4 xs:w-full">
                 <app-hand-blocks [hand]="hand" [titleSize]="' block text-lg bg-gray-700'"

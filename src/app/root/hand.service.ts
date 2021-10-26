@@ -33,6 +33,11 @@ export class HandService {
       });
   }
 
+  addAreaCard(hand: Hand, cardToAdd: Card): any {
+
+    // TODO: it matters where your hand is, becuase it's probably not simple, so we may need different versions of this!
+    return null;
+  }
   // getHand$(idHand: string): Observable<Hand> {
   //   console.log('hand.service::getHand$', idHand);
   //

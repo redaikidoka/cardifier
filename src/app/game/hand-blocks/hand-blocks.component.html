@@ -1,6 +1,5 @@
 <div [ngClass]="bgStyle" class="block">
-
-  <img *ngIf="hand?.iconUrl || false" alt="Hand Icon" class="inline block mt-1 h-8 ml-2" src="{{hand?.iconUrl ?? ''}}" [ngClass]="iconSize" />
+  <img *ngIf="hand?.iconUrl || iconUrl || false" alt="Hand Icon" class="inline block mt-1 ml-2" src="{{iconUrl || hand?.iconUrl ?? ''}}" [ngClass]="iconSize" />
   <h3 *ngIf="showTitle"
     class="align-middle text-gray-200  mt-2 mb-2  mr-1 p-2" [ngClass]="titleSize">
     {{hand?.handTitle}} :
@@ -9,8 +8,8 @@
   <ul class=" inline-block ">
     <li *ngFor="let card of hand?.cards" class=" p-2 m-1 " [ngClass]="cardStyle">
       <div [ngClass]="getCardTextStyle(card)">
-        <i *ngIf="cardTagIs(card, 'NPC')" class="fas fa-universal-access mr-1"></i>
-        <img alt="{{card?.cardIcon}}" *ngIf="card.cardIcon || false" class="inline block mx-1  " src="{{card?.cardIcon ?? ''}}" [ngClass]="iconSize"  />
+        <i *ngIf="cardTagIs(card, 'NPC')" class="fas fa-universal-access mr-1" matTooltip="NPC"></i>
+        <img alt="{{card?.cardIcon}}" *ngIf="card.cardIcon || false" class="inline block mx-1 " src="{{card?.cardIcon ?? ''}}" [ngClass]="iconSize"  />
         <span [ngClass]="getCardTextStyle(card)" matTooltip="{{card.description}}" >{{card.cardTitle}}</span>
         <span *ngIf="card.currentValue" class="bg-gray-700 rounded-lg text-white mx-2 p-1" >{{card.currentValue}}</span>
 <!--        <i *ngIf="card.description" class="fas fa-info mx-2 px-1" matTooltip="{{card.description}}"></i>-->
@@ -18,6 +17,9 @@
         <i *ngIf="card.dieRoll" class="ml-2 fas fa-dice float-right" (click)="rollDice(card)" matTooltip="click to roll {{card.dieRoll}}"></i>
         <i *ngIf="card.cardType === 'frangible'" class="ml-2 fas fa-hand-pointer float-right" (click)="takeAction(card)" matTooltip="click to spend"></i>
       </div>
+    </li>
+    <li class="text-center p-2 m-1" [ngClass]="cardStyle" (click)="addCard()">
+        <i class="fas fa-plus" matTooltip="Click to add one more of these..."></i>
     </li>
   </ul>
 </div>

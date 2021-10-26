@@ -3,6 +3,7 @@ import {Card, Hand} from '../../core/data/game';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {UnsubscribeOnDestroyAdapter} from '../../root/unsubscribe-on-destroy-adapter';
 import {ModalLightboxComponent} from '../../core/modal-lightbox/modal-lightbox.component';
+import {ModalAddCardComponent} from '../modal-add-card/modal-add-card.component';
 import {DiceService} from '../../root/dice.service';
 import {ChatService} from '../../root/chat.service';
 import {Chat} from '../../core/data/chat';
@@ -26,7 +27,7 @@ export class HandBlocksComponent extends UnsubscribeOnDestroyAdapter implements 
 
   @Input() iconUrl: string | undefined;
 
-  @Input() iconSize = 'h-6';
+  @Input() iconSize = 'h-8';
   @Input() titleSize = ' inline-block text-xl';
   @Input() cardStyle = 'inline-block bg-gray-200';
   @Input() cardTextStyle = '';
@@ -109,6 +110,17 @@ export class HandBlocksComponent extends UnsubscribeOnDestroyAdapter implements 
     );
 
 
+  }
+
+  addCard(): void {
+    const dialogRef = this.picDialog.open(ModalAddCardComponent, {
+      width: '75%',
+      data: {},
+    });
+
+    this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
+      console.log('Hand-blocks.component addCard()', result);
+    });
   }
 
   private getHand(): Hand {

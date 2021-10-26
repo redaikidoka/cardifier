@@ -26,6 +26,7 @@ export class PlayComponent extends UnsubscribeOnDestroyAdapter {
   chats$: Observable<Chat[]> | undefined;
 
   showGameFull = true;
+  showPlayFull = true;
 
   constructor(private aRoute: ActivatedRoute, private gameService: GameService, private logger: LoggerService,
               private chatService: ChatService, private handService: HandService, private auth: AuthService) {

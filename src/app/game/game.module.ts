@@ -18,6 +18,7 @@ import { ChatMessageComponent } from './chat-message/chat-message.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {HandTrackComponent} from './hand-track/hand-track.component';
 import {FormsModule} from '@angular/forms';
+import { ModalAddCardComponent } from './modal-add-card/modal-add-card.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {FormsModule} from '@angular/forms';
     HandDropdownComponent,
     HandTrackComponent,
     ChatListComponent,
-    ChatMessageComponent
+    ChatMessageComponent,
+    ModalAddCardComponent
   ],
   imports: [
     CommonModule,
