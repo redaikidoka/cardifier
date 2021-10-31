@@ -21,9 +21,10 @@ import { environment } from '../environments/environment';
 import { LoginModule } from './login/login.module';
 
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { PageNotFoundComponent } from './root/page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PageNotFoundComponent],
   imports: [
     BrowserModule, BrowserAnimationsModule, RouterModule,
     AppRoutingModule,
