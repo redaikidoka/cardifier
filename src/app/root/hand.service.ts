@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {from, Observable} from 'rxjs';
-import {Card, Hand} from '../core/data/game';
+import {Card, Game, GameArea, Hand} from '../core/data/game';
 import {map, tap} from 'rxjs/operators';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {LoggerService} from './logger.service';
@@ -31,6 +31,23 @@ export class HandService {
         this.logger.logErr('hand.service:deleteCardFromHand',
           'Could not delete card ' + card.idCard, 'Card couldn\'t be deleted');
       });
+  }
+
+  addGameAreaHand(game: Game, area: GameArea, hand: Hand): Promise<any> {
+
+    return this.afs.collection('games').doc(game.idGame).collection('areas').doc(area.idArea)
+      .collection('hands').add(hand)
+      .then((returnValue) => {
+        console.log('hand.service::addGameAreaHand I received', returnValue);
+      })
+      .catch(err => {
+        this.logger.logErr('hand.service:addGameAreaHand',
+          'Could not add hand ' + hand.idHand, 'Hand couldn\'t be added');
+        console.log('hand.service::addGameAreaHand', game, area, hand);
+      })
+    ;
+
+
   }
 
   addAreaCard(hand: Hand, cardToAdd: Card): any {

@@ -89,6 +89,7 @@ export interface GameArea {
 export type HandState = 'Open' | 'Condensed' | 'Closed' | 'Hidden' | '';
 
 export const AREA_CURRENT_ID = 'current';
+
 export interface Hand {
   idHand: string;
   order: number;

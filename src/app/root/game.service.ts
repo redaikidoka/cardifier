@@ -20,6 +20,30 @@ export class GameService {
               private userService: UserService, private handService: HandService) {
   }
 
+  private getCurrentHand(): Hand {
+
+    const currentHand = {
+      idHand: AREA_CURRENT_ID,
+      order: 10000,
+      idGame: area.idGame,
+      idArea: area.idArea,
+      handType: 'current',
+      handTitle: 'Current Effects',
+      handDescription: 'Player and Scene FX go here',
+      handState: 'Open',
+      cards: [{
+        idCard: 'base',
+        order: 0,
+        idHand: AREA_CURRENT_ID,
+        cardTitle: 'Add Player FX Here',
+        description: 'Click the hand to close',
+        faceColor: 'bg-red-500',
+        tags: 'frangible'
+      } as Card]
+    } as Hand;
+
+    return currentHand;
+  }
   getCurrentUserGames$(): Observable<Game[]> {
     const gameList = this.auth.me().games;
 
@@ -64,9 +88,12 @@ export class GameService {
             // AREA: Play (game.playArea)
             // @ts-ignore
             game?.playArea = game.areas.find(a => a.areaId === GameAreaType.Play);
-            // if (game?.playArea) {
-            //   this.createAreaCurrentHand(game, game.playArea);
-            // }
+            if (!game?.playArea) {
+
+            }
+            if (game?.playArea) {
+              this.createAreaCurrentHand(game, game.playArea);
+            }
           }
 
           // console.log('game.service::getGame$ game setup', game);
@@ -132,28 +159,9 @@ export class GameService {
     if (!area.hands) {
       area.hands = [];
     }
+    const currentHand = this.getCurrentHand();
 
-    const currentHand = {
-      idHand: AREA_CURRENT_ID,
-      order: 10000,
-      idGame: area.idGame,
-      idArea: area.idArea,
-      handType: 'current',
-      handTitle: 'Current Effects',
-      handDescription: 'Player and Scene FX go here',
-      handState: 'Open',
-      cards: [{
-        idCard: 'base',
-        order: 0,
-        idHand: AREA_CURRENT_ID,
-        cardTitle: 'Add Player FX Here',
-        description: 'Click the hand to close',
-        faceColor: 'bg-red-500',
-        tags: 'frangible'
-      } as Card]
-    } as Hand;
-
-    return from(this.handService.createGameHand$(currentHand)).pipe(
+    return from(this.handService.addGameAreaHand(game, area, currentHand)).pipe(
       tap(returned => console.log('returned value', returned)),
       map( res => {
         area.hands?.push(currentHand);
@@ -186,5 +194,29 @@ export class GameService {
 
   getGameSession$(idGame: string, idSession: string): Observable<GameSession | undefined> {
     return this.afs.collection('games').doc(idGame).collection('sessions').doc<GameSession>(idSession).valueChanges();
+  }
+
+  // make a play area on the game!
+  createPlayArea(game: Game): Promise<GameArea> {
+    if (game.playArea) {
+      return Promise.resolve(game.playArea);
+    }
+
+    const newPlayArea = {
+      idArea: 'Play',
+      idGame: game.idGame,
+      areaTitle: 'Play',
+      areaId: GameAreaType.Play,
+      sIdUserCreate: this.auth.myId(),
+
+      hands: [ this.getCurrentHand() ]
+
+    };
+
+    return this.afs.collection('games').doc(game.idGame).collection('areas').add(newPlayArea)
+      .then()
+      .catch()
+      ;
+
   }
 }

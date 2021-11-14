@@ -43,7 +43,7 @@ export class ModalAddCardComponent extends UnsubscribeOnDestroyAdapter implement
   }
 
   onSave(): void {
-    window.alert("Save, bitch!");
+    window.alert('Save, bitch!');
   }
 
 }
