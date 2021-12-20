@@ -78,8 +78,8 @@ export interface GameArea {
   areaTitle: string;
   areaId?: GameAreaType;
 
-  sCreate: Date;
-  sUpdate: Date;
+  sCreate?: Date;
+  sUpdate?: Date;
   sIdUserCreate?: string;
   sIdUserUpdate?: string;
 
@@ -88,7 +88,8 @@ export interface GameArea {
 
 export type HandState = 'Open' | 'Condensed' | 'Closed' | 'Hidden' | '';
 
-export const AREA_CURRENT_ID = 'current';
+export const AREA_ID_PLAY = 'Play';
+export const HAND_ID_CURRENT = 'current';
 
 export interface Hand {
   idHand: string;
