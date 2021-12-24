@@ -1,5 +1,5 @@
 <cf-navbar></cf-navbar>
-<main class="h-screen w-full" style="background-color: rgba(0, 0, 0, 0.8)">
+<main class="flex flex-col h-screen w-full" style="background-color: rgba(0, 0, 0, 0.8)">
   <section *ngIf="game$ | async as game; else no_game" class="pt-16 pb-32">
     <!-- <h1 class="text-white font-semibold text-2xl mb-6">Home Page</h1> -->
 
@@ -47,7 +47,7 @@
     </div>
 
     <!-- play-character / sidebar -->
-    <div class="flex flex-row flex-wrap h-100">
+    <div class="flex flex-row flex-wrap">
       <!-- play -->
       <div class="lg:w-3/4 w-full ">
         <div class="flex flex-row flex-wrap ">
