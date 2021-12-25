@@ -5,31 +5,28 @@ import {concatMap, map, mergeMap, switchMap, tap} from 'rxjs/operators';
 import {AngularFirestore} from '@angular/fire/firestore';
 
 import {Character, CharacterList} from '../core/data/character';
-import {Game, GameSession, GameArea, GameAreaType, Hand, Card, HAND_ID_CURRENT, AREA_ID_PLAY} from '../core/data/game';
+import {Game, GameSession, GameArea, GameAreaType, Hand, Card, AREA_CURRENT_ID} from '../core/data/game';
 
 import {CharacterService} from './character.service';
 import {AuthService} from './auth.service';
 import {UserService} from './user.service';
 import {HandService} from './hand.service';
-import {LoggerService} from './logger.service';
-import firebase from 'firebase';
-import DocumentReference = firebase.firestore.DocumentReference;
 
 @Injectable({
   providedIn: 'root',
 })
 export class GameService {
   constructor(private afs: AngularFirestore, private characterService: CharacterService, private auth: AuthService,
-              private userService: UserService, private handService: HandService, private logger: LoggerService) {
+              private userService: UserService, private handService: HandService) {
   }
 
-  private getCurrentHand(gameId: string, areaId: string): Hand {
+  private getCurrentHand(): Hand {
 
     const currentHand = {
-      idHand: HAND_ID_CURRENT,
+      idHand: AREA_CURRENT_ID,
       order: 10000,
-      idGame: gameId,
-      idArea: areaId,
+      idGame: area.idGame,
+      idArea: area.idArea,
       handType: 'current',
       handTitle: 'Current Effects',
       handDescription: 'Player and Scene FX go here',
@@ -37,7 +34,7 @@ export class GameService {
       cards: [{
         idCard: 'base',
         order: 0,
-        idHand: HAND_ID_CURRENT,
+        idHand: AREA_CURRENT_ID,
         cardTitle: 'Add Player FX Here',
         description: 'Click the hand to close',
         faceColor: 'bg-red-500',
@@ -47,7 +44,6 @@ export class GameService {
 
     return currentHand;
   }
-
   getCurrentUserGames$(): Observable<Game[]> {
     const gameList = this.auth.me().games;
 
@@ -94,7 +90,6 @@ export class GameService {
             game?.playArea = game.areas.find(a => a.areaId === GameAreaType.Play);
             if (!game?.playArea) {
               this.createPlayArea(game);
-              // this.createAreaCurrentHand(game, game.playArea);
               //   .then( (docRef: DocumentReference) =>
               //   console.error('LOOK AT ME!!!! I do not know how this works!');
               // );
@@ -159,15 +154,15 @@ export class GameService {
   createAreaCurrentHand(game: Game, area: GameArea): Observable<Hand | undefined> {
     if (game && area && area.hands) {
       // check to see if it's there!
-      if (area.hands.some(hand => hand.idHand === HAND_ID_CURRENT)) {
-        return of(area.hands.find(hand => hand.idHand === HAND_ID_CURRENT));
+      if (area.hands.some(hand => hand.idHand === AREA_CURRENT_ID)) {
+        return of(area.hands.find(hand => hand.idHand === AREA_CURRENT_ID));
       }
     }
 
     if (!area.hands) {
       area.hands = [];
     }
-    const currentHand = this.getCurrentHand(game.idGame, area.idArea);
+    const currentHand = this.getCurrentHand();
 
     return from(this.handService.addGameAreaHand(game, area, currentHand)).pipe(
       tap(returned => console.log('returned value', returned)),
@@ -205,30 +200,25 @@ export class GameService {
   }
 
   // make a play area on the game!
-  createPlayArea(game: Game): Promise<void | DocumentReference> {
+  createPlayArea(game: Game): Promise<GameArea> {
     if (game.playArea) {
-      return Promise.resolve({} as DocumentReference);
+      return Promise.resolve(game.playArea);
     }
 
     const newPlayArea = {
-      idArea: AREA_ID_PLAY,
+      idArea: 'Play',
       idGame: game.idGame,
       areaTitle: 'Play',
       areaId: GameAreaType.Play,
       sIdUserCreate: this.auth.myId(),
 
-      hands: [ this.getCurrentHand(game.idGame, AREA_ID_PLAY) ]
+      hands: [ this.getCurrentHand() ]
 
-    } as GameArea;
+    };
 
     return this.afs.collection('games').doc(game.idGame).collection('areas').add(newPlayArea)
-      .then((docRef) => {
-        console.log('Document written with ID: ', docRef.id);
-        console.log('GameService::cretePlayAra docRef of new Play Area', docRef);
-      })
-      .catch(err => {
-        this.logger.logErrObject('GameService', err, 'Could Not Create Play Area');
-      })
+      .then()
+      .catch()
       ;
 
   }
