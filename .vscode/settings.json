@@ -1,3 +1,6 @@
 {
-    "compile-hero.disable-compile-files-on-did-save-code": true
+    "compile-hero.disable-compile-files-on-did-save-code": true,
+    "workbench.colorTheme": "Nord",
+    "workbench.iconTheme": "eq-material-theme-icons-light",
+    "editor.fontSize": 12
 }
