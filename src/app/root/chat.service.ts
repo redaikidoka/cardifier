@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {Chat, GameChats} from '../core/data/chat';
 import {map, tap} from 'rxjs/operators';
-import firebase from 'firebase';
+import firebase from 'firebase/compat';
 import ThenableReference = firebase.database.ThenableReference;
-import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFirestore} from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'

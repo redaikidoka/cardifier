@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {from, Observable} from 'rxjs';
 import {Card, Game, GameArea, Hand} from '../core/data/game';
 import {map, tap} from 'rxjs/operators';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {LoggerService} from './logger.service';
 
 @Injectable({

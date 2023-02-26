@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 import {from, Observable, of} from 'rxjs';
 import {concatMap, map, mergeMap, switchMap, tap} from 'rxjs/operators';
 
-import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFirestore} from '@angular/fire/compat/firestore';
 
 import {Character, CharacterList} from '../core/data/character';
-import {Game, GameSession, GameArea, GameAreaType, Hand, Card, AREA_CURRENT_ID} from '../core/data/game';
+import {Game, GameSession, GameArea, GameAreaType, Hand, Card, HAND_ID_CURRENT} from '../core/data/game';
 
 import {CharacterService} from './character.service';
 import {AuthService} from './auth.service';
@@ -23,7 +23,7 @@ export class GameService {
   private getCurrentHand(): Hand {
 
     const currentHand = {
-      idHand: AREA_CURRENT_ID,
+      idHand: HAND_ID_CURRENT,
       order: 10000,
       idGame: area.idGame,
       idArea: area.idArea,
@@ -34,7 +34,7 @@ export class GameService {
       cards: [{
         idCard: 'base',
         order: 0,
-        idHand: AREA_CURRENT_ID,
+        idHand: HAND_ID_CURRENT,
         cardTitle: 'Add Player FX Here',
         description: 'Click the hand to close',
         faceColor: 'bg-red-500',
@@ -154,8 +154,8 @@ export class GameService {
   createAreaCurrentHand(game: Game, area: GameArea): Observable<Hand | undefined> {
     if (game && area && area.hands) {
       // check to see if it's there!
-      if (area.hands.some(hand => hand.idHand === AREA_CURRENT_ID)) {
-        return of(area.hands.find(hand => hand.idHand === AREA_CURRENT_ID));
+      if (area.hands.some(hand => hand.idHand === HAND_ID_CURRENT)) {
+        return of(area.hands.find(hand => hand.idHand === HAND_ID_CURRENT));
       }
     }
 

@@ -4,10 +4,10 @@ import { catchError, concatMap, map, tap } from 'rxjs/operators';
 import { UnsubscribeOnDestroyAdapter } from './unsubscribe-on-destroy-adapter';
 import { Observable, BehaviorSubject, Subject, ReplaySubject, of } from 'rxjs';
 
-import firebase from 'firebase';
+import firebase from 'firebase/compat';
 import UserInfo = firebase.UserInfo;
 import User = firebase.User;
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 // @ts-ignore
 import * as cloneDeep from 'lodash/cloneDeep';

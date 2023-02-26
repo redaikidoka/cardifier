@@ -2,9 +2,9 @@ import {Injectable} from '@angular/core';
 import {Character, CharacterList} from '../core/data/character';
 import {Observable} from 'rxjs';
 import {map, mergeMap, take, tap} from 'rxjs/operators';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFirestore} from '@angular/fire/compat/firestore';
 
-// import {AngularFireDatabase} from '@angular/fire/database';
+// import {AngularFireDatabase} from '@angular/fire/compat/database';
 
 @Injectable({
   providedIn: 'root'

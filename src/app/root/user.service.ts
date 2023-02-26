@@ -8,7 +8,7 @@ import {CardUser} from '../core/data/card-user';
 import {LoggerService} from './logger.service';
 
 import {UnsubscribeOnDestroyAdapter} from './unsubscribe-on-destroy-adapter';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {Game} from '../core/data/game';
 
 @Injectable({

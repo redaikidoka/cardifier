@@ -7,7 +7,7 @@ import {LoginComponent} from './login/login/login.component';
 import {PageNotFoundComponent} from './root/page-not-found/page-not-found.component';
 
 import {AuthGuard} from './root/auth.guard';
-import {canActivate} from '@angular/fire/auth-guard';
+import {canActivate} from '@angular/fire/compat/auth-guard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'landing', pathMatch: 'full'},

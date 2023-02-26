@@ -52,3 +52,23 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
     `git checkout parent-branch-name`
 
     `git merge branchname`
+
+## Import common js modules
+
+```
+export function normalizeCommonJSImport<T>(
+  importPromise: Promise<T>,
+): Promise<T> {
+  // CommonJS's `module.exports` is wrapped as `default` in ESModule.
+  return importPromise.then((m: any) => (m.default || m) as T);
+}
+```
+then 
+```
+import { normalizeCommonJSImport } from '../utils/normalizeCommonJSImport';
+
+// import() returns a Promise
+const importChart = normalizeCommonJSImport(
+import(/* webpackChunkName: "chart" */ 'chart.js'),
+);
+```
