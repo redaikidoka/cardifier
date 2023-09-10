@@ -55,7 +55,6 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
       case 300:
       default:
         return 'fa-user';
-
     }
   }
 
@@ -241,7 +240,8 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
       map((found) => {
         if (!found) {
           console.error('auth.service::testLogin could not login:', idUser);
-          return of(null); }
+          return of(null);
+        }
         console.log('AuthService::testLogin(): LOADED test USER', found);
         this.currentUser$.next(found);
         this.authInfo = {
@@ -254,10 +254,16 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
       }),
       concatMap(() => this.loginUser(this.me())),
       tap(() => {
-        if (goHome) { this.navigateHome(); }
+        if (goHome) {
+          this.navigateHome();
+        }
       }),
       catchError((err) => {
-        this.logger.logErrObject( 'AuthService::testLogin', err, 'Could not login user id ' + idUser );
+        this.logger.logErrObject(
+          'AuthService::testLogin',
+          err,
+          'Could not login user id ' + idUser
+        );
         return of({} as CardUser);
       })
     );
@@ -377,7 +383,10 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
       const convertedUser = JSON.parse(savedUser) as CardUser;
 
       this.authInfo = {
-        user: { displayName: convertedUser.userName, email: convertedUser.userEmail },
+        user: {
+          displayName: convertedUser.userName,
+          email: convertedUser.userEmail,
+        },
         token: savedToken || '',
       };
 
@@ -412,7 +421,7 @@ export class AuthService extends UnsubscribeOnDestroyAdapter {
     } catch (err) {
       this.logger.logErrObject(
         'AuthService::saveUser',
-        err,
+        err as Error,
         'User Information could not be saved to the browser.'
       );
     }
